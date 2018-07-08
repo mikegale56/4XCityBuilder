@@ -61,7 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TerrainTile.cs" />
+    <Compile Include="Assets\Scripts\World\MapGenFunctions.cs" />
+    <Compile Include="Assets\Scripts\World\MapManager.cs" />
+    <Compile Include="Assets\Scripts\World\MapPanZoom.cs" />
+    <Compile Include="Assets\Scripts\World\Noise.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/mikeg/OneDrive/Documents/Documents/4XCityBuilder/4xCityBuilder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
