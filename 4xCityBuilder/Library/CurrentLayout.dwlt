@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 2244
     height: 1291
-  m_MinSize: {x: 913, y: 542}
-  m_MaxSize: {x: 22008, y: 12042}
+  m_MinSize: {x: 917, y: 563}
+  m_MaxSize: {x: 22012, y: 12063}
   vertical: 0
-  controlID: 162
+  controlID: 170
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,8 +158,8 @@ MonoBehaviour:
     y: 0
     width: 1049
     height: 1291
-  m_MinSize: {x: 202, y: 542}
-  m_MaxSize: {x: 4002, y: 12042}
+  m_MinSize: {x: 202, y: 563}
+  m_MaxSize: {x: 4002, y: 12063}
   vertical: 1
   controlID: 10
 --- !u!114 &8
@@ -180,8 +180,8 @@ MonoBehaviour:
     y: 0
     width: 372
     height: 1291
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -280,8 +280,8 @@ MonoBehaviour:
     y: 515
     width: 1049
     height: 566
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -341,7 +341,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: e6fbffff000000008e0b0000
+    m_ExpandedIDs: f0fbffff000000009e0b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -436,20 +436,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Resources/Sprites/Trees
+    - Assets/Resources/Textures
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Sprites/Trees
+  - Assets/Resources/Textures
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6e3f0000
-    m_LastClickedID: 16238
-    m_ExpandedIDs: 00000000e8080000740900005e0b00006a0b0000402c0000422c00001043000000ca9a3bffffff7f
+    m_SelectedIDs: f2080000
+    m_LastClickedID: 2290
+    m_ExpandedIDs: 00000000e6080000720900003c0a0000680b0000740b00004e2c0000502c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -465,7 +465,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 9}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -477,7 +477,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e8080000402c0000422c0000
+    m_ExpandedIDs: 00000000e6080000720900003c0a0000680b0000740b00004e2c0000502c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -638,9 +638,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 313.4785, y: 294.67294, z: -5.375}
+    m_Target: {x: 569.5447, y: 170.49928, z: -5.875}
     speed: 2
-    m_Value: {x: 313.4785, y: 294.67294, z: -5.375}
+    m_Value: {x: 569.5447, y: 170.49928, z: -5.875}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -672,9 +672,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 534.3146
+    m_Target: 575.9763
     speed: 2
-    m_Value: 534.3146
+    m_Value: 575.9763
   m_Ortho:
     m_Target: 1
     speed: 2

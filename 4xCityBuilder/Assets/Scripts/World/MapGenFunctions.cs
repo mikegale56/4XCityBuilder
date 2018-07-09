@@ -7,9 +7,48 @@ public class MapGenFunctions
 {
 
     public int edgeWater;
+    private Noise noiseGen = new Noise();
+    public float[] perlinFraction = new float[20];
+    public float[] perlinBound = new float[20];
 
-	// Use this for initialization
-	public void GenWithDiamondSquare(int N, float[,] height)
+    public MapGenFunctions()
+    {
+        perlinFraction[0] = 0;
+        perlinFraction[1] = 1; // 0.05 - 0.1
+        perlinFraction[2] = 2;
+        perlinFraction[3] = 3; // 0.15 - 0.2
+        perlinFraction[4] = 4;
+        perlinFraction[5] = 5; // 0.3
+        perlinFraction[6] = 5;
+        perlinFraction[7] = 6; // 0.4
+        perlinFraction[8] = 8;
+        perlinFraction[9] = 8; // 0.45 - 0.5
+        perlinFraction[10] = 8;
+        perlinFraction[11] = 8; // 0.6
+        perlinFraction[12] = 8;
+        perlinFraction[13] = 7; // 0.7
+        perlinFraction[14] = 6;
+        perlinFraction[15] = 5; // 0.8
+        perlinFraction[16] = 4;
+        perlinFraction[17] = 2; // 0.85 - 0.9
+        perlinFraction[18] = 1;
+        perlinFraction[19] = 0; // 0.95 - 1.0
+
+        for (int i = 0; i < perlinBound.Length; i++)
+            perlinBound[i] = 0.05F * (i + 1);
+
+
+    }
+
+    public void InitSurfaceValues(int N, short[,] surfaceValue)
+    {
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                surfaceValue[i, j] = -1;
+    }
+
+
+    public void GenWithDiamondSquare(int N, float[,] height)
     {
         float dsFac = N / 4F;
         float dsFacOriginal = dsFac;
@@ -110,7 +149,6 @@ public class MapGenFunctions
         float waterFraction    = mapManager.waterFraction;
         float hillFraction     = mapManager.hillFraction;
         float mountainFraction = mapManager.mountainFraction;
-        float tolerance = 100 * 1 / N;
 
         // Put the heights into a List, sort it, and find the percent markers that way
         List<float> sortedHeight = new List<float>();
@@ -425,8 +463,36 @@ public class MapGenFunctions
                 
     }
 
+    public void PlaceTrees(int N, float frac, short value, short[,] surfaceValue, byte[,] groundValue, MapManager mapManager)
+    {
 
-        public void GeneratePerlinNoise()
+        // Turn frac into a value based on the distribution of Perlin Noise set in the constructor
+        float actualFrac = 0;
+        int ind = perlinFraction.Length-1;
+        while (ind >= 0 & actualFrac <= frac)
+        {
+            actualFrac = actualFrac + perlinFraction[ind]/100F;
+            ind--;
+        }
+        float thisBound = perlinBound[ind+1];
+        //Debug.Log("Perlin Noise Bound = " + thisBound.ToString());
+        
+        for (int i = edgeWater; i < N-edgeWater; i++)
+        {
+            for (int j = edgeWater; j < N- edgeWater; j++)
+            {
+                float noise = noiseGen.GetNoise((double)i / (double)N * 8, (double)j / (double)N * 8, value);
+                if (noise >= thisBound && // Noise is over the threshold
+                    (groundValue[i,j] == mapManager.groundValueDictionary["Plain"] | // And it's on a plain
+                    groundValue[i, j] == mapManager.groundValueDictionary["Hill"]))  // Or hills
+                    surfaceValue[i, j] = value;
+            }
+        }
+
+    }
+
+
+    public void GeneratePerlinNoise()
     {
         /*
         float maxH = 0;
