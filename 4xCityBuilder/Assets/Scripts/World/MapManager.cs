@@ -30,21 +30,23 @@ public class MapManager : MonoBehaviour
     public float pineTreeFraction = 0.15F;
 
     public Dictionary<string, byte> groundValueDictionary = new Dictionary<string, byte>();
+    public Dictionary<string, byte> stoneValueDictionary = new Dictionary<string, byte>();
     public Dictionary<string, byte> undergroundValueDictionary = new Dictionary<string, byte>();
     public Dictionary<string, byte> specialValueDictionary = new Dictionary<string, byte>();
     public Dictionary<string, short> surfaceValueDictionary = new Dictionary<string, short>();
 
     private float[,] height;
-    private byte[,] groundValue;
-    private byte[,] undergroundValue;
-    private byte[,] specialValue;
+    private byte[,]  groundValue;
+    private byte[,]  undergroundValue;
+    private byte[,]  stoneValue;
+    private byte[,]  specialValue;
     private short[,] surfaceValue;
 
     public Tilemap groundTileMap;
     public Tilemap undergroundTileMap;
     public List<Tile> groundTiles = new List<Tile>();
     public List<Tile> surfaceTiles = new List<Tile>();
-    public List<Tile> undergroundTiles = new List<Tile>();
+    public List<List<Tile>> undergroundTiles = new List<List<Tile>>();
 
     // Use this for initialization
     void Start()
@@ -92,11 +94,23 @@ public class MapManager : MonoBehaviour
         surfaceTiles.Add(Resources.Load("Tiles/Trees/Pine") as Tile);
         surfaceValueDictionary.Add("Pine", (byte)(surfaceTiles.Count - 1));
 
+        // Stone Tiles
+        undergroundTiles.Add(new List<Tile>());
+        undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Sandstone") as Tile);
+        stoneValueDictionary.Add("Sandstone", (byte)(undergroundTiles[0].Count - 1));
 
-        //foreach (string file in System.IO.Directory.GetFiles("C:/Users/mikeg/OneDrive/Documents/Documents/4XCityBuilder/4xCityBuilder/Assets/Resources/Tiles/Trees/"))
-        //Tile treeTile = ScriptableObject.CreateInstance<Tile>();
-        //var treeSprite = Resources.Load("Sprites/trees/Tree1") as Sprite;
-        //treeTile.sprite = treeSprite;
+        undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Limestone") as Tile);
+        stoneValueDictionary.Add("Limestone", (byte)(undergroundTiles[0].Count - 1));
+
+        undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Marble") as Tile);
+        stoneValueDictionary.Add("Marble", (byte)(undergroundTiles[0].Count - 1));
+
+        undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Granite") as Tile);
+        stoneValueDictionary.Add("Granite", (byte)(undergroundTiles[0].Count - 1));
+
+        CreateOreTiles cot = new CreateOreTiles();
+        cot.RockOreMix(undergroundValueDictionary, stoneValueDictionary, undergroundTiles);
+     
     }
 
     private void GenerateMap()
@@ -108,6 +122,10 @@ public class MapManager : MonoBehaviour
         surfaceValue = new short[N, N];
 
         MapGenFunctions mapGenFunctions = new MapGenFunctions();
+        
+        /*
+         *Generate the ground and surface map
+        */
 
         // Generate the height map
         mapGenFunctions.GenWithDiamondSquare(N, height);
@@ -130,10 +148,10 @@ public class MapManager : MonoBehaviour
         // Generate Trees
         mapGenFunctions.PlaceTrees(N, oakTreeFraction, surfaceValueDictionary["Oak"], surfaceValue, groundValue, this);
         mapGenFunctions.PlaceTrees(N, pineTreeFraction, surfaceValueDictionary["Pine"], surfaceValue, groundValue, this);
-        
 
-        // Draw the tiles
+        // Draw the ground & surface tiles
         for (int i = 0; i < N; i++)
+        {
             for (int j = 0; j < N; j++)
             {
                 if (surfaceValue[i, j] >= 0)
@@ -144,7 +162,14 @@ public class MapManager : MonoBehaviour
                 else
                     groundTileMap.SetTile(new Vector3Int(i, j, 0), groundTiles[groundValue[i, j]]);
             }
-                
+        }
+
+        
+        // Generate the underground map
+        
+
+
+
     }
 
     /* TIME A FUNCTION
