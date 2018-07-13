@@ -11,23 +11,31 @@ public class MapManager : MonoBehaviour
     [Range(4, 11)]
     public int nFac;
 
+    // Terrain
     [Range(0.0F, 1.0F)]
     public float waterFraction = 0.20F;
-
     [Range(0.0F, 1.0F)]
     public float hillFraction = 0.15F;
-
     [Range(0.0F, 1.0F)]
     public float mountainFraction = 0.05F;
-
     [Range(0, 1000)]
     public int nRivers = 50;
 
+    // Trees
     [Range(0.0F, 1.0F)]
     public float oakTreeFraction = 0.1F;
-
     [Range(0.0F, 1.0F)]
     public float pineTreeFraction = 0.15F;
+
+    // Stone
+    [Range(0.0F, 1.0F)]
+    public float sandstoneFrac = 0.4F;
+    [Range(0.0F, 1.0F)]
+    public float limestoneFrac = 0.3F;
+    [Range(0.0F, 1.0F)]
+    public float marbleFrac = 0.2F;
+    [Range(0.0F, 1.0F)]
+    public float graniteFrac = 0.1F;
 
     public Dictionary<string, byte> groundValueDictionary = new Dictionary<string, byte>();
     public Dictionary<string, byte> stoneValueDictionary = new Dictionary<string, byte>();
@@ -115,11 +123,21 @@ public class MapManager : MonoBehaviour
 
     private void GenerateMap()
     {
-
         int N = (int)(Mathf.Pow(2.0F, nFac) + 1.0F);
-        height = new float[N, N];
-        groundValue = new byte[N, N];
-        surfaceValue = new short[N, N];
+        height           = new float[N, N];
+        groundValue      = new byte[N, N];
+        surfaceValue     = new short[N, N];
+        undergroundValue = new byte[N, N];
+        stoneValue       = new byte[N, N];
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                undergroundValue[i, j] = 0;
+                stoneValue[i, j] = 99; //Everything stone will be replaced
+            }
+        }
 
         MapGenFunctions mapGenFunctions = new MapGenFunctions();
         
@@ -163,11 +181,34 @@ public class MapManager : MonoBehaviour
                     groundTileMap.SetTile(new Vector3Int(i, j, 0), groundTiles[groundValue[i, j]]);
             }
         }
+        // Hide this
+        groundTileMap.GetComponent<Renderer>().enabled = false;
 
-        
         // Generate the underground map
-        
 
+        // Divide into stones
+        mapGenFunctions.GenerateStone(stoneValue, stoneValueDictionary, N,
+            sandstoneFrac, limestoneFrac, marbleFrac, graniteFrac);
+
+        // Add ores
+        mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["CopperOre"], N, 0.50F, "snake");
+        mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["TinOre"],    N, 0.25F, "snake");
+        mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["SilverOre"], N, 0.20F, "snake");
+        mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["IronOre"],   N, 0.25F, "snake");
+        mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["GoldOre"],   N, 0.10F, "snake");
+        //mapGenFunctions.AddOreVein(undergroundValue, undergroundValueDictionary["CoalOre"], N, 0.5F, "circle");
+
+
+        // Draw the underground tiles
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                //Debug.Log(undergroundValue[i, j].ToString() + ", " + stoneValue[i, j].ToString());
+                undergroundTileMap.SetTile(new Vector3Int(i, j, 0), undergroundTiles[undergroundValue[i, j]][stoneValue[i,j]]);
+            }
+        }
+        //undergroundTileMap.enabled = false;
 
 
     }

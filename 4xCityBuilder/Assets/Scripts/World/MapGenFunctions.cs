@@ -491,31 +491,130 @@ public class MapGenFunctions
 
     }
 
-
-    public void GeneratePerlinNoise()
+    public void AddOreVein(byte[,] undergroundValue, byte toValue, int N, float fracOfDomainsWithOre, string snakeOrCircle)
     {
-        /*
-        float maxH = 0;
-        float minH = 1;
+        // Frac is "this fraction of domains have this resource"
+        // Use that to figure out how many ore deposits to have
+        float prob = 0;
+        float p, nk;
+        float n = 0;
+        while (prob < fracOfDomainsWithOre)
+        {
+            p = Mathf.PI * 100 * 100 / N / N;
+            n = n + 1;
+            prob = 0;
+            for (int k = 1; k < Mathf.Min(n,4); k++)
+            {
+                nk = MyFactorial((int)n) / (MyFactorial(k) * MyFactorial((int)n - k));
+                prob = prob + nk * Mathf.Pow(p, k) * Mathf.Pow(1 - p, n - k);
+            }
+            if (n > 20) break;
+        }
+        //Debug.Log("number of veins selected as " + n.ToString() + " with probability of being in a domain of >" + prob.ToString());
+        int numberOfVeins = Mathf.RoundToInt(n);
+        // Generate either a snaking ore or a circle of ore
+        float branchProbability;
+        int travelLength;
+        if (snakeOrCircle == "snake") // Snake
+        {
+            branchProbability = 0.01F;
+            travelLength = 150;
+            // .01, 100-> ~108 ores
+            // ***.01, 150-> ~225 ores ***
+            // .01, 200-> ~400 ores
+            // .01, 300-> ~1300 ores
+            // .01, 400-> ~3300 ores
+            // .02, 100-> ~200 ores
+            // .02, 200-> ~1560 ores
+            // .03, 100-> ~375 ores
+        } else // Circle
+        {
+            branchProbability = 0.1F;
+            travelLength = 25;
+            // .05, 50-> ~135 ores per
+            // .08, 25-> ~92 ores per
+            // .08, 50-> ~230 ores per
+            // ***.10, 25-> ~100 ores per***
+        }
 
-        List<float> allHeights = new List<float>();
+        // Generate this many veins
+        for (int i = 0; i < numberOfVeins; i++)
+        {
+            GenerateOreVeins.CreateVein(new Vector2Int(Random.Range(0,N-1), Random.Range(0, N - 1)),
+                PoissonRandomGenerator.GetPoisson(travelLength), undergroundValue, toValue, branchProbability, N);
+        }
+    }
 
-        float perlinFac = (float)N / 32.0F;
+    public void GenerateStone(byte[,] stoneValue, Dictionary<string, byte> stoneValueDictionary, int N,
+        float sandstoneFrac, float limestoneFrac, float marbleFrac, float graniteFrac)
+    {
+        // Generate this many divider lines
+        int numberOfDividers = 10 * Mathf.CeilToInt(N / Mathf.Pow(2, 6));
+        for (int i = 0; i < numberOfDividers; i++)
+        {
+            float theta = Random.Range(0.0F, 2.0F * Mathf.PI);
+            Vector2 aimDir = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
+            Debug.Log((theta * 180 / Mathf.PI).ToString());
+            GenerateOreVeins.CreateVein(new Vector2Int(Random.Range(0, N - 1), Random.Range(0, N - 1)),
+                100 * N, stoneValue, 100, 0.0F, N, aimDir);
+        }
 
+        // Fill in the holes (val 99) with a random type of stone between the divider lines (val 100)
+        float roll;
         for (int i = 0; i < N; i++)
         {
             for (int j = 0; j < N; j++)
             {
-                float noise = noiseGen.GetNoise((double)i / (double)N * 8, (double)j / (double)N * 8, 0.0);
-                //float noise = Mathf.PerlinNoise((float)(i / perlinFac), (float)(j / perlinFac));
-                allHeights.Add(noise);
-                height[i, j] = noise;
-                if (noise > maxH) maxH = noise;
-                if (noise < minH) minH = noise;
+                if (stoneValue[i, j] == 99)
+                {
+                    // Figure out the type of stone
+                    byte stone;
+                    roll = Random.Range(0.0F, 1.0F);
+                    if (roll <= sandstoneFrac)
+                        stone = stoneValueDictionary["Sandstone"];
+                    else if (roll <= (sandstoneFrac + limestoneFrac))
+                        stone = stoneValueDictionary["Limestone"];
+                    else if (roll <= (sandstoneFrac + limestoneFrac + marbleFrac))
+                        stone = stoneValueDictionary["Marble"];
+                    else
+                        stone = stoneValueDictionary["Granite"];
+                    EmptyToStone(i, j, stoneValue, N, stone);
+                }
+
             }
         }
-        
-        */
+
+        // Fill in the dividers (val 100) with the last type of stone seen
+        byte lastStone = 0;
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                if (stoneValue[i, j] == 100)
+                    stoneValue[i, j] = lastStone;
+                else
+                    lastStone = stoneValue[i, j];
+
     }
-	
+
+    public void EmptyToStone(int i, int j, byte[,] stoneValue, int N, byte toValue)
+    {
+        Stack<int> iValues = new Stack<int>();
+        Stack<int> jValues = new Stack<int>();
+        iValues.Push(i);
+        jValues.Push(j);
+        while (iValues.Count > 0)
+            SpreadValueToAdjacent(stoneValue, N, iValues.Pop(), jValues.Pop(), 99, toValue, iValues, jValues);
+    }
+
+    public int MyFactorial(int number)
+    {
+        if (number <= 1)
+            return 1;
+        else
+            return number * MyFactorial(number - 1);
+    }
+
+
+
+
+
 }

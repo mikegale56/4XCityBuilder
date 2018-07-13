@@ -25,7 +25,7 @@ public class CreateOreTiles {
         nameList.Add("TinOre");
         colorList.Add(new Color(73F / 255F, 78F / 255F, 84F / 255F));
         nameList.Add("SilverOre");
-        colorList.Add(new Color(242F / 255F, 247F / 255F, 245F / 255F));
+        colorList.Add(new Color(230F / 255F, 236F / 255F, 235F / 255F));
         nameList.Add("IronOre");
         colorList.Add(new Color(202F / 255F, 114F / 255F, 84F / 255F));
         nameList.Add("GoldOre");
@@ -37,10 +37,18 @@ public class CreateOreTiles {
         // For each ore
         for (int n=0; n<nameList.Count; n++)
         {
-            //Debug.Log("Name List " + n.ToString() + ", " + nameList[n]);
-            // Copy the textures
-            Texture2D newOreTex = new Texture2D(32, 32);
-            newOreTex.SetPixels32(oreTexture.GetPixels32());
+
+            Texture2D newOreTex = Object.Instantiate(oreTexture);
+
+            // ********************************************
+            // If I create it as a sprite with a texture I might be able to set the pixels per unit?
+            // ********************************************
+            /*Sprite sprite = Sprite.Create(texture,
+                new Rect(0, 0, texture.width, texture.height),
+                new Vector2(0.5f, 0.5f), 100);*/
+
+            //newOreTex.SetPixels32(oreTexture.GetPixels32());
+
             // Override the black pixels with the specific ore color
             for (i = 0; i < oreTexture.height; i++)
             {
@@ -53,18 +61,33 @@ public class CreateOreTiles {
                 }
             }
             // Merge in each stone
-            Texture2D mergedTex = new Texture2D(32, 32);
+            //Texture2D mergedTex = new Texture2D(32, 32);
+            //Graphics.CopyTexture(oreTexture, mergedTex);
             foreach (KeyValuePair<string, byte> entry in stoneValueDictionary)
             {
+                Texture2D mergedTex = (Texture2D)Object.Instantiate(oreTexture);
                 //Debug.Log("Stone " + entry.Key);
                 MergeTextures(mergedTex, undergroundTiles[0][entry.Value].sprite.texture, newOreTex, undergroundTiles[0][entry.Value].color);
+                mergedTex.Apply();
                 bytes = mergedTex.EncodeToPNG();
                 File.WriteAllBytes(m_Path + "/Resources/Textures/Ore/" + nameList[n] + entry.Key + ".png", bytes);
                 Tile newTile = ScriptableObject.CreateInstance<Tile>();
-                var newSprite = Resources.Load("/Textures/Ore/" + nameList[n] + entry.Key + ".png") as Sprite;
-                newTile.sprite = newSprite;
+                // Create a new sprite with this texture and the correct width
+                Sprite newOreSprite = Sprite.Create(mergedTex,
+                    new Rect(0, 0, mergedTex.width, mergedTex.height),
+                    new Vector2(0.5f, 0.5f), mergedTex.width);
+                newTile.sprite = newOreSprite;
                 if (!undergroundValueDictionary.ContainsKey(nameList[n]))
-                    undergroundValueDictionary.Add(nameList[n], (byte)(undergroundValueDictionary.Count));
+                    undergroundValueDictionary.Add(nameList[n], (byte)(undergroundValueDictionary.Count+1));
+                
+                // Add to underground tiles
+
+                // Add a new list for this undergroundValue
+                byte thisUndergroundValue = undergroundValueDictionary[nameList[n]];
+                if (undergroundTiles.Count <= thisUndergroundValue)
+                    undergroundTiles.Add(new List<Tile>());
+                // Add the tile
+                undergroundTiles[thisUndergroundValue].Add(newTile);
             }
         }
     }
