@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Main UI
+  - Screen UI
+  - World Map
+  - UI Buttons
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI Buttons
+    uniqueID: 2112083405
+    locked: 0
+  - name: Main UI
+    uniqueID: 4021935115
+    locked: 0
+  - name: Screen UI
+    uniqueID: 3680137405
+    locked: 0
+  - name: World Map
+    uniqueID: 407909109
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

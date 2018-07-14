@@ -554,7 +554,7 @@ public class MapGenFunctions
         {
             float theta = Random.Range(0.0F, 2.0F * Mathf.PI);
             Vector2 aimDir = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
-            Debug.Log((theta * 180 / Mathf.PI).ToString());
+            //Debug.Log((theta * 180 / Mathf.PI).ToString());
             GenerateOreVeins.CreateVein(new Vector2Int(Random.Range(0, N - 1), Random.Range(0, N - 1)),
                 100 * N, stoneValue, 100, 0.0F, N, aimDir);
         }

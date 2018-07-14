@@ -181,8 +181,6 @@ public class MapManager : MonoBehaviour
                     groundTileMap.SetTile(new Vector3Int(i, j, 0), groundTiles[groundValue[i, j]]);
             }
         }
-        // Hide this
-        groundTileMap.GetComponent<Renderer>().enabled = false;
 
         // Generate the underground map
 
@@ -208,8 +206,7 @@ public class MapManager : MonoBehaviour
                 undergroundTileMap.SetTile(new Vector3Int(i, j, 0), undergroundTiles[undergroundValue[i, j]][stoneValue[i,j]]);
             }
         }
-        //undergroundTileMap.enabled = false;
-
+        undergroundTileMap.GetComponent<Renderer>().enabled = false;
 
     }
 
@@ -235,6 +232,7 @@ public class MapManager : MonoBehaviour
 
     }*/
 
+    
 
 }
 

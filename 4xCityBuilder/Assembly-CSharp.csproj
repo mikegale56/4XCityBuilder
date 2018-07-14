@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UI\MainUIManager.cs" />
     <Compile Include="Assets\Scripts\World\CreateOreTiles.cs" />
     <Compile Include="Assets\Scripts\World\GenerateOreVeins.cs" />
     <Compile Include="Assets\Scripts\World\MapGenFunctions.cs" />

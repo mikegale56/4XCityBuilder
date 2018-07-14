@@ -36,7 +36,7 @@ public class MapPanZoom : MonoBehaviour
     private Vector3 inertiaVector;
 
 
-    void OnGUI()
+    /*void OnGUI()
     {
         GUI.TextArea(new Rect(10, 10, 150, 100),
             "minX" + minX + "\n" +
@@ -46,7 +46,7 @@ public class MapPanZoom : MonoBehaviour
             "newLocalPos" + newLocalPos.ToString()
         );
 
-    }
+    }*/
 
     // Use this for initialization
     void Start()
@@ -82,7 +82,7 @@ public class MapPanZoom : MonoBehaviour
         }
         else
         {
-            nowDown = (Input.GetMouseButton(0)); //|| Input.GetAxis("Mouse ScrollWheel") != 0);
+            nowDown = (Input.GetMouseButton(2)); //|| Input.GetAxis("Mouse ScrollWheel") != 0);
         }
 
         //calcualte how much camera need to change position

@@ -43,7 +43,6 @@ public static class GenerateOreVeins {
     public static void PropogateVein(Vector2Int ij, int travelLength, Vector2 aimDir, byte[,] undergroundValue, byte toValue, 
         float branchProbability, int N, Stack<Vector2Int> ijValues, Stack<int> lenValues)
     {
-        Vector2 targetIJ = new Vector2(ij.x + travelLength * aimDir.x, ij.y + travelLength * aimDir.y);
         int ind = 0;
         float roll;
         float xChance = Mathf.Abs(aimDir.x) / (Mathf.Abs(aimDir.x) + Mathf.Abs(aimDir.y));
@@ -92,7 +91,7 @@ public static class GenerateOreVeins {
                 else
                     newLength = PoissonRandomGenerator.GetPoisson(travelLength - ind);
                 if (newLength <= 2) continue;
-                Debug.Log("New Branch of length " + newLength.ToString());
+                //Debug.Log("New Branch of length " + newLength.ToString());
                 // Branch the vein
                 ijValues.Push(ij);
                 lenValues.Push(newLength);
