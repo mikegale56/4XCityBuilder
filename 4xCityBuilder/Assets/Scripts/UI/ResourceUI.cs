@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SLS.Widgets.Table;
+using System.Collections.Generic;
 
 public class ResourceUI : MonoBehaviour
 {
@@ -14,20 +15,37 @@ public class ResourceUI : MonoBehaviour
 
         resourceTable.ResetTable();
 
-        resourceTable.AddTextColumn();
-        resourceTable.AddTextColumn();
-        resourceTable.AddTextColumn();
+        // Add the columns
+        // Add the name column
+        print("Adding Name Column");
+        resourceTable.AddTextColumn("Resource");
+
+        // Add in the quantity columns, one per quality
+        for (int i = 0; i < (int)QualityEnum.any; i++)
+        {
+            print("Adding Quality Column");
+            resourceTable.AddTextColumn(((QualityEnum)i).ToString() + " quality", null);
+        }
+        
 
         // Initialize Your Table
         resourceTable.Initialize(onTableSelected);
 
         // Populate Your Rows (obviously this would be real data here)
-        for (int i = 0; i < 100; i++)
+        int ind = 0;
+        foreach (KeyValuePair<string, int> entry in resourceManager.domainResources.nameToIndexDictionary)
         {
-            Datum d = Datum.Body(i.ToString());
-            d.elements.Add("Col1:Row" + i.ToString());
-            d.elements.Add("Col2:Row" + i.ToString());
-            d.elements.Add("Col3:Row" + i.ToString());
+            Datum d = Datum.Body(ind.ToString());
+            ind++;
+
+            print("Printing Name");
+            d.elements.Add(entry.Key);
+            int[] quantity = resourceManager.domainResources.quantity[entry.Value];
+            foreach (int q in quantity)
+            {
+                print("Printing Quantity");
+                d.elements.Add(q.ToString());
+            }
             resourceTable.data.Add(d);
         }
 

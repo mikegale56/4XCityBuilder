@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ResourceManager : MonoBehaviour {
 
@@ -16,27 +17,32 @@ public class ResourceManager : MonoBehaviour {
     };
 
     // Use this for initialization
-    void Start ()
+    void Awake()
     {
 
         resourceDefinitions = new List<ResourceDef>();
-
-        // Read in the definitions list from csv later.  For now, use some strings
+        string m_Path = Application.dataPath;
+        print(m_Path + "/Resources.csv");
         List<string> lines = new List<string>();
-        lines.Add("Earthworking,Mining,Ore,1,,,Copper Ore");
-        lines.Add("Metalworking,Metallurgy,Metal,1,,,Copper");
-        lines.Add("Agricultural,Woodcutting,Wood,1,Fuel,1,Pine");
-        lines.Add("Earthworking,Mining,Fuel,3,,,Coal");
-        lines.Add("Metalworking,Weaponsmith,Long Sword,1,1H Weapon,1,Copper Long Sword");
+        using (var reader = new StreamReader(m_Path + "/Resources.csv"))
+            while (!reader.EndOfStream)
+                lines.Add(reader.ReadLine());
 
         // Create each resource definition
         foreach (var csvLine in lines)
         {
             resourceDefinitions.Add(new ResourceDef(csvLine));
+            Debug.Log("reading in resource " + resourceDefinitions[resourceDefinitions.Count - 1].name);
         }
 
         // Initialize the domain's stock
         domainResources = new ResourceStock("Aster", "Aster", resourceDefinitions);
+
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
 
     }
 
