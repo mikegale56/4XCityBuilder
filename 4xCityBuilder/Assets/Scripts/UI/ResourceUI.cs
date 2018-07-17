@@ -17,13 +17,13 @@ public class ResourceUI : MonoBehaviour
 
         // Add the columns
         // Add the name column
-        print("Adding Name Column");
+        //print("Adding Name Column");
         resourceTable.AddTextColumn("Resource");
 
         // Add in the quantity columns, one per quality
         for (int i = 0; i < (int)QualityEnum.any; i++)
         {
-            print("Adding Quality Column");
+            //print("Adding Quality Column");
             resourceTable.AddTextColumn(((QualityEnum)i).ToString() + " quality", null);
         }
         
@@ -38,12 +38,12 @@ public class ResourceUI : MonoBehaviour
             Datum d = Datum.Body(ind.ToString());
             ind++;
 
-            print("Printing Name");
+            //print("Printing Name");
             d.elements.Add(entry.Key);
             int[] quantity = resourceManager.domainResources.quantity[entry.Value];
             foreach (int q in quantity)
             {
-                print("Printing Quantity");
+                //print("Printing Quantity");
                 d.elements.Add(q.ToString());
             }
             resourceTable.data.Add(d);

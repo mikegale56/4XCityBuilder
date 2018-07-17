@@ -747,7 +747,7 @@ MonoBehaviour:
   use2DMask: 0
   fillerSprite: {fileID: 0}
   defaultFontSize: 12
-  scrollSensitivity: 5
+  scrollSensitivity: 25
   leftMargin: 8
   rightMargin: 8
   horizontalSpacing: 8
@@ -1117,6 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03c7b10f4a7dff4fa3f6ea857eecaeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceUiCanvas: {fileID: 319855507}
 --- !u!4 &1090448142
 Transform:
   m_ObjectHideFlags: 0

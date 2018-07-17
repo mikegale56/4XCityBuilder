@@ -5,6 +5,7 @@ using System.IO;
 
 public class ResourceManager : MonoBehaviour {
 
+    public Canvas resourceUiCanvas;
     public List<ResourceDef> resourceDefinitions;
     public ResourceStock domainResources;
     public static Dictionary<QualityEnum, float> qualityMultiplier = new Dictionary<QualityEnum, float>
@@ -22,17 +23,21 @@ public class ResourceManager : MonoBehaviour {
 
         resourceDefinitions = new List<ResourceDef>();
         string m_Path = Application.dataPath;
-        print(m_Path + "/Resources.csv");
+        //print(m_Path + "/Definitions/Resources.csv");
         List<string> lines = new List<string>();
-        using (var reader = new StreamReader(m_Path + "/Resources.csv"))
+        using (var reader = new StreamReader(m_Path + "/Definitions/Resources.csv"))
+        {
+            // Read the header
+            reader.ReadLine();
             while (!reader.EndOfStream)
                 lines.Add(reader.ReadLine());
+        }
 
         // Create each resource definition
         foreach (var csvLine in lines)
         {
             resourceDefinitions.Add(new ResourceDef(csvLine));
-            Debug.Log("reading in resource " + resourceDefinitions[resourceDefinitions.Count - 1].name);
+            //Debug.Log("reading in resource " + resourceDefinitions[resourceDefinitions.Count - 1].name);
         }
 
         // Initialize the domain's stock

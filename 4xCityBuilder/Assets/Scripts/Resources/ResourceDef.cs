@@ -36,11 +36,11 @@ public class ResourceDef
             Debug.Log("Failed conversion of " + values[3] + " to integer");
         tiers.Add(t);
 
-        if (values[4].Length > 0)
+        if (values[4].Length > 1)
         {
             types.Add(values[4]);
             if (!Int32.TryParse(values[5], out t))
-                Debug.Log("Failed conversion of " + values[5] + " to integer");
+                Debug.Log("Failed conversion of " + values[6] + "column 6, " + values[5] + " to integer");
             tiers.Add(t);
         }
     }
