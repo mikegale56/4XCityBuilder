@@ -5,13 +5,12 @@ using System.Collections.Generic;
 public class ResourceUI : MonoBehaviour
 {
 
-    public ResourceManager resourceManager;
     public Table resourceTable;
+    //public ResourceStock domainResources;
+    public ResourceManager resourceManager;
 
     void Start()
     {
-
-        //resourceTable = GetComponent<Table>();
 
         resourceTable.ResetTable();
 
@@ -57,7 +56,7 @@ public class ResourceUI : MonoBehaviour
     // Handle the row selection however you wish
     private void onTableSelected(Datum datum)
     {
-        print("You Clicked: " + datum.uid);
+        
     }
 
 }

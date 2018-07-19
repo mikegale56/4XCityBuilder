@@ -7,9 +7,9 @@ using UnityEngine;
 public class ResourceDef
 {
 
-    public string name, description, industry, category;
+    public string name, description, industry, skill;
     public List<string> types;
-    public List<int> tiers;
+    int tier;
     public bool hasQuality = true;
 
     // Constructor
@@ -17,31 +17,27 @@ public class ResourceDef
     {
 
         types = new List<string>();
-        tiers = new List<int>();
 
-        //Debug.Log(csvLine);
+        Debug.Log(csvLine);
         string[] values = csvLine.Split(',');
 
         //Debug.Log("Parsed into " + values.Length + " values");
 
         // Eventually need these to be loaded better somehow
-        name = values[6];
+        name = values[4];
         industry = values[0];
-        category = values[1];
+        skill = values[1];
 
         int t;
 
         types.Add(values[2]);
-        if (!Int32.TryParse(values[3], out t))
-            Debug.Log("Failed conversion of " + values[3] + " to integer");
-        tiers.Add(t);
+        if (!Int32.TryParse(values[5], out t))
+            Debug.Log("Failed conversion of " + values[5] + " to integer");
+        tier = t;
 
         if (values[4].Length > 1)
         {
-            types.Add(values[4]);
-            if (!Int32.TryParse(values[5], out t))
-                Debug.Log("Failed conversion of " + values[6] + "column 6, " + values[5] + " to integer");
-            tiers.Add(t);
+            types.Add(values[3]);
         }
     }
 

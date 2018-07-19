@@ -6,6 +6,7 @@ using System.IO;
 public class ResourceManager : MonoBehaviour {
 
     public Canvas resourceUiCanvas;
+    public ResourceUI resourceUI;
     public List<ResourceDef> resourceDefinitions;
     public ResourceStock domainResources;
     public static Dictionary<QualityEnum, float> qualityMultiplier = new Dictionary<QualityEnum, float>

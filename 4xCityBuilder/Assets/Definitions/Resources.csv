@@ -1,167 +1,204 @@
-Industry,Category,Type 1,Tier 1,Type 2,Tier 2,Name
-Metalworking,Metallurgy,Metal,5,,,Adamantium
-Metalworking,Blacksmith,Anvil,5,,,Adamantium Anvil
-Metalworking,Weaponsmith,Axe,5,1H Weapon,5,Adamantium Axe
-Metalworking,Weaponsmith,Battleaxe,5,2H Weapon,5,Adamantium Battleaxe
-Metalworking,Weaponsmith,Great Sword,5,2H Weapon,5,Adamantium Great Sword
-Metalworking,Weaponsmith,Long Sword,5,1H Weapon,5,Adamantium Long Sword
-Metalworking,Weaponsmith,Mace,5,1H Weapon,5,Adamantium Mace
-Earthworking,Mining,Ore,5,,,Adamantium Ore
-Metalworking,Armorsmith,Shield,5,,,Adamantium Shield
-Metalworking,Weaponsmith,Spear,5,1H Weapon,5,Adamantium Spear
-Metalworking,Blacksmith,Tools,5,,,Adamantium Tools
-Metalworking,Weaponsmith,Warhammer,5,2H Weapon,5,Adamantium Warhammer
-Earthworking,Mining,Gems,1,,,Amber
-Crafting,Brewing,Beer,5,Wine,5,Ambrosia
-Agricultural,Cultivating,Fruit,1,,,Apples
-Crafting,Bowmaking,Arrow,3,,,Arrow
-Agricultural,Farming,Crop,1,,,Barley
-Crafting,Carpentry,Barrel,1,,,Barrels
-Crafting,Brewing,Beer,2,,,Beer
-Agricultural,Butchering,Bone,1,,,Bone
-Crafting,Cooking,Food,3,,,Bread
-Metalworking,Metallurgy,Metal,2,,,Bronze
-Metalworking,Weaponsmith,Axe,2,1H Weapon,2,Bronze Axe
-Metalworking,Weaponsmith,Battleaxe,2,2H Weapon,2,Bronze Battleaxe
-Metalworking,Weaponsmith,Great Sword,2,2H Weapon,2,Bronze Great Sword
-Metalworking,Weaponsmith,Long Sword,2,1H Weapon,2,Bronze Long Sword
-Metalworking,Weaponsmith,Mace,2,1H Weapon,2,Bronze Mace
-Metalworking,Armorsmith,Shield,2,,,Bronze Shield
-Metalworking,Weaponsmith,Spear,2,1H Weapon,2,Bronze Spear
-Metalworking,Blacksmith,Tools,2,,,Bronze Tools
-Metalworking,Weaponsmith,Warhammer,2,2H Weapon,2,Bronze Warhammer
-Agricultural,Farming,Crop,2,Food,1,Cabbages
-Agricultural,Farming,Crop,2,Food,1,Carrots
-Crafting,null,Drinkware,1,,,Ceramic Mugs
-Earthworking,null,Fuel,2,,,Charcoal
-Earthworking,null,Digging,1,,,Clay
-Crafting,Clothier,Cloth Armor,2,,,Cloth Armor
-Earthworking,Mining,Fuel,3,,,Coal
-Metalworking,Metallurgy,Metal,1,,,Copper
-Metalworking,Weaponsmith,Axe,1,1H Weapon,1,Copper Axe
-Metalworking,Weaponsmith,Battleaxe,1,2H Weapon,1,Copper Battleaxe
-Metalworking,Weaponsmith,Great Sword,1,2H Weapon,1,Copper Great Sword
-Metalworking,Weaponsmith,Long Sword,1,1H Weapon,1,Copper Long Sword
-Metalworking,Weaponsmith,Mace,1,1H Weapon,1,Copper Mace
-Earthworking,Mining,Ore,1,,,Copper Ore
-Metalworking,Armorsmith,Shield,1,,,Copper Shield
-Metalworking,Weaponsmith,Spear,1,1H Weapon,1,Copper Spear
-Metalworking,Blacksmith,Tools,1,,,Copper Tools
-Metalworking,Blacksmith,Utensils ,1,,,Copper Utensils
-Metalworking,Weaponsmith,Warhammer,1,2H Weapon,1,Copper Warhammer
-Crafting,Jewelcrafting,Crown,2,,,Coronet
-Agricultural,Farming,Fiber,1,Crop,1,Cotton
-Crafting,Weaving,Cloth,1,,,Cotton Cloth
-Agricultural,Animal Husbandry,Animal,1,,,Cows
-Crafting,Jewelcrafting,Crown,3,,,Crown
-Crafting,Glassblowing,Glass,3,,,Crystal
-Crafting,Glassblowing,Drinkware,4,Glass,4,Crystal Stemware
-Earthworking,Mining,Gems,5,,,Diamond
-Agricultural,Woodcutting,Wood,5,Fuel,2,Dryad Wood
-Crafting,Bowmaking,Bow,5,,,Dryad-Wood Bow
-Crafting,Jewelcrafting,Crown,5,,,Enchanted Crown
-Magic,Life,Potion,4,,,Enchanted Long Sword
-Crafting,Jewelcrafting,Jewelry,5,,,Enchanted Ring
-Crafting,Leatherworking,Saddle,5,,,Enchanted Saddle
-Crafting,Cooking,Food,4,,,Entrée
-Agricultural,Cultivating,Fruit,3,,,Fig
-Magic,Destruction,Fuel,5,,,Fire Crystals
-Agricultural,Butchering,Fish,1,,,Fish
-Agricultural,Hunting,Hide,3,,,Fur
-Crafting,Glassblowing,Glass,1,,,Glass
-Crafting,Glassblowing,Drinkware,2,Glass,2,Glass Cups
-Metalworking,Metallurgy,Precious Metal,3,,,Gold
-Crafting,Jewelcrafting,Jewelry,3,,,Gold Necklace
-Earthworking,Mining,Ore,3,,,Gold Ore
-Earthworking,Quarrying,Stone,4,,,Granite
-Agricultural,Cultivating,Fruit,3,,,Grapes
-Agricultural,Farming,Crop,1,,,Hay
-Magic,Destruction,Arrow,5,,,Healing Potion
-Metalworking,Armorsmith,Heavy Armor,5,,,Heavy Adamantium Armor
-Metalworking,Armorsmith,Heavy Armor,2,,,Heavy Bronze Armor
-Metalworking,Armorsmith,Heavy Armor,1,,,Heavy Copper Armor
-Metalworking,Armorsmith,Heavy Armor,3,,,Heavy Iron Armor
-Metalworking,Armorsmith,Heavy Armor,4,,,Heavy Steel Armor
-Agricultural,Farming,Crop,1,,,Hops
-Agricultural,Animal Husbandry,Mount,3,,,Horses
-Metalworking,Metallurgy,Metal,3,,,Iron
-Metalworking,Blacksmith,Anvil,3,,,Iron Anvil
-Metalworking,Weaponsmith,Axe,3,1H Weapon,3,Iron Axe
-Metalworking,Weaponsmith,Battleaxe,3,2H Weapon,3,Iron Battleaxe
-Metalworking,Weaponsmith,Great Sword,3,2H Weapon,3,Iron Great Sword
-Metalworking,Weaponsmith,Long Sword,3,1H Weapon,3,Iron Long Sword
-Metalworking,Weaponsmith,Mace,3,1H Weapon,3,Iron Mace
-Earthworking,Mining,Ore,3,,,Iron Ore
-Metalworking,Armorsmith,Shield,3,,,Iron Shield
-Metalworking,Weaponsmith,Spear,3,1H Weapon,3,Iron Spear
-Metalworking,Blacksmith,Tools,3,,,Iron Tools
-Metalworking,Weaponsmith,Warhammer,3,2H Weapon,3,Iron Warhammer
-Agricultural,Butchering,Hide,1,,,Leather
-Crafting,Leatherworking,Leather Armor,2,,,Leather Armor
-Crafting,Leatherworking,Saddle,3,,,Leather Saddle
-Metalworking,Armorsmith,Light Armor,5,,,Light Adamantium Armor
-Metalworking,Armorsmith,Light Armor,2,,,Light Bronze Armor
-Metalworking,Armorsmith,Light Armor,1,,,Light Copper Armor
-Metalworking,Armorsmith,Light Armor,3,,,Light Iron Armor
-Metalworking,Armorsmith,Light Armor,4,,,Light Steel Armor
-Earthworking,Quarrying,Stone,2,,,Limestone
-Crafting,Bowmaking,Bow,3,,,Longbow
-Crafting,Clothier,Clothing,3,,,Lordly Clothing
-Earthworking,Quarrying,Stone,3,,,Marble
-Crafting,Brewing,Beer,3,,,Master Brew
-Agricultural,Butchering,Meat,1,,,Meat
-Agricultural,Animal Husbandry,Drink,2,,,Milk
-Agricultural,Hunting,Bone,5,,,Monster Bone
-Agricultural,Hunting,Meat,5,,,Monster Steaks
-Earthworking,Quarrying,Stone,5,,,Moonstone
-Agricultural,Woodcutting,Wood,4,Fuel,2,T4Wood
-Crafting,Cooking,Food,5,,,T5Food
-Agricultural,Woodcutting,Wood,2,Fuel,1,Oak
-Agricultural,Cultivating,Fruit,3,,,Olives
-Agricultural,Farming,Crop,2,Food,1,Onions
-Crafting,Clothier,Cloth Armor,3,,,Padded Cloth Armor
-Crafting,Leatherworking,Leather Armor,3,,,Padded Leather Armor
-Crafting,Clothier,Clothing,2,,,Peasant Clothing
-Agricultural,Woodcutting,Wood,1,Fuel,1,Pine
-Agricultural,Cultivating,Fruit,5,,,Pomegranate
-Crafting,Leatherworking,Quiver,2,,,Quiver
-Agricultural,Woodcutting,Wood,3,Fuel,1,Redwood
-Crafting,Clothier,Clothing,5,,,Royal Clothing
-Earthworking,Mining,Gems,3,,,Ruby
-Earthworking,null,Digging,1,,,Sand
-Earthworking,Quarrying,Stone,1,,,Sandstone
-Crafting,Leatherworking,Leather Armor,5,,,Scale Leather Armor
-Agricultural,Hunting,Hide,5,,,Scaled Leather
-Agricultural,Animal Husbandry,Animal,1,,,Sheep
-Crafting,Bowmaking,Bow,1,,,Short Bow
-Metalworking,Metallurgy,Precious Metal,2,,,Silver
-Crafting,Jewelcrafting,Jewelry,2,,,Silver Bracelet
-Earthworking,Mining,Ore,2,,,Silver Ore
-Metalworking,Blacksmith,Utensils ,3,,,Silver Utensils
-Agricultural,Animal Husbandry,Mount,5,,,T5Mount
-Agricultural,Animal Husbandry,Fiber,5,,,Spider Silk
-Crafting,Weaving,Cloth,5,,,Spider Silk Cloth
-Crafting,Clothier,Cloth Armor,5,,,Spider Silk Cloth Armor
-Metalworking,Metallurgy,Metal,4,,,Steel
-Metalworking,Blacksmith,Anvil,4,,,Steel Anvil
-Metalworking,Weaponsmith,Axe,4,1H Weapon,4,Steel Axe
-Metalworking,Weaponsmith,Battleaxe,4,2H Weapon,4,Steel Battleaxe
-Metalworking,Weaponsmith,Great Sword,4,2H Weapon,4,Steel Great Sword
-Metalworking,Weaponsmith,Long Sword,4,1H Weapon,4,Steel Long Sword
-Metalworking,Weaponsmith,Mace,4,1H Weapon,4,Steel Mace
-Metalworking,Armorsmith,Shield,4,,,Steel Shield
-Metalworking,Weaponsmith,Spear,4,1H Weapon,4,Steel Spear
-Metalworking,Blacksmith,Tools,4,,,Steel Tools
-Metalworking,Weaponsmith,Warhammer,4,2H Weapon,4,Steel Warhammer
-Crafting,Cooking,Food,2,,,Stew
-Agricultural,Farming,Crop,1,Fuel,1,Straw
-Metalworking,Metallurgy,Metal,1,,,Tin
-Earthworking,Mining,Ore,1,,,Tin Ore
-Crafting,Brewing,Wine,3,,,Vintage Wine
-Agricultural,null,Drink,1,,,Water
-Agricultural,Butchering,Fish,3,,,Whale Meat
-Agricultural,Farming,Crop,1,,,Wheat
-Agricultural,Hunting,Meat,3,,,Wild Game
-Crafting,Brewing,Wine,2,,,Wine
-Agricultural,Animal Husbandry,Fiber,2,,,Wool
-Crafting,Weaving,Cloth,2,,,Wool Cloth
+Industry,Skill,Type 1,Type 2,Name,Tier 1,Consumption
+Agricultural,Animal Husbandry,Animal,,Cow,1,0
+Agricultural,Animal Husbandry,Animal,,Sheep,1,0
+Metalworking,Blacksmith,Anvil,,Adamantium Anvil,5,0
+Metalworking,Blacksmith,Anvil,,Iron Anvil,3,0
+Metalworking,Blacksmith,Anvil,,Steel Anvil,4,0
+Crafting,Bowmaking,Arrow,,Arrow,3,0
+Magic,Destruction,Arrow,,Explosive Arrow,5,0
+Magic,Enchantment,Axe,1H Weapon,Enchanted Axe,5,0
+Metalworking,Weaponsmith,Axe,1H Weapon,Adamantium Axe,5,0
+Metalworking,Weaponsmith,Axe,1H Weapon,Bronze Axe,2,0
+Metalworking,Weaponsmith,Axe,1H Weapon,Copper Axe,1,0
+Metalworking,Weaponsmith,Axe,1H Weapon,Iron Axe,3,0
+Metalworking,Weaponsmith,Axe,1H Weapon,Steel Axe,4,0
+Crafting,Carpentry,Barrel,,Barrels,1,1
+Magic,Enchantment,Battleaxe,2H Weapon,Enchanted Battleaxe,5,0
+Metalworking,Weaponsmith,Battleaxe,2H Weapon,Adamantium Battleaxe,5,0
+Metalworking,Weaponsmith,Battleaxe,2H Weapon,Bronze Battleaxe,2,0
+Metalworking,Weaponsmith,Battleaxe,2H Weapon,Copper Battleaxe,1,0
+Metalworking,Weaponsmith,Battleaxe,2H Weapon,Iron Battleaxe,3,0
+Metalworking,Weaponsmith,Battleaxe,2H Weapon,Steel Battleaxe,4,0
+Agricultural,Brewing,Beer,,Beer,2,1
+Agricultural,Brewing,Beer,,Master Brew,3,1
+Agricultural,Brewing,Beer,Wine,Ambrosia,5,1
+Agricultural,Animal Husbandry,Bone,,Bone,1,0
+Agricultural,Hunting,Bone,,Monster Bone,5,0
+Crafting,Bowmaking,Bow,,Dryad-Wood Bow,5,0
+Crafting,Bowmaking,Bow,,Longbow,3,0
+Crafting,Bowmaking,Bow,,Short Bow,1,0
+Crafting,Weaving,Cloth,,Cotton Cloth,1,1
+Crafting,Weaving,Cloth,,Spider Silk Cloth,5,0
+Crafting,Weaving,Cloth,,Wool Cloth,2,1
+Crafting,Clothier,Cloth Armor,,Cloth Armor,2,0
+Crafting,Clothier,Cloth Armor,,Padded Cloth Armor,3,0
+Crafting,Clothier,Cloth Armor,,Spider Silk Cloth Armor,5,0
+Crafting,Clothier,Clothing,,Lordly Clothing,3,1
+Crafting,Clothier,Clothing,,Peasant Clothing,2,1
+Crafting,Clothier,Clothing,,Royal Clothing,5,1
+Agricultural,Farming,Crop,,Barley,1,1
+Agricultural,Farming,Crop,,Hay,1,0
+Agricultural,Farming,Crop,,Hops,1,0
+Agricultural,Farming,Crop,Fuel,Straw,1,1
+Agricultural,Farming,Crop,,Wheat,1,1
+Agricultural,Farming,Crop,Vegetable,Cabbages,2,1
+Agricultural,Farming,Crop,Vegetable,Carrots,2,1
+Agricultural,Farming,Crop,Vegetable,Onions,2,1
+Crafting,Jewelcrafting,Crown,,Coronet,2,0
+Crafting,Jewelcrafting,Crown,,Crown,3,0
+Crafting,Jewelcrafting,Crown,,Jeweled Crown,5,0
+Earthworking,Earthworking,Digging,,Clay,1,0
+Earthworking,Earthworking,Digging,,Sand,1,0
+Agricultural,Agricultural,Drink,,Water,1,1
+Agricultural,Animal Husbandry,Drink,,Milk,2,1
+Crafting,Glassblowing,Drinkware,Glass,Crystal Stemware,4,1
+Crafting,Glassblowing,Drinkware,Glass,Glass Cups,2,1
+Crafting,Crafting,Drinkware,,Ceramic Mugs,1,1
+Agricultural,Animal Husbandry,Fiber,,Wool,2,1
+Agricultural,Animal Husbandry,Fiber,,Spider Silk,5,0
+Agricultural,Farming,Fiber,Crop,Cotton,1,0
+Agricultural,Fishing,Fish,,Fish,1,1
+Agricultural,Fishing,Fish,,Whale Meat,3,1
+Agricultural,Cooking,Food,Stew,T2Stew,2,1
+Agricultural,Cooking,Food,Stew,T3Stew,3,1
+Agricultural,Cooking,Food,Stew,T4Stew,4,1
+Agricultural,Cooking,Food,Stew,T5Stew,5,1
+Agricultural,Cooking,Food,Roast,T2Roast,2,1
+Agricultural,Cooking,Food,Roast,T3Roast,3,1
+Agricultural,Cooking,Food,Roast,T4Roast,4,1
+Agricultural,Cooking,Food,Roast,T5Roast,5,1
+Agricultural,Cooking,Food,Bread,T2Bread,2,1
+Agricultural,Cooking,Food,Bread,T3Bread,3,1
+Agricultural,Cooking,Food,Bread,T4Bread,4,1
+Agricultural,Cooking,Food,Bread,T5Bread,5,1
+Agricultural,Cooking,Food,Dessert,T2Dessert,2,1
+Agricultural,Cooking,Food,Dessert,T3Dessert,3,1
+Agricultural,Cooking,Food,Dessert,T4Dessert,4,1
+Agricultural,Cooking,Food,Dessert,T5Dessert,5,1
+Agricultural,Cultivating,Fruit,Food,Apples,1,1
+Agricultural,Cultivating,Fruit,Food,Fig,3,1
+Agricultural,Cultivating,Fruit,Food,Grapes,3,1
+Agricultural,Cultivating,Fruit,Food,Olives,3,1
+Agricultural,Cultivating,Fruit,Food,Pomegranate,5,1
+Earthworking,Mining,Fuel,,Coal,3,0
+Earthworking,Earthworking,Fuel,,Charcoal,2,0
+Magic,Destruction,Fuel,,Fire Crystals,5,0
+Crafting,Furnituremaking,Furniture,,Rough Furniture,1,1
+Crafting,Furnituremaking,Furniture,,Finely-Detailed Furniture,3,1
+Crafting,Furnituremaking,Furniture,,Dryad-Wood Furniture,5,1
+Earthworking,Mining,Gems,,Amber,1,0
+Earthworking,Mining,Gems,,Diamond,5,0
+Earthworking,Mining,Gems,,Ruby,3,0
+Crafting,Glassblowing,Glass,,Crystal,3,0
+Crafting,Glassblowing,Glass,,Glass,1,0
+Magic,Enchantment,Great Sword,2H Weapon,Enchanted Great Sword,5,0
+Metalworking,Weaponsmith,Great Sword,2H Weapon,Adamantium Great Sword,5,0
+Metalworking,Weaponsmith,Great Sword,2H Weapon,Bronze Great Sword,2,0
+Metalworking,Weaponsmith,Great Sword,2H Weapon,Copper Great Sword,1,0
+Metalworking,Weaponsmith,Great Sword,2H Weapon,Iron Great Sword,3,0
+Metalworking,Weaponsmith,Great Sword,2H Weapon,Steel Great Sword,4,0
+Magic,Enchantment,Heavy Armor,,Enchanted Heavy Armor,5,0
+Metalworking,Armorsmith,Heavy Armor,,Heavy Adamantium Armor,5,0
+Metalworking,Armorsmith,Heavy Armor,,Heavy Bronze Armor,2,0
+Metalworking,Armorsmith,Heavy Armor,,Heavy Copper Armor,1,0
+Metalworking,Armorsmith,Heavy Armor,,Heavy Iron Armor,3,0
+Metalworking,Armorsmith,Heavy Armor,,Heavy Steel Armor,4,0
+Agricultural,Animal Husbandry,Hide,,Leather,1,1
+Agricultural,Hunting,Hide,,Fur,3,1
+Agricultural,Hunting,Hide,,Scaled Leather,5,0
+Crafting,Jewelcrafting,Jewelry,,Jeweled Ring,4,1
+Crafting,Jewelcrafting,Jewelry,,Gold Necklace,3,1
+Crafting,Jewelcrafting,Jewelry,,Silver Bracelet,2,1
+Crafting,Jewelcrafting,Jewelry,,Jeweled Necklace,5,1
+Crafting,Leatherworking,Leather Armor,,Leather Armor,2,0
+Crafting,Leatherworking,Leather Armor,,Padded Leather Armor,3,0
+Crafting,Leatherworking,Leather Armor,,Scale Leather Armor,5,0
+Magic,Enchantment,Leather Armor,,Enchanted Leather Armor,5,0
+Magic,Enchantment,Light Armor,,Enchanted Light Armor,5,0
+Metalworking,Armorsmith,Light Armor,,Light Adamantium Armor,5,0
+Metalworking,Armorsmith,Light Armor,,Light Bronze Armor,2,0
+Metalworking,Armorsmith,Light Armor,,Light Copper Armor,1,0
+Metalworking,Armorsmith,Light Armor,,Light Iron Armor,3,0
+Metalworking,Armorsmith,Light Armor,,Light Steel Armor,4,0
+Crafting,Bonecrafting,Long Sword,1H Weapon,Bone Sword,1,0
+Crafting,Bonecrafting,Long Sword,1H Weapon,Monster Bone Sword,5,0
+Magic,Enchantment,Long Sword,1H Weapon,Enchanted Long Sword,5,0
+Metalworking,Weaponsmith,Long Sword,1H Weapon,Adamantium Long Sword,5,0
+Metalworking,Weaponsmith,Long Sword,1H Weapon,Bronze Long Sword,2,0
+Metalworking,Weaponsmith,Long Sword,1H Weapon,Copper Long Sword,1,0
+Metalworking,Weaponsmith,Long Sword,1H Weapon,Iron Long Sword,3,0
+Metalworking,Weaponsmith,Long Sword,1H Weapon,Steel Long Sword,4,0
+Magic,Enchantment,Mace,1H Weapon,Enchanted Mace,5,0
+Metalworking,Weaponsmith,Mace,1H Weapon,Adamantium Mace,5,0
+Metalworking,Weaponsmith,Mace,1H Weapon,Bronze Mace,2,0
+Metalworking,Weaponsmith,Mace,1H Weapon,Copper Mace,1,0
+Metalworking,Weaponsmith,Mace,1H Weapon,Iron Mace,3,0
+Metalworking,Weaponsmith,Mace,1H Weapon,Steel Mace,4,0
+Agricultural,Animal Husbandry,Meat,,Meat,1,1
+Agricultural,Hunting,Meat,,Wild Game,3,1
+Agricultural,Hunting,Meat,,Monster Steaks,5,1
+Metalworking,Metallurgy,Metal,,Adamantium,5,0
+Metalworking,Metallurgy,Metal,,Bronze,2,0
+Metalworking,Metallurgy,Metal,,Copper,1,0
+Metalworking,Metallurgy,Metal,,Iron,3,0
+Metalworking,Metallurgy,Metal,,Steel,4,0
+Metalworking,Metallurgy,Metal,,Tin,1,0
+Agricultural,Animal Husbandry,Mount,,Horses,3,0
+Agricultural,Animal Husbandry,Mount,,T5Mount,5,0
+Earthworking,Mining,Ore,,Adamantium Ore,5,0
+Earthworking,Mining,Ore,,Copper Ore,1,0
+Earthworking,Mining,Ore,,Gold Ore,3,0
+Earthworking,Mining,Ore,,Iron Ore,3,0
+Earthworking,Mining,Ore,,Silver Ore,2,0
+Earthworking,Mining,Ore,,Tin Ore,1,0
+Magic,Life,Potion,,Healing Potion,4,0
+Metalworking,Metallurgy,Precious Metal,,Gold,3,0
+Metalworking,Metallurgy,Precious Metal,,Silver,2,0
+Crafting,Leatherworking,Quiver,,Quiver,2,0
+Crafting,Leatherworking,Saddle,,Enchanted Saddle,5,0
+Crafting,Leatherworking,Saddle,,Leather Saddle,3,0
+Crafting,Stoneworking,Scuplture,,Rough Sculpture,1,1
+Crafting,Stoneworking,Scuplture,,Finely-Detailed Sculpture,3,1
+Crafting,Stoneworking,Scuplture,,Moonstone Sculpture,5,1
+Magic,Enchantment,Shield,,Enchanted Shield,5,0
+Metalworking,Armorsmith,Shield,,Adamantium Shield,5,0
+Metalworking,Armorsmith,Shield,,Bronze Shield,2,0
+Metalworking,Armorsmith,Shield,,Copper Shield,1,0
+Metalworking,Armorsmith,Shield,,Iron Shield,3,0
+Metalworking,Armorsmith,Shield,,Steel Shield,4,0
+Crafting,Bonecrafting,Spear,1H Weapon,Bone Spear,1,0
+Crafting,Bonecrafting,Spear,1H Weapon,Monster Bone Spear,5,0
+Magic,Enchantment,Spear,1H Weapon,Enchanted Spear,5,0
+Metalworking,Weaponsmith,Spear,1H Weapon,Adamantium Spear,5,0
+Metalworking,Weaponsmith,Spear,1H Weapon,Bronze Spear,2,0
+Metalworking,Weaponsmith,Spear,1H Weapon,Copper Spear,1,0
+Metalworking,Weaponsmith,Spear,1H Weapon,Iron Spear,3,0
+Metalworking,Weaponsmith,Spear,1H Weapon,Steel Spear,4,0
+Earthworking,Quarrying,Stone,,Granite,4,0
+Earthworking,Quarrying,Stone,,Limestone,2,0
+Earthworking,Quarrying,Stone,,Marble,3,0
+Earthworking,Quarrying,Stone,,Moonstone,5,0
+Earthworking,Quarrying,Stone,,Sandstone,1,0
+Metalworking,Blacksmith,Tools,,Adamantium Tools,5,0
+Metalworking,Blacksmith,Tools,,Bronze Tools,2,0
+Metalworking,Blacksmith,Tools,,Copper Tools,1,0
+Metalworking,Blacksmith,Tools,,Iron Tools,3,0
+Metalworking,Blacksmith,Tools,,Steel Tools,4,0
+Crafting,Bonecrafting,Trinket,,Rough Bone Trinket,1,1
+Crafting,Bonecrafting,Trinket,,Finely-Detailed Trinket,3,1
+Crafting,Bonecrafting,Trinket,,Monster Bone Trinket,5,1
+Metalworking,Blacksmith,Utensils ,,Copper Utensils,1,1
+Metalworking,Blacksmith,Utensils ,,Silver Utensils,3,1
+Magic,Enchantment,Warhammer,2H Weapon,Enchanted Warhammer,5,0
+Metalworking,Weaponsmith,Warhammer,2H Weapon,Adamantium Warhammer,5,0
+Metalworking,Weaponsmith,Warhammer,2H Weapon,Bronze Warhammer,2,0
+Metalworking,Weaponsmith,Warhammer,2H Weapon,Copper Warhammer,1,0
+Metalworking,Weaponsmith,Warhammer,2H Weapon,Iron Warhammer,3,0
+Metalworking,Weaponsmith,Warhammer,2H Weapon,Steel Warhammer,4,0
+Agricultural,Brewing,Wine,,Wine,2,1
+Agricultural,Brewing,Wine,,Vintage Wine,3,1
+Agricultural,Woodcutting,Wood,Fuel,Pine,1,0
+Agricultural,Woodcutting,Wood,Fuel,Oak,2,0
+Agricultural,Woodcutting,Wood,Fuel,Redwood,3,0
+Agricultural,Woodcutting,Wood,Fuel,T4Wood,4,0
+Agricultural,Woodcutting,Wood,Fuel,Dryad Wood,5,0

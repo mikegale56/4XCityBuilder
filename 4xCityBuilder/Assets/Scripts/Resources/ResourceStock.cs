@@ -12,8 +12,6 @@ public class ResourceStock
     public Dictionary<QualityEnum, float> qualityMultiplier;
     public bool[] canConsume;
 
-
-
     public ResourceStock(string owner, string domain, List<ResourceDef> resourceDefinitions)
     {
 

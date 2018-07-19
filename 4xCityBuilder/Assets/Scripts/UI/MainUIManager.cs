@@ -9,6 +9,9 @@ public class MainUIManager : MonoBehaviour {
     private bool viewSurfaceLayer = true;
     private List<Sprite> layerSwapSprites;
     public MapManager mapManager;
+    public ResourceManager resourceManager;
+    public Camera mainCamera;
+    public string currentUi = "MainMap";
 
     // Use this for initialization
     void Start ()
@@ -45,25 +48,79 @@ public class MainUIManager : MonoBehaviour {
 
         if (viewSurfaceLayer) // Viewing the surface, swap to underground
         {
-            Debug.Log("Swapping to underground (not yet!)");
+            Debug.Log("Swapping to underground");
 
             layerSwapButton.GetComponent<Image>().sprite = layerSwapSprites[2];
             ss.highlightedSprite = layerSwapSprites[3];
             layerSwapButton.spriteState = ss;
-            mapManager.groundTileMap.GetComponent<Renderer>().enabled = false;
-            mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = true;
             viewSurfaceLayer = false;
+            ShowMaps();
         } else // Viewing underground, swap to surface
         {
-            Debug.Log("Swapping to surface (not yet!)");
+            Debug.Log("Swapping to surface");
 
             layerSwapButton.GetComponent<Image>().sprite = layerSwapSprites[0];
             ss.highlightedSprite = layerSwapSprites[1];
             layerSwapButton.spriteState = ss;
-            mapManager.groundTileMap.GetComponent<Renderer>().enabled = true;
-            mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = false;
             viewSurfaceLayer = true;
+            ShowMaps();
         }
 
+    }
+
+    public void PressMainMapButton()
+    {
+        // If already on the resource UI, return
+        if (currentUi.Equals("MainMap"))
+            return;
+
+        // Enable map movement & Show the map
+        mainCamera.GetComponent<MapPanZoom>().enabled = true;
+        ShowMaps();
+
+        // Disable all UIs
+        DisableAllUis();
+        currentUi = "MainMap";
+    }
+
+    public void PressResourceUiButton()
+    {
+        // If already on the resource UI, return
+        if (currentUi.Equals("Resource"))
+            return;
+
+        // Disable map movement & Hide the map
+        mainCamera.GetComponent<MapPanZoom>().enabled = false;
+        HideMaps();
+
+        // Set the resource ui enabled
+        resourceManager.resourceUI.enabled = true;
+        resourceManager.resourceUiCanvas.enabled = true;
+        currentUi = "Resource";
+    }
+
+    void ShowMaps()
+    {
+        if (viewSurfaceLayer)
+        {
+            mapManager.groundTileMap.GetComponent<Renderer>().enabled = true;
+            mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = false;
+        } else
+        {
+            mapManager.groundTileMap.GetComponent<Renderer>().enabled = false;
+            mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = true;
+        }
+    }
+
+    void HideMaps()
+    {
+        mapManager.groundTileMap.GetComponent<Renderer>().enabled = false;
+        mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = false;
+    }
+
+    void DisableAllUis()
+    {
+        resourceManager.resourceUI.enabled = false;
+        resourceManager.resourceUiCanvas.enabled = false;
     }
 }
