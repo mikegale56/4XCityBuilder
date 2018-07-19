@@ -92,7 +92,8 @@ namespace SLS.Widgets.Table {
       table.MoveSelectionDown(false);
     }
 
-    private void OnHeaderClick(Column column, PointerEventData e) {
+    private void OnHeaderClick(Column column, PointerEventData e)
+    {
 
       bool isAscending = false;
       // Reset current sort UI

@@ -10,6 +10,7 @@ public class MainUIManager : MonoBehaviour {
     private List<Sprite> layerSwapSprites;
     public MapManager mapManager;
     public ResourceManager resourceManager;
+    public BuildingManager buildingManager;
     public Camera mainCamera;
     public string currentUi = "MainMap";
 
@@ -92,11 +93,29 @@ public class MainUIManager : MonoBehaviour {
         // Disable map movement & Hide the map
         mainCamera.GetComponent<MapPanZoom>().enabled = false;
         HideMaps();
+        DisableAllUis();
 
         // Set the resource ui enabled
         resourceManager.resourceUI.enabled = true;
         resourceManager.resourceUiCanvas.enabled = true;
         currentUi = "Resource";
+    }
+
+    public void PressBuildingUiButton()
+    {
+        // If already on the resource UI, return
+        if (currentUi.Equals("Building"))
+            return;
+
+        // Disable map movement & Hide the map
+        mainCamera.GetComponent<MapPanZoom>().enabled = false;
+        HideMaps();
+        DisableAllUis();
+
+        // Set the resource ui enabled
+        buildingManager.buildingUI.enabled = true;
+        buildingManager.buildingUiCanvas.enabled = true;
+        currentUi = "Building";
     }
 
     void ShowMaps()
@@ -122,5 +141,7 @@ public class MainUIManager : MonoBehaviour {
     {
         resourceManager.resourceUI.enabled = false;
         resourceManager.resourceUiCanvas.enabled = false;
+        buildingManager.buildingUI.enabled = false;
+        buildingManager.buildingUiCanvas.enabled = false;
     }
 }

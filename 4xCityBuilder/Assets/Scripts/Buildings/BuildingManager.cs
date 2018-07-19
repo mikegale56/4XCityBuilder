@@ -7,6 +7,7 @@ using SLS.Widgets.Table;
 public class BuildingManager : MonoBehaviour {
 
     public Canvas buildingUiCanvas;
+    public BuildingUI buildingUI;
     public List<BuildingDef> buildingDefinitions;
     public BuildingList domainBuildings;
     //public BuildingUI buildingUI;
@@ -27,10 +28,11 @@ public class BuildingManager : MonoBehaviour {
             {
                 string newLine = reader.ReadLine();
 
-                if (lines.Count > 0 && !lines[0].Equals(","))
+                if (lines.Count > 0 && !(newLine[0] == ','))
                 {
+                    //Debug.Log("newLine[0] = " + newLine[0]);
                     buildingDefinitions.Add(new BuildingDef(lines, column));
-                    Debug.Log("Reading in building " + buildingDefinitions[buildingDefinitions.Count - 1].name);
+                    //Debug.Log("Reading in building " + buildingDefinitions[buildingDefinitions.Count - 1].name);
                     lines.Clear();
                 }
                 lines.Add(newLine);
@@ -40,9 +42,9 @@ public class BuildingManager : MonoBehaviour {
         // Initialize the domain's building list
         domainBuildings = new BuildingList("Aster", "Aster");
 
-        //buildingUI.domainResources = buildingUI;
-        //buildingUI.enabled = false;
-        //buildingUiCanvas.enabled = false;
+        buildingUI.domainBuildings = domainBuildings;
+        buildingUI.enabled = false;
+        buildingUiCanvas.enabled = false;
     }
 
     // Use this for initialization
@@ -59,7 +61,12 @@ public class BuildingManager : MonoBehaviour {
     Dictionary<string, int> ParseHeader(string header)
     {
         Dictionary<string, int> column = new Dictionary<string, int>();
-        //Name,Tier,Description,Resource Category to Build, Min Resource Tier, Resource Count to Build,Parent Name, Prerequisite To Build, Job Name,Job Max Tier,Bonus To, Bonus Value,Max HP, Housing, Max Workers,Industries,Skills,Maintenance Cost, Default Max Dist
+        //Name,Tier,Description,Resource Type to Build,Min Resource Tier,Resource Count,Parent Name,Prerequisite To Build,Job Name,Job Max Tier,Bonus To,Bonus Value,Max HP,Housing,Max Workers,Industries,Skills,Maintenance Cost,Default Max Dist
+
+        string[] values = header.Split(',');
+        int ind = 0;
+        foreach (string val in values)
+            column.Add(val, ind++);
 
         return column;
     }

@@ -66,10 +66,11 @@
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObj.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceDef.cs" />
-    <Compile Include="Assets\Scripts\Resources\ResourceExactChange.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Resources\ResourceNameQuantityQuality.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceStock.cs" />
-    <Compile Include="Assets\Scripts\Resources\ResourceTypeChange.cs" />
+    <Compile Include="Assets\Scripts\Resources\ResourceTypeQuantityQuality.cs" />
+    <Compile Include="Assets\Scripts\UI\BuildingUI.cs" />
     <Compile Include="Assets\Scripts\UI\MainUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\ResourceUI.cs" />
     <Compile Include="Assets\Scripts\World\CreateOreTiles.cs" />

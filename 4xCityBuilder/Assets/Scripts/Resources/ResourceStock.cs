@@ -58,7 +58,7 @@ public class ResourceStock
     }
 
     // Function to Add resources to the stock by name
-    public void AddResources(List<ResourceExactChange> nameQualityQuantity)
+    public void AddResources(List<ResourceNameQuantityQuality> nameQualityQuantity)
     {
         foreach (var nqq in nameQualityQuantity)
         {
@@ -69,7 +69,7 @@ public class ResourceStock
     }
 
     // Check if there are enough resources of the chosen name, and, optionally, quality
-    public bool[] CheckResources(List<ResourceExactChange> nameQualityQuantity)
+    public bool[] CheckResources(List<ResourceNameQuantityQuality> nameQualityQuantity)
     {
         bool[] hasEnough = new bool[nameQualityQuantity.Count];
         // Loop over all queries
@@ -100,7 +100,7 @@ public class ResourceStock
     }
 
     // Check if there are enough resources of the chosen name, and, optionally, quality
-    public bool[] CheckResources(List<ResourceTypeChange> tyoeQualityQuantity)
+    public bool[] CheckResources(List<ResourceTypeQuantityQuality> tyoeQualityQuantity)
     {
         bool[] hasEnough = new bool[tyoeQualityQuantity.Count];
         // Loop over all queries
@@ -134,7 +134,7 @@ public class ResourceStock
     }
 
     // Remove resources of a certain quantity and quality
-    public float[] RemoveResources(List<ResourceExactChange> nameQualityQuantity)
+    public float[] RemoveResources(List<ResourceNameQuantityQuality> nameQualityQuantity)
     {
 
         float[] averageQualityMultiplierOfRemoved = new float[nameQualityQuantity.Count];

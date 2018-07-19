@@ -6,6 +6,7 @@ using System.IO;
 public class ResourceManager : MonoBehaviour {
 
     public Canvas resourceUiCanvas;
+    public List<Sprite> resourceSprites;
     public ResourceUI resourceUI;
     public List<ResourceDef> resourceDefinitions;
     public ResourceStock domainResources;
@@ -43,6 +44,17 @@ public class ResourceManager : MonoBehaviour {
 
         // Initialize the domain's stock
         domainResources = new ResourceStock("Aster", "Aster", resourceDefinitions);
+
+        resourceUI.domainResources = domainResources;
+        resourceUI.resourceNameSpriteDict = new Dictionary<string, Sprite>();
+        foreach (ResourceDef rd in resourceDefinitions)
+            resourceUI.resourceNameSpriteDict.Add(rd.name, rd.image);
+
+        resourceUI.enabled = false;
+        resourceUiCanvas.enabled = false;
+
+        // Load sprites
+
 
     }
 

@@ -39,6 +39,10 @@ public class BuildingObj
 
     }
 
+    // Function to see how many people work here total
+    public int NumberOfWorkers()
+    { return 1; }
+
     // Function to add a job to the jobs list
     public void AddJob()
     { }
