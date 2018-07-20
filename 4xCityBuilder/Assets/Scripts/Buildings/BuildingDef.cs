@@ -99,15 +99,17 @@ public class BuildingDef
             if (values[column["Skills"]].Length > 0)
                 skill.Add(values[column["Skills"]]);
 
-            Texture2D tex;
-            if (values[column["Image"]].Length == 0)
-                tex = (Resources.Load("Textures/NeedIcon") as Texture2D);
-            else
-                tex = (Resources.Load(values[column["Image"]]) as Texture2D);
-            image = Sprite.Create(tex,
-                        new Rect(0, 0, tex.width, tex.height),
-                        new Vector2(0.5f, 0.5f), tex.width);
-
+            if (image == null)
+            { 
+                Texture2D tex;
+                if (values[column["Image"]].Length == 0)
+                    tex = (Resources.Load("Textures/NeedIcon") as Texture2D);
+                else
+                    tex = (Resources.Load(values[column["Image"]]) as Texture2D);
+                image = Sprite.Create(tex,
+                            new Rect(0, 0, tex.width, tex.height),
+                            new Vector2(0.5f, 0.5f), tex.width);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ public class BuildingObj
     public List<Guid> ownedJobGuids;
     // private JobManager jobManager;
 
-    public void Building(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality)
+    public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality)
     {
         uuid = System.Guid.NewGuid();
         ijLocation = ij;
@@ -38,6 +38,10 @@ public class BuildingObj
         // Need to add jobManager
 
     }
+
+    // Function to see how many active jobs there are
+    public int NumberOfActiveJobs()
+    { return 0; }
 
     // Function to see how many people work here total
     public int NumberOfWorkers()

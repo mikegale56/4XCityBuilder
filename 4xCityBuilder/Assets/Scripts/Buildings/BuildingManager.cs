@@ -8,6 +8,7 @@ public class BuildingManager : MonoBehaviour {
 
     public Canvas buildingUiCanvas;
     public BuildingUI buildingUI;
+    public Dictionary<string, int> buildingNameToDefIndexDictionary;
     public List<BuildingDef> buildingDefinitions;
     public BuildingList domainBuildings;
     //public BuildingUI buildingUI;
@@ -18,6 +19,7 @@ public class BuildingManager : MonoBehaviour {
     {
 
         buildingDefinitions = new List<BuildingDef>();
+        buildingNameToDefIndexDictionary = new Dictionary<string, int>();
         string m_Path = Application.dataPath;
         List<string> lines = new List<string>();
         using (var reader = new StreamReader(m_Path + "/Definitions/Buildings.csv"))
@@ -30,9 +32,8 @@ public class BuildingManager : MonoBehaviour {
 
                 if (lines.Count > 0 && !(newLine[0] == ','))
                 {
-                    //Debug.Log("newLine[0] = " + newLine[0]);
                     buildingDefinitions.Add(new BuildingDef(lines, column));
-                    //Debug.Log("Reading in building " + buildingDefinitions[buildingDefinitions.Count - 1].name);
+                    buildingNameToDefIndexDictionary.Add(buildingDefinitions[buildingDefinitions.Count - 1].name, buildingDefinitions.Count - 1);
                     lines.Clear();
                 }
                 lines.Add(newLine);
@@ -42,9 +43,19 @@ public class BuildingManager : MonoBehaviour {
         // Initialize the domain's building list
         domainBuildings = new BuildingList("Aster", "Aster");
 
-        buildingUI.domainBuildings = domainBuildings;
+        buildingUI.buildingNameSpriteDict = new Dictionary<string, Sprite>();
+        foreach (BuildingDef bd in buildingDefinitions)
+            buildingUI.buildingNameSpriteDict.Add(bd.name, bd.image);
+
         buildingUI.enabled = false;
         buildingUiCanvas.enabled = false;
+
+        // Temp: add some fake bldgs
+
+        for (int i = 0; i<buildingDefinitions.Count; i++)
+            domainBuildings.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal));
+
+
     }
 
     // Use this for initialization

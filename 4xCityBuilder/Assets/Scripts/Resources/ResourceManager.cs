@@ -10,6 +10,7 @@ public class ResourceManager : MonoBehaviour {
     public ResourceUI resourceUI;
     public List<ResourceDef> resourceDefinitions;
     public ResourceStock domainResources;
+    public Dictionary<string, int> resourceNameToDefIndexDict;
     public static Dictionary<QualityEnum, float> qualityMultiplier = new Dictionary<QualityEnum, float>
     {
         { QualityEnum.awful, 0.5F },
@@ -24,7 +25,8 @@ public class ResourceManager : MonoBehaviour {
     {
 
         resourceDefinitions = new List<ResourceDef>();
-        string m_Path = Application.dataPath;
+        resourceNameToDefIndexDict = new Dictionary<string, int>();
+    string m_Path = Application.dataPath;
         //print(m_Path + "/Definitions/Resources.csv");
         List<string> lines = new List<string>();
         using (var reader = new StreamReader(m_Path + "/Definitions/Resources.csv"))
@@ -39,13 +41,12 @@ public class ResourceManager : MonoBehaviour {
         foreach (var csvLine in lines)
         {
             resourceDefinitions.Add(new ResourceDef(csvLine));
-            //Debug.Log("reading in resource " + resourceDefinitions[resourceDefinitions.Count - 1].name);
+            resourceNameToDefIndexDict.Add(resourceDefinitions[resourceDefinitions.Count - 1].name, resourceDefinitions.Count - 1);
         }
 
         // Initialize the domain's stock
         domainResources = new ResourceStock("Aster", "Aster", resourceDefinitions);
 
-        resourceUI.domainResources = domainResources;
         resourceUI.resourceNameSpriteDict = new Dictionary<string, Sprite>();
         foreach (ResourceDef rd in resourceDefinitions)
             resourceUI.resourceNameSpriteDict.Add(rd.name, rd.image);

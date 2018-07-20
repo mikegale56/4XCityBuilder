@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\UI\BuildingUI.cs" />
     <Compile Include="Assets\Scripts\UI\MainUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\ResourceUI.cs" />
+    <Compile Include="Assets\Scripts\UI\TileDetailManager.cs" />
+    <Compile Include="Assets\Scripts\UI\TileDetailUI.cs" />
     <Compile Include="Assets\Scripts\World\CreateOreTiles.cs" />
     <Compile Include="Assets\Scripts\World\GenerateOreVeins.cs" />
     <Compile Include="Assets\Scripts\World\MapGenFunctions.cs" />

@@ -6,15 +6,13 @@ public class ResourceUI : MonoBehaviour
 {
 
     public Table resourceTable;
-    public ResourceStock domainResources;
+    public ResourceManager resourceManager;
     public Dictionary<string, Sprite> resourceNameSpriteDict;
 
     void Start()
     {
 
         // Initialize Your Table
-        
-
         resourceTable.ResetTable();
 
         // Add the columns
@@ -37,7 +35,7 @@ public class ResourceUI : MonoBehaviour
 
         // Populate Your Rows (obviously this would be real data here)
         int ind = 0;
-        foreach (KeyValuePair<string, int> entry in domainResources.nameToIndexDictionary)
+        foreach (KeyValuePair<string, int> entry in resourceManager.domainResources.nameToIndexDictionary)
         {
             Datum d = Datum.Body(ind.ToString());
             ind++;
@@ -45,7 +43,7 @@ public class ResourceUI : MonoBehaviour
             //print("Printing Name");
             d.elements.Add(entry.Key); // The name is the key into the sprite dictionary 
             d.elements.Add(entry.Key);
-            int[] quantity = domainResources.quantity[entry.Value];
+            int[] quantity = resourceManager.domainResources.quantity[entry.Value];
             foreach (int q in quantity)
             {
                 //print("Printing Quantity");

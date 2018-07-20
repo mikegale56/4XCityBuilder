@@ -39,9 +39,24 @@ public class MainUIManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		// Nothing yet
-	}
+	void Update ()
+    {
+        // Check for clicking on a tile in the main map
+        if (currentUi.Equals("MainMap") && Input.GetMouseButtonDown(0))
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Debug.Log(string.Format("Co-ords of mouse is [X: {0} Y: {0}]", pos.x, pos.y));
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+            if (hit.collider != null)
+            {
+                Debug.Log("I'm hitting " + hit.collider.name);
+                //Debug.Log(mapX + " " + mapY);
+            }
+            else
+                Debug.Log("Not hitting anything");
+
+        }
+    }
 
     void UpdateLayerSwapButton()
     {
