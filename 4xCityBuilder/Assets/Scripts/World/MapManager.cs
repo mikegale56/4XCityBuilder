@@ -63,9 +63,6 @@ public class MapManager : MonoBehaviour
         // Load in the tiles
         LoadTiles();
 
-        //Choose to generate vs load
-
-
         //Generate the map 
         GenerateMap();
     }
@@ -232,7 +229,23 @@ public class MapManager : MonoBehaviour
 
     }*/
 
+    public byte GetGroundValue(int i, int j)
+    { return groundValue[i, j]; }
+
+    public byte GetUndergroundValue(int i, int j)
+    { return undergroundValue[i, j]; }
+
+    public byte GetStoneValue(int i, int j)
+    { return stoneValue[i, j]; }
+
+    public byte GetSpecialValue(int i, int j)
+    { return specialValue[i, j]; }
+
+    public short GetSurfaceValue(int i, int j)
+    { return surfaceValue[i, j]; }
     
+
+
 
 }
 

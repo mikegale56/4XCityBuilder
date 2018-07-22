@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour {
@@ -11,8 +12,15 @@ public class MainUIManager : MonoBehaviour {
     public MapManager mapManager;
     public ResourceManager resourceManager;
     public BuildingManager buildingManager;
+    public TileDetailManager tileDetailManager;
     public Camera mainCamera;
     public string currentUi = "MainMap";
+    public RectTransform mapCollider;
+    public RectTransform eventPanel;
+    public RectTransform tileDetailBackPanel;
+    float mainMapMaxX, mainMapMinY, mainMapMaxY;
+    float tvMapMaxX, tvMapMinY, tvMapMaxY;
+
 
     // Use this for initialization
     void Start ()
@@ -36,26 +44,64 @@ public class MainUIManager : MonoBehaviour {
             Sprite newSprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
             layerSwapSprites.Add(newSprite);
         }
+
+        // Get the dimensions of the tile view in the main map and tile view screens
+        Vector3[] v = new Vector3[4];
+        eventPanel.GetWorldCorners(v);
+        mainMapMaxX = v[0].x;
+        mainMapMinY = v[0].y;
+        mainMapMaxY = v[1].y;
+        tileDetailManager.tileDetailCanvas.enabled = true;
+        Vector3[] v2 = new Vector3[4];
+        tileDetailBackPanel.GetWorldCorners(v2);
+        tvMapMaxX = v2[0].x;
+        tvMapMinY = v2[0].y;
+        tvMapMaxY = v2[1].y;
+        tileDetailManager.tileDetailCanvas.enabled = false;
+
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         // Check for clicking on a tile in the main map
-        if (currentUi.Equals("MainMap") && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
+            if (currentUi.Equals("MainMap"))
+                ResizeMapCollider(0, mainMapMaxX, mainMapMinY, mainMapMaxY);
+            else if (currentUi.Equals("TileDetail"))
+                ResizeMapCollider(0, tvMapMaxX, tvMapMinY, tvMapMaxY);
+            else
+                return;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Debug.Log(string.Format("Co-ords of mouse is [X: {0} Y: {0}]", pos.x, pos.y));
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-            if (hit.collider != null)
+            if (hit.collider == null)
+            { 
+                // Did not hit a collider, nothing
+            }
+            else if (hit.collider.name == mapCollider.name)
             {
-                Debug.Log("I'm hitting " + hit.collider.name);
-                //Debug.Log(mapX + " " + mapY);
+                // Get the tile position
+                //Debug.Log(string.Format("Coordinates of mouse is [X: {0} Y: {0}]", pos.x, pos.y));
+                PressTile(pos);
             }
             else
-                Debug.Log("Not hitting anything");
-
+                Debug.Log("Did not hit mapCollider, hit " + hit.collider.ToString());
         }
+    }
+
+    void ResizeMapCollider(float minX, float maxX, float minY, float maxY)
+    {
+        // Transform into world coordinates
+        Vector3 ll = mainCamera.ScreenToWorldPoint(new Vector3(minX, minY, 0));
+        Vector3 ur = mainCamera.ScreenToWorldPoint(new Vector3(maxX, maxY, 0));
+        Vector2 delta = ur - ll;
+        //Set the new position
+        mapCollider.anchoredPosition = ll;
+        mapCollider.sizeDelta = delta;
+        BoxCollider2D boxCollider2D = mapCollider.gameObject.GetComponent<BoxCollider2D>();
+        boxCollider2D.size = mapCollider.sizeDelta;
+        boxCollider2D.offset = mapCollider.sizeDelta / 2.0F;
     }
 
     void UpdateLayerSwapButton()
@@ -86,7 +132,7 @@ public class MainUIManager : MonoBehaviour {
 
     public void PressMainMapButton()
     {
-        // If already on the resource UI, return
+        // If already on the main map, return
         if (currentUi.Equals("MainMap"))
             return;
 
@@ -97,6 +143,29 @@ public class MainUIManager : MonoBehaviour {
         // Disable all UIs
         DisableAllUis();
         currentUi = "MainMap";
+    }
+
+    public void PressTile(Vector3 tileLocation)
+    {
+        tileLocation.z = 0;
+        Debug.Log("Tile Detail on " + tileLocation.x.ToString() + "," + tileLocation.y.ToString() + "," + tileLocation.z.ToString());
+        
+        // Disable map movement & Show the map
+        mainCamera.GetComponent<MapPanZoom>().enabled = false;
+        // TODO: Change the focus of the camera here
+        ShowMaps();
+
+        // Disable all UIs
+        DisableAllUis();
+
+        // Set the resource ui enabled
+        tileDetailManager.tileDetailUI.enabled = true;
+        tileDetailManager.tileDetailCanvas.enabled = true;
+        currentUi = "TileDetail";
+
+        // Convert to int and have the tile ui work on it
+        tileDetailManager.tileDetailUI.FocusOnTile(Mathf.FloorToInt(tileLocation.x), Mathf.FloorToInt(tileLocation.y));
+
     }
 
     public void PressResourceUiButton()
@@ -158,5 +227,7 @@ public class MainUIManager : MonoBehaviour {
         resourceManager.resourceUiCanvas.enabled = false;
         buildingManager.buildingUI.enabled = false;
         buildingManager.buildingUiCanvas.enabled = false;
+        tileDetailManager.tileDetailUI.enabled = false;
+        tileDetailManager.tileDetailCanvas.enabled = false;
     }
 }
