@@ -31,10 +31,9 @@ public class MapPanZoom : MonoBehaviour
     private float mapHalfWidth, mapHalfHeight, camHalfWidth, camHalfHeight;
 
     private float minX, maxX, minY, maxY;
-    private Vector3 newLocalPos;
+    public Vector3 newLocalPos;
 
-    private Vector3 inertiaVector;
-
+    public Vector3 inertiaVector;
 
     /*void OnGUI()
     {
@@ -64,6 +63,11 @@ public class MapPanZoom : MonoBehaviour
         processDrag();
         processZoom();
 
+    }
+
+    public void ZoomTo(Vector3 newPos)
+    {
+        transform.localPosition = newPos;
     }
 
     private void processDrag()

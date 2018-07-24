@@ -52,6 +52,7 @@ public class MapManager : MonoBehaviour
 
     public Tilemap groundTileMap;
     public Tilemap undergroundTileMap;
+    public Tilemap surfaceTileMap;
     public List<Tile> groundTiles = new List<Tile>();
     public List<Tile> surfaceTiles = new List<Tile>();
     public List<List<Tile>> undergroundTiles = new List<List<Tile>>();
@@ -169,14 +170,10 @@ public class MapManager : MonoBehaviour
         {
             for (int j = 0; j < N; j++)
             {
+                groundTileMap.SetTile(new Vector3Int(i, j, 0), groundTiles[groundValue[i, j]]);
                 if (surfaceValue[i, j] >= 0)
-                {
-                    //Debug.Log(surfaceTiles[0].sprite);
-                    groundTileMap.SetTile(new Vector3Int(i, j, 0), surfaceTiles[surfaceValue[i, j]]);
-                }
-                else
-                    groundTileMap.SetTile(new Vector3Int(i, j, 0), groundTiles[groundValue[i, j]]);
-            }
+                    surfaceTileMap.SetTile(new Vector3Int(i, j, 0), surfaceTiles[surfaceValue[i, j]]);                
+            } 
         }
 
         // Generate the underground map

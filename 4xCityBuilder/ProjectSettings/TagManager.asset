@@ -17,7 +17,7 @@ TagManager:
   - Screen UI
   - World Map
   - UI Buttons
-  - 
+  - Surface Map
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Screen UI
     uniqueID: 3680137405
+    locked: 0
+  - name: Surface Map
+    uniqueID: 1141269289
     locked: 0
   - name: World Map
     uniqueID: 407909109

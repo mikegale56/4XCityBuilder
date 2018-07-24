@@ -149,11 +149,28 @@ public class MainUIManager : MonoBehaviour {
     {
         tileLocation.z = 0;
         Debug.Log("Tile Detail on " + tileLocation.x.ToString() + "," + tileLocation.y.ToString() + "," + tileLocation.z.ToString());
-        
-        // Disable map movement & Show the map
-        mainCamera.GetComponent<MapPanZoom>().enabled = false;
-        // TODO: Change the focus of the camera here
+
+        MapPanZoom mpz = mainCamera.GetComponent<MapPanZoom>();
+        // Disable map movement, reset inertia & Show the map
+        mpz.enabled       = false;
+        mpz.inertiaVector = Vector3.zero;
         ShowMaps();
+        // Change the focus of the camera
+        Vector3 oldCameraLocation = mpz.newLocalPos;
+        //0, tvMapMaxX, tvMapMinY, tvMapMaxY
+
+        Vector3 mapPanelCenter = new Vector3(tvMapMaxX / 2, tvMapMinY + (tvMapMaxY - tvMapMinY) / 2, 0.0F);
+        mapPanelCenter = mainCamera.ScreenToWorldPoint(mapPanelCenter);
+        Vector3 newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
+        newCameraFocus.z = -10.0F; //Make sure this doesn't move
+        Debug.Log("Old Camera");
+        Debug.Log(oldCameraLocation);
+        Debug.Log("mapPanelCenter position");
+        Debug.Log(mapPanelCenter);
+        Debug.Log("New Camera");
+        Debug.Log(newCameraFocus);
+        mpz.ZoomTo(newCameraFocus);
+        
 
         // Disable all UIs
         DisableAllUis();
@@ -207,10 +224,12 @@ public class MainUIManager : MonoBehaviour {
         if (viewSurfaceLayer)
         {
             mapManager.groundTileMap.GetComponent<Renderer>().enabled = true;
+            mapManager.surfaceTileMap.GetComponent<Renderer>().enabled = true;
             mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = false;
         } else
         {
             mapManager.groundTileMap.GetComponent<Renderer>().enabled = false;
+            mapManager.surfaceTileMap.GetComponent<Renderer>().enabled = false;
             mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = true;
         }
     }
@@ -218,6 +237,7 @@ public class MainUIManager : MonoBehaviour {
     void HideMaps()
     {
         mapManager.groundTileMap.GetComponent<Renderer>().enabled = false;
+        mapManager.surfaceTileMap.GetComponent<Renderer>().enabled = false;
         mapManager.undergroundTileMap.GetComponent<Renderer>().enabled = false;
     }
 
