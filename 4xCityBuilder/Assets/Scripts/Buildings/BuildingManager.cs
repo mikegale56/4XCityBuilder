@@ -11,6 +11,7 @@ public class BuildingManager : MonoBehaviour {
     public Dictionary<string, int> buildingNameToDefIndexDictionary;
     public List<BuildingDef> buildingDefinitions;
     public BuildingList domainBuildings;
+    public JobManager jobManager;
     //public BuildingUI buildingUI;
 
 
@@ -53,7 +54,7 @@ public class BuildingManager : MonoBehaviour {
         // Temp: add some fake bldgs
 
         for (int i = 0; i<buildingDefinitions.Count; i++)
-            domainBuildings.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal));
+            domainBuildings.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal, jobManager));
 
 
     }

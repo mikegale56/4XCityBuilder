@@ -1,0 +1,77 @@
+Job Name,Description,Industry,Skill,Type 1,Type 2,Output Name,Tier,Tiles Required,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Output Quantity,Work PMU
+Farm Crops,Description,Agricultural,Farming,Crop,,Barley,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,100,1
+Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Adamantium Anvil,5,,Adamantium,,5,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
+Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Iron Anvil,3,,Iron,,3,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
+Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Steel Anvil,4,,Steel,,4,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
+Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Adamantium Armor,5,,Adamantium,,5,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,32
+Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Bronze Armor,2,,Bronze,,2,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,4
+Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Copper Armor,1,,Copper,,1,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,2
+Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Iron Armor,3,,Iron,,3,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,8
+Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Steel Armor,4,,Steel,,4,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,16
+Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Adamantium Armor,5,,Adamantium,,5,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,16
+Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Bronze Armor,2,,Bronze,,2,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,1,2
+Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Copper Armor,1,,Copper,,1,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,1,1
+Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Iron Armor,3,,Iron,,3,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,4
+Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Steel Armor,4,,Steel,,4,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,8
+Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Adamantium Long Sword,5,,Adamantium,,5,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,8
+Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Bronze Long Sword,2,,Bronze,,2,3,,Fuel,1,3,,,,,,,,,,,,,,,,,1,1
+Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Copper Long Sword,1,,Copper,,1,3,,Fuel,1,3,,,,,,,,,,,,,,,,,1,0.5
+Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Iron Long Sword,3,,Iron,,3,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,2
+Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Steel Long Sword,4,,Steel,,4,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,4
+Gather Wood,Description,Agricultural,Woodcutting,Wood,Fuel,Pine,1,Pine,,,,,,,,,,,,,,,,,,,,,,,,,10,1
+Gather Wood,Description,Agricultural,Woodcutting,Wood,Fuel,Oak,2,Oak,,,,,,,,,,,,,,,,,,,,,,,,,10,2
+Mine Coal,Description,Earthworking,Mining,Fuel,,Coal,3,Coal,,,,,,,,,,,,,,,,,,,,,,,,,10,1
+Mine Ore,Description,Earthworking,Mining,Ore,,Adamantium Ore,5,Adamantium Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,32
+Mine Ore,Description,Earthworking,Mining,Ore,,Copper Ore,1,Copper Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
+Mine Ore,Description,Earthworking,Mining,Ore,,Gold Ore,3,Gold Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,4
+Mine Ore,Description,Earthworking,Mining,Ore,,Iron Ore,3,Iron Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,4
+Mine Ore,Description,Earthworking,Mining,Ore,,Silver Ore,2,Silver Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
+Mine Ore,Description,Earthworking,Mining,Ore,,Tin Ore,1,Tin Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
+Quarry Stone,Description,Earthworking,Quarrying,Stone,,Granite,4,Granite,,,,,,,,,,,,,,,,,,,,,,,,,10,8
+Quarry Stone,Description,Earthworking,Quarrying,Stone,,Limestone,2,Limestone,,,,,,,,,,,,,,,,,,,,,,,,,10,2
+Quarry Stone,Description,Earthworking,Quarrying,Stone,,Marble,3,Marble,,,,,,,,,,,,,,,,,,,,,,,,,10,4
+Quarry Stone,Description,Earthworking,Quarrying,Stone,,Moonstone,5,Moonstone,,,,,,,,,,,,,,,,,,,,,,,,,10,32
+Quarry Stone,Description,Earthworking,Quarrying,Stone,,Sandstone,1,Sandstone,,,,,,,,,,,,,,,,,,,,,,,,,10,1
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Adamantium,5,,Adamantium Ore,,5,1,,Fuel,2,1,,,,,,,,,,,,,,,,,1,32
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Bronze,2,,Tin,,1,1,Copper,,1,1,,Fuel,1,1,,,,,,,,,,,,,2,2
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Copper,1,,Copper Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Iron,3,,Iron Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,8
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Steel,4,,Iron,,3,1,,Fuel,2,1,,,,,,,,,,,,,,,,,1,16
+Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Tin,1,,Tin Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
+Smelt Metal,Description,Metalworking,Metallurgy,Precious Metal,,Gold,3,,Gold Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,4
+Smelt Metal,Description,Metalworking,Metallurgy,Precious Metal,,Silver,2,,Silver Ore,,2,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
+Make Charcoal,Description,Earthworking,Earthworking,Fuel,,Charcoal,2,,,Wood,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,10,1
+Shear Animal,Description,Agricultural,Animal Husbandry,Fiber,,Wool,2,,,,,,,,,,,,,,,,,,,,,,,,,,1,2
+Shear Animal,Description,Agricultural,Animal Husbandry,Fiber,,Spider Silk,5,,,,,,,,,,,,,,,,,,,,,,,,,,1,16
+Farm Crops,Description,Agricultural,Farming,Crop,Fuel,Straw,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,1
+Breed Animal,Description,Agricultural,Animal Husbandry,Animal,,Cow,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,8
+Breed Animal,Description,Agricultural,Animal Husbandry,Animal,,Sheep,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,4
+Weave Cloth,Description,Crafting,Weaving,Cloth,,Cotton Cloth,1,,Cotton,,1,1,,,,,,,,,,,,,,,,,,,,,1,1
+Weave Cloth,Description,Crafting,Weaving,Cloth,,Spider Silk Cloth,5,,Spider Silk,,5,1,,,,,,,,,,,,,,,,,,,,,1,16
+Weave Cloth,Description,Crafting,Weaving,Cloth,,Wool Cloth,2,,Wool,,2,1,,,,,,,,,,,,,,,,,,,,,1,2
+Farm Crops,Description,Agricultural,Farming,Fiber,Crop,Cotton,1,,,,,,,,,,,,,,,,,,,,,,,,,,10,1
+Butcher Animal,Description,Agricultural,Animal Husbandry,Hide,,Leather,1,,Cow,,1,1,,,,,,,,,,,,,,,,,,,,,10,4
+Hunt Animal,Description,Agricultural,Hunting,Hide,,Fur,3,,,,,,,,,,,,,,,,,,,,,,,,,,10,8
+Hunt Animal,Description,Agricultural,Hunting,Hide,,Scaled Leather,5,,,,,,,,,,,,,,,,,,,,,,,,,,10,32
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0

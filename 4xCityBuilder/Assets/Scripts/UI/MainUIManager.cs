@@ -161,7 +161,12 @@ public class MainUIManager : MonoBehaviour {
 
         Vector3 mapPanelCenter = new Vector3(tvMapMaxX / 2, tvMapMinY + (tvMapMaxY - tvMapMinY) / 2, 0.0F);
         mapPanelCenter = mainCamera.ScreenToWorldPoint(mapPanelCenter);
-        Vector3 newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
+        Vector3 newCameraFocus;
+        if (currentUi == "MainMap")
+            newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
+        else
+            newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
+
         newCameraFocus.z = -10.0F; //Make sure this doesn't move
         Debug.Log("Old Camera");
         Debug.Log(oldCameraLocation);

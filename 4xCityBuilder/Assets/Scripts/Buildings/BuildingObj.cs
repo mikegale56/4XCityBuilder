@@ -9,16 +9,16 @@ public class BuildingObj
     public string name;
     public QualityEnum quality;
     public Vector2Int ijLocation;
-    //private List<Bonus> calculatedBonuses;
+    public List<JobBonus> buildingBonuses;
     public float calculatedMaxDistToWorkTiles;
     public int maxHp;
     public int currentHp;
     public int calculatedHousing;
     public List<Vector2Int> workedTiles;
     public List<Guid> ownedJobGuids;
-    // private JobManager jobManager;
+    private JobManager jobManager;
 
-    public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality)
+    public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality, JobManager jobManager)
     {
         uuid = System.Guid.NewGuid();
         ijLocation = ij;
@@ -34,8 +34,9 @@ public class BuildingObj
         // Need to add ownedJobGuids
 
         // Need to add calculatedBonuses
+        buildingBonuses = new List<JobBonus>();
 
-        // Need to add jobManager
+        this.jobManager = jobManager;
 
     }
 
