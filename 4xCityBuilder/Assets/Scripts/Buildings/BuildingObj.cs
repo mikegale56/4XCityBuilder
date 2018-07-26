@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingObj
 {
-    public Guid uuid;
+    public Guid guid;
     public string name;
     public QualityEnum quality;
     public Vector2Int ijLocation;
@@ -15,12 +15,11 @@ public class BuildingObj
     public int currentHp;
     public int calculatedHousing;
     public List<Vector2Int> workedTiles;
-    public List<Guid> ownedJobGuids;
     private JobManager jobManager;
 
     public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality, JobManager jobManager)
     {
-        uuid = System.Guid.NewGuid();
+        guid = System.Guid.NewGuid();
         ijLocation = ij;
         this.quality = quality;
         name = buildingDef.name;
@@ -30,8 +29,6 @@ public class BuildingObj
         currentHp = maxHp;
 
         // Need to add worked tiles
-
-        // Need to add ownedJobGuids
 
         // Need to add calculatedBonuses
         buildingBonuses = new List<JobBonus>();

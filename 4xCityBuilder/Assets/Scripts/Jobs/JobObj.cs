@@ -12,7 +12,8 @@ public class JobObj
     public bool hasStarted;
     private int numWorkers;
 	public JobDef jobDef;
-	public BuildingObj buildObj;
+	public BuildingObj buildingObj;
+	public Guid buildingGuid;
 	
 	private float currentPMURate;
 	private float workPMUsRemaining;
@@ -44,7 +45,8 @@ public class JobObj
 		this.hasStarted = false; // Is being worked
 		this.numWorkers = 0;
 		this.jobDef = def;
-		this.buildObj = bldg;
+		this.buildingObj = bldg;
+		this.buildingGuid = bldg.guid;
 		
 		// PMU work
 		this.currentPMURate = 0.0F; //Will be calculated
@@ -116,12 +118,18 @@ public class JobObj
 			{
 				this.hasStarted = false;
 				ResourceQuantityQualityList products = new ResourceQuantityQualityList();
-                // Need to update jobDef to allow multiple outputs
-                products.rqqList.Add(new ResourceNameQuantityQuality(
-                    this.jobDef.outputName, QualityEnum.normal,
-                    Mathf.RoundToInt(this.jobDef.defaultOutputQuantity * this.buildingBonusQuantityMultiplier * this.leaderBonusQuantityMultiplier)));
+				
+				// Allow for multiple outputs
+				for (int i = 0; i < this.jobDef.outputName.Count; i++)
+				{
+					int outputQuantity = Mathf.RoundToInt(this.jobDef.defaultOutputQuantity[i] * this.buildingBonusQuantityMultiplier * this.leaderBonusQuantityMultiplier);
+					// Add the resource
+					products.rqqList.Add(new ResourceNameQuantityQuality(
+						this.jobDef.outputName[i], QualityEnum.normal,
+						outputQuantity));
+				}
 				products.AddResources(stock);
-				// Need to trigger an event here
+				// Need to trigger an event here for display of done
 			}
 		}
 	}

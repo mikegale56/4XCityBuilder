@@ -156,18 +156,15 @@ public class MainUIManager : MonoBehaviour {
         mpz.inertiaVector = Vector3.zero;
         ShowMaps();
         // Change the focus of the camera
-        Vector3 oldCameraLocation = mpz.newLocalPos;
+        Vector3 oldCameraLocation = mpz.transform.localPosition;
         //0, tvMapMaxX, tvMapMinY, tvMapMaxY
 
         Vector3 mapPanelCenter = new Vector3(tvMapMaxX / 2, tvMapMinY + (tvMapMaxY - tvMapMinY) / 2, 0.0F);
         mapPanelCenter = mainCamera.ScreenToWorldPoint(mapPanelCenter);
         Vector3 newCameraFocus;
-        if (currentUi == "MainMap")
-            newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
-        else
-            newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
-
+        newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
         newCameraFocus.z = -10.0F; //Make sure this doesn't move
+
         Debug.Log("Old Camera");
         Debug.Log(oldCameraLocation);
         Debug.Log("mapPanelCenter position");
@@ -176,7 +173,6 @@ public class MainUIManager : MonoBehaviour {
         Debug.Log(newCameraFocus);
         mpz.ZoomTo(newCameraFocus);
         
-
         // Disable all UIs
         DisableAllUis();
 

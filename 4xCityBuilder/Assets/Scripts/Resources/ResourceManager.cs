@@ -54,8 +54,14 @@ public class ResourceManager : MonoBehaviour {
         resourceUI.enabled = false;
         resourceUiCanvas.enabled = false;
 
-        // Load sprites
-
+        // Add a few resources
+        ResourceQuantityQualityList startingResources = new ResourceQuantityQualityList();
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Cow", QualityEnum.normal, 10));
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Pine", QualityEnum.normal, 100));
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Pine", QualityEnum.good, 50));
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Limestone", QualityEnum.normal, 75));
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Marble", QualityEnum.normal, 25));
+        startingResources.AddResources(domainResources);
 
     }
 
