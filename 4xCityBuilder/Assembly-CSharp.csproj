@@ -83,7 +83,9 @@
     <Compile Include="Assets\Scripts\UI\BuildingUI.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\CustomDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\CustomDropdownEditor.cs" />
-    <Compile Include="Assets\Scripts\UI\Dropdowns\DropdownUtility.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\DropdownUtilities.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdown.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdownCreator.cs" />
     <Compile Include="Assets\Scripts\UI\MainUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\ResourceUI.cs" />
     <Compile Include="Assets\Scripts\UI\TileDetailManager.cs" />

@@ -46,6 +46,8 @@ public class ResourceDef
             tex = (Resources.Load("Textures/NeedIcon") as Texture2D);
         else
             tex = (Resources.Load(values[7]) as Texture2D);
+        if (tex == null)
+            Debug.LogWarning("Failed to load resource " + values[7]);
         image = Sprite.Create(tex,
                     new Rect(0, 0, tex.width, tex.height),
                     new Vector2(0.5f, 0.5f), tex.width);

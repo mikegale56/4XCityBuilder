@@ -19,13 +19,18 @@ public class MapManager : MonoBehaviour
     [Range(0.0F, 1.0F)]
     public float mountainFraction = 0.05F;
     [Range(0, 1000)]
-    public int nRivers = 50;
+    public int nRivers = 5;
 
     // Trees
     [Range(0.0F, 1.0F)]
     public float oakTreeFraction = 0.1F;
     [Range(0.0F, 1.0F)]
     public float pineTreeFraction = 0.15F;
+
+    [Range(0.0F, 1.0F)]
+    public float ashTreeFraction = 0.075F;
+    [Range(0.0F, 1.0F)]
+    public float redwoodTreeFraction = 0.05F;
 
     // Stone
     [Range(0.0F, 1.0F)]
@@ -100,6 +105,12 @@ public class MapManager : MonoBehaviour
         surfaceTiles.Add(Resources.Load("Tiles/Trees/Pine") as Tile);
         surfaceValueDictionary.Add("Pine", (byte)(surfaceTiles.Count - 1));
 
+        surfaceTiles.Add(Resources.Load("Tiles/Trees/TreeAsh") as Tile);
+        surfaceValueDictionary.Add("Ash", (byte)(surfaceTiles.Count - 1));
+
+        surfaceTiles.Add(Resources.Load("Tiles/Trees/TreeRedwood") as Tile);
+        surfaceValueDictionary.Add("Redwood", (byte)(surfaceTiles.Count - 1));
+
         // Stone Tiles
         undergroundTiles.Add(new List<Tile>());
         undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Sandstone") as Tile);
@@ -164,6 +175,8 @@ public class MapManager : MonoBehaviour
         // Generate Trees
         mapGenFunctions.PlaceTrees(N, oakTreeFraction, surfaceValueDictionary["Oak"], surfaceValue, groundValue, this);
         mapGenFunctions.PlaceTrees(N, pineTreeFraction, surfaceValueDictionary["Pine"], surfaceValue, groundValue, this);
+        mapGenFunctions.PlaceTrees(N, ashTreeFraction, surfaceValueDictionary["Ash"], surfaceValue, groundValue, this);
+        mapGenFunctions.PlaceTrees(N, redwoodTreeFraction, surfaceValueDictionary["Redwood"], surfaceValue, groundValue, this);
 
         // Draw the ground & surface tiles
         for (int i = 0; i < N; i++)
@@ -240,9 +253,5 @@ public class MapManager : MonoBehaviour
 
     public short GetSurfaceValue(int i, int j)
     { return surfaceValue[i, j]; }
-    
-
-
-
 }
 
