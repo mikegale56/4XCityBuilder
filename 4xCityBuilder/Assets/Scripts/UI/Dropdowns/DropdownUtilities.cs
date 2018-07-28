@@ -8,12 +8,12 @@ public class DropdownUtilities : MonoBehaviour
 {
 
     //Creates & initializes a button(with a text child) inside of the given parent.
-    public static Button NewButton(string name, string text, Transform parent)
+    public static Button NewButton(string name, string text, Transform parent, float w, float h )
     {
         RectTransform btnRect = NewUIElement(name, parent);
         btnRect.gameObject.AddComponent<Image>();
         btnRect.gameObject.AddComponent<Button>();
-        ScaleRect(btnRect, 160, 30);
+        ScaleRect(btnRect, w, h);
         NewText(text, btnRect); 
 
         return btnRect.GetComponent<Button>();

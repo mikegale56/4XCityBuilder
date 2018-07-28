@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceNameQuantityQuality : ResourceQuantityQuality
@@ -153,5 +154,18 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 		}
 		
 		return averageQualityMultiplierOfRemoved;
-	}	
+	}
+
+    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager)
+    {
+        Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
+
+        // Get the resourceDefs with this type
+        IEnumerable<ResourceDef> resourcesOfType = (List<ResourceDef>)ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
+        foreach (ResourceDef def in resourcesOfType)
+            nameSpriteDict.Add(def.name, def.image);
+
+        return nameSpriteDict;
+    }
+
 }

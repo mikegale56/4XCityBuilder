@@ -14,7 +14,6 @@ public class ResourceDropdownCreator : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-
         if (FindObjectOfType<EventSystem>() == null)
         {
             EventSystem e = new GameObject().AddComponent<EventSystem>();
@@ -38,14 +37,32 @@ public class ResourceDropdownCreator : MonoBehaviour
     public void CreateDropdown(ResourceQuantityQualityList choices)
     {
 
+        Dictionary<string, Sprite> stringSprite = choices.rqqList[2].GetImageOptions(resourceManager);
+
         // Create the button
-        resourceDropdown = DropdownUtilities.NewButton("Resource Dropdown", "Resource Dropdown", panel.transform).gameObject.AddComponent<ResourceDropdown>();
+        float imageSize = 64F;
+        resourceDropdown = DropdownUtilities.NewButton("Resource 1 Dropdown", "Need text here", panel.transform, imageSize, imageSize).gameObject.AddComponent<ResourceDropdown>();
+        resourceDropdown.childHeight = imageSize;
         resourceDropdown.mainText = resourceDropdown.transform.Find("Text").GetComponent<Text>();
-        resourceDropdown.mainText.text = "Enter Text Here";
         resourceDropdown.mainText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         resourceDropdown.mainText.color = Color.red;
-        resourceDropdown.AddChild();
-        resourceDropdown.AddChild();
+
+        int ind = 0;
+        foreach (KeyValuePair<string, Sprite> entry in stringSprite)
+        {
+            // do something with entry.Value or entry.Key
+            if (ind == 0)
+            {
+                resourceDropdown.image.sprite = entry.Value;
+                resourceDropdown.mainText.text = "";
+            }
+            resourceDropdown.AddChild(entry.Key);
+            resourceDropdown.children[ind].image.sprite = entry.Value;
+            resourceDropdown.children[ind].childText.text = "";
+            ind++;
+        }
+        
+        
     }
 
 }

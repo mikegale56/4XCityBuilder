@@ -11,20 +11,21 @@ public class ResourceDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public bool isOpen;
     public Text mainText;
     public Image image { get { return GetComponent<Image>(); } }
+    public Image mainImage;
+    private GUIStyle style;
 
     public List<ResourceDropdownChild> children;
-    public float childHeight = 30;
+    public float childHeight = 64;
     public int childFontSize = 11;
     public Color normal = Color.white;
-    public Color highlighted = Color.red;
-    public Color pressed = Color.gray;
+    public Color highlighted = Color.gray;
+    public Color pressed = Color.green;
 
     // Use this for initialization
     void Awake ()
     {
         container = DropdownUtilities.NewUIElement("Container", transform);
         container.gameObject.AddComponent<VerticalLayoutGroup>();
-        Debug.Log("Container: " + container);
         DropdownUtilities.ScaleRect(container, 0, 0);
         container.anchorMin = new Vector2(0, 0);
         container.anchorMax = new Vector2(1, 0);
@@ -39,6 +40,22 @@ public class ResourceDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExi
         container.localScale = scale;
     }
 
+    void OnGUI()
+    {
+        if (style == null)
+        {
+            style = new GUIStyle();
+            style.fontSize = 14;
+            style.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        }
+
+        foreach (ResourceDropdownChild child in children)
+        {
+            if (child.tooltip != "")
+                GUI.Label(new Rect(Input.mousePosition.x + 25, Screen.height - Input.mousePosition.y, child.tooltip.Length * 10, 20), child.tooltip, style);
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOpen = true;
@@ -48,32 +65,35 @@ public class ResourceDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         isOpen = false;
     }
-
-    public void AddChild()
+    
+    public void AddChild(string resourceName)
     {
         if (children == null)
             children = new List<ResourceDropdownChild>();
-        children.Add(new ResourceDropdownChild(this));
+        //children.Add(new ResourceDropdownChild(this, resourceName));
+        GameObject childObj = DropdownUtilities.NewButton("Child", "Button", this.container.transform, 64, 64).gameObject;
+        ResourceDropdownChild rdc = childObj.AddComponent<ResourceDropdownChild>();
+        rdc.childObj = childObj;
+        rdc.Init(this, resourceName);
+        children.Add(rdc);
     }
-
-
 }
 
-public class ResourceDropdownChild
+public class ResourceDropdownChild : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject childObj;
     public Text childText;
     public Button.ButtonClickedEvent childEvents;
+    public string tooltip = "";
+    public string resourceName;
 
     private LayoutElement element { get { return childObj.GetComponent<LayoutElement>(); } }
     private Button button { get { return childObj.GetComponent<Button>(); } }
-    private Image image { get { return childObj.GetComponent<Image>(); } }
-    public ResourceDropdownChild(ResourceDropdown parent)
+    public Image image { get { return childObj.GetComponent<Image>(); } }
+    public void Init(ResourceDropdown parent, string resourceName)
     {
-        Debug.Log(parent);
-        Debug.Log(parent.container);
-        childObj = DropdownUtilities.NewButton("Child", "Button", parent.container.transform).gameObject;
-        
+        this.resourceName = resourceName;
+
         childObj.AddComponent<LayoutElement>();
 
         childText = childObj.GetComponentInChildren<Text>();
@@ -102,4 +122,15 @@ public class ResourceDropdownChild
         button.onClick = childEvents;
 
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        tooltip = resourceName;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltip = "";
+    }
+
 }

@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Buildings\BuildingList.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObj.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingQueries.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonus.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuality.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuantity.cs" />
@@ -78,11 +79,12 @@
     <Compile Include="Assets\Scripts\Resources\ResourceNameQuantityQuality.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceQuantityQuality.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceQuantityQualityList.cs" />
+    <Compile Include="Assets\Scripts\Resources\ResourceQueries.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceStock.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceTypeQuantityQuality.cs" />
     <Compile Include="Assets\Scripts\UI\BuildingUI.cs" />
-    <Compile Include="Assets\Scripts\UI\Dropdowns\CustomDropdown.cs" />
-    <Compile Include="Assets\Scripts\UI\Dropdowns\CustomDropdownEditor.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\BuildingDropdown.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\BuildingDropdownCreator.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\DropdownUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdownCreator.cs" />

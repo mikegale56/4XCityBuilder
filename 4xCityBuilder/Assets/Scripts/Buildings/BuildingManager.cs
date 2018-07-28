@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using SLS.Widgets.Table;
+using System.Linq;
 
 public class BuildingManager : MonoBehaviour {
 
     public Canvas buildingUiCanvas;
     public BuildingUI buildingUI;
     public Dictionary<string, int> buildingNameToDefIndexDictionary;
+    public List<string> buildingCategories;
     public List<BuildingDef> buildingDefinitions;
     public BuildingList domainBuildings;
     public JobManager jobManager;
@@ -56,7 +58,10 @@ public class BuildingManager : MonoBehaviour {
         for (int i = 0; i<buildingDefinitions.Count; i++)
             domainBuildings.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal, jobManager));
 
-
+        buildingCategories = new List<string>();
+        foreach (BuildingDef def in buildingDefinitions)
+            buildingCategories.Add(def.category);
+        buildingCategories = buildingCategories.Distinct().ToList();
     }
 
     // Use this for initialization

@@ -8,7 +8,7 @@ public class BuildingDef
 {
 
     public int tier;
-    public string name, description;
+    public string name, description, category;
     public string parentName;
     public List<string> industry, skill;
     //public List<BuildingPrerequisites> buildingPrerequisites;
@@ -42,6 +42,10 @@ public class BuildingDef
             if (values[column["Name"]].Length > 0)
                 name = values[column["Name"]];
 
+            // Category
+            if (values[column["Category"]].Length > 0)
+                category = values[column["Category"]];
+            
             // Parent Name
             if (values[column["Parent Name"]].Length > 0)
                 parentName = values[column["Parent Name"]];

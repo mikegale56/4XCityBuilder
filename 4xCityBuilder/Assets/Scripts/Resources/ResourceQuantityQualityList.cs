@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ResourceQuantityQualityList
 {
@@ -48,4 +49,5 @@ public class ResourceQuantityQualityList
 		}
 		return totalMultiplier / resourceCount;
 	}
+
 }
