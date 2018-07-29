@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResourceTypeQuantityQuality : ResourceQuantityQuality
@@ -68,7 +69,19 @@ public class ResourceTypeQuantityQuality : ResourceQuantityQuality
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByType(resourceManager.resourceDefinitions, type);
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTier(resourceManager.resourceDefinitions, type);
+        foreach (ResourceDef def in resourcesOfType)
+            nameSpriteDict.Add(def.name, def.image);
+
+        return nameSpriteDict;
+    }
+
+    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager, int minTier)
+    {
+        Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
+
+        // Get the resourceDefs with this type
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTierMinTier(resourceManager.resourceDefinitions, type, minTier);
         foreach (ResourceDef def in resourcesOfType)
             nameSpriteDict.Add(def.name, def.image);
 

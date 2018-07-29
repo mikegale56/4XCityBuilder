@@ -8,8 +8,9 @@ public class ResourceDropdownCreator : MonoBehaviour
 {
 
     public RectTransform panel;
-    public ResourceDropdown resourceDropdown;
+    public List<DropdownBase> resourceDropdown;
     public ResourceManager resourceManager;
+    public float imageSize = 64F;
 
     // Use this for initialization
     void Start ()
@@ -21,48 +22,72 @@ public class ResourceDropdownCreator : MonoBehaviour
             e.gameObject.AddComponent<StandaloneInputModule>();
 
         }
-        // Test Code
-        ResourceQuantityQualityList choices = new ResourceQuantityQualityList();
-        choices.rqqList.Add(new ResourceNameQuantityQuality("Cow", QualityEnum.any, 10));
-        choices.rqqList.Add(new ResourceTypeQuantityQuality("Wood", QualityEnum.any, 10));
-        choices.rqqList.Add(new ResourceTypeQuantityQuality("Metal", QualityEnum.any, 10));
-        CreateDropdown(choices);
+
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
-    public void CreateDropdown(ResourceQuantityQualityList choices)
+    public void ClearResourceList()
     {
-
-        Dictionary<string, Sprite> stringSprite = choices.rqqList[2].GetImageOptions(resourceManager);
-
-        // Create the button
-        float imageSize = 64F;
-        resourceDropdown = DropdownUtilities.NewButton("Resource 1 Dropdown", "Need text here", panel.transform, imageSize, imageSize).gameObject.AddComponent<ResourceDropdown>();
-        resourceDropdown.childHeight = imageSize;
-        resourceDropdown.mainText = resourceDropdown.transform.Find("Text").GetComponent<Text>();
-        resourceDropdown.mainText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        resourceDropdown.mainText.color = Color.red;
-
-        int ind = 0;
-        foreach (KeyValuePair<string, Sprite> entry in stringSprite)
+        foreach (DropdownBase db in resourceDropdown)
         {
-            // do something with entry.Value or entry.Key
-            if (ind == 0)
-            {
-                resourceDropdown.image.sprite = entry.Value;
-                resourceDropdown.mainText.text = "";
-            }
-            resourceDropdown.AddChild(entry.Key);
-            resourceDropdown.children[ind].image.sprite = entry.Value;
-            resourceDropdown.children[ind].childText.text = "";
-            ind++;
+            db.HideAll();
+            Destroy(db.thisGo);
         }
-        
-        
+        resourceDropdown = new List<DropdownBase>();
+    }
+
+    public void CreateResourceChoiceDropdown(Vector3 localPosition, ResourceQuantityQualityList choices)
+    {
+        // Delete the old ones if they exist
+        if (resourceDropdown == null)
+            resourceDropdown = new List<DropdownBase>();
+        else
+            ClearResourceList();
+
+        int resInd = 0;
+        foreach (ResourceQuantityQuality rqq in choices.rqqList)
+        {
+            Dictionary<string, Sprite> stringSprite = rqq.GetImageOptions(resourceManager, rqq.minTier);
+            // Create the button
+            
+            resourceDropdown.Add(DropdownUtilities.NewButton("Resource " + resInd.ToString() + " Dropdown", "", panel.transform, imageSize, imageSize).gameObject.AddComponent<DropdownBase>());
+            resourceDropdown[resInd].transform.localPosition = localPosition;
+            localPosition.x += imageSize * 3 / 2;
+            resourceDropdown[resInd].childHeight = imageSize;
+
+            int ind = 0;
+            foreach (KeyValuePair<string, Sprite> entry in stringSprite)
+            {
+                ResourceNameQuantityQuality nqq = new ResourceNameQuantityQuality(entry.Key, QualityEnum.any, rqq.quantity);
+
+                // do something with entry.Value or entry.Key
+                if (ind == 0)
+                {
+                    resourceDropdown[resInd].imageGo.sprite = entry.Value;
+                    resourceDropdown[resInd].textGo.text = "";
+                }
+                resourceDropdown[resInd].AddChild();
+                resourceDropdown[resInd].children[ind].tooltipData = entry.Key;
+                resourceDropdown[resInd].children[ind].imageGo.sprite = entry.Value;
+                
+                if (!nqq.CheckResource(resourceManager.domainResources))
+                {
+                    if (ind == 0)
+                        resourceDropdown[resInd].imageGo.color = Color.red;
+                    resourceDropdown[resInd].children[ind].imageGo.color = Color.red;
+                    resourceDropdown[resInd].children[ind].button.interactable = false;
+                }
+
+                resourceDropdown[resInd].children[ind].textGo.text = "";
+                ind++;
+            }
+            resInd++;   
+        }
     }
 
 }

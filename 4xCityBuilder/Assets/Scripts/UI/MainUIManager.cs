@@ -148,7 +148,7 @@ public class MainUIManager : MonoBehaviour {
     public void PressTile(Vector3 tileLocation)
     {
         tileLocation.z = 0;
-        Debug.Log("Tile Detail on " + tileLocation.x.ToString() + "," + tileLocation.y.ToString() + "," + tileLocation.z.ToString());
+        //Debug.Log("Tile Detail on " + tileLocation.x.ToString() + "," + tileLocation.y.ToString() + "," + tileLocation.z.ToString());
 
         MapPanZoom mpz = mainCamera.GetComponent<MapPanZoom>();
         // Disable map movement, reset inertia & Show the map
@@ -165,12 +165,6 @@ public class MainUIManager : MonoBehaviour {
         newCameraFocus = oldCameraLocation + (tileLocation - mapPanelCenter);
         newCameraFocus.z = -10.0F; //Make sure this doesn't move
 
-        Debug.Log("Old Camera");
-        Debug.Log(oldCameraLocation);
-        Debug.Log("mapPanelCenter position");
-        Debug.Log(mapPanelCenter);
-        Debug.Log("New Camera");
-        Debug.Log(newCameraFocus);
         mpz.ZoomTo(newCameraFocus);
         
         // Disable all UIs

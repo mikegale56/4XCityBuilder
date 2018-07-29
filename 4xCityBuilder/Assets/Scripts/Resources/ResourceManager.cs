@@ -61,6 +61,8 @@ public class ResourceManager : MonoBehaviour {
         startingResources.rqqList.Add(new ResourceNameQuantityQuality("Pine", QualityEnum.good, 50));
         startingResources.rqqList.Add(new ResourceNameQuantityQuality("Limestone", QualityEnum.normal, 75));
         startingResources.rqqList.Add(new ResourceNameQuantityQuality("Marble", QualityEnum.normal, 25));
+        startingResources.rqqList.Add(new ResourceNameQuantityQuality("Iron", QualityEnum.normal, 75));
+
         startingResources.AddResources(domainResources);
 
     }

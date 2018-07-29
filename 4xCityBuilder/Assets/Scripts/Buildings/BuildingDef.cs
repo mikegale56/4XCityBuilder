@@ -15,7 +15,7 @@ public class BuildingDef
     //public List<JobDef> jobsEnabled;
     //public List<Bonus> baseBonuses;
     //public Dictionary<string, int> jobMaxTier;
-    public List<ResourceTypeQuantityQuality> resourcesToBuild;
+    public ResourceQuantityQualityList resourcesToBuild;
     public int maxWorkers;
     public int maxHp;
     public int housing;
@@ -27,7 +27,7 @@ public class BuildingDef
     public BuildingDef(List<string> csvLines, Dictionary<string,int> column)
     {
 
-        resourcesToBuild = new List<ResourceTypeQuantityQuality>();
+        resourcesToBuild = new ResourceQuantityQualityList();
         industry = new List<string>();
         skill = new List<string>();
 
@@ -70,6 +70,8 @@ public class BuildingDef
 
                 ResourceTypeQuantityQuality tqq = new ResourceTypeQuantityQuality(
                     values[column["Resource Type to Build"]], QualityEnum.any, c, t);
+
+                resourcesToBuild.rqqList.Add(tqq);
             }
 
             // Max Workers

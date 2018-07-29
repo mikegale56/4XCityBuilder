@@ -9,7 +9,7 @@ public class ResourceDef
 
     public string name, description, industry, skill;
     public List<string> types;
-    int tier;
+    public int tier;
     public bool hasQuality = true;
     public Sprite image;
 

@@ -161,11 +161,23 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfType = (List<ResourceDef>)ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
         foreach (ResourceDef def in resourcesOfType)
             nameSpriteDict.Add(def.name, def.image);
 
         return nameSpriteDict;
     }
 
+    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager, int minTier)
+    {
+        Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
+
+        // Get the resourceDefs with this type
+        IEnumerable<ResourceDef> resourcesOfName = ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
+        foreach (ResourceDef def in resourcesOfName)
+            nameSpriteDict.Add(def.name, def.image);
+
+        return nameSpriteDict;
+
+    }
 }

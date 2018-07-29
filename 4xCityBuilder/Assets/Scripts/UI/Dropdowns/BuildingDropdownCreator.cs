@@ -8,8 +8,10 @@ public class BuildingDropdownCreator : MonoBehaviour
 {
 
     public RectTransform panel;
-    public BuildingDropdown buildingDropdown;
+    public DropdownBase buildingDropdown;
+    public DropdownBase demolishDropdown;
     public BuildingManager buildingManager;
+    public BuildingButtonCallback bbcb;
 
     // Use this for initialization
     void Start()
@@ -19,14 +21,7 @@ public class BuildingDropdownCreator : MonoBehaviour
             EventSystem e = new GameObject().AddComponent<EventSystem>();
             e.name = "Event System";
             e.gameObject.AddComponent<StandaloneInputModule>();
-
         }
-        // Test Code
-        ResourceQuantityQualityList choices = new ResourceQuantityQualityList();
-        choices.rqqList.Add(new ResourceNameQuantityQuality("Cow", QualityEnum.any, 10));
-        choices.rqqList.Add(new ResourceTypeQuantityQuality("Wood", QualityEnum.any, 10));
-        choices.rqqList.Add(new ResourceTypeQuantityQuality("Metal", QualityEnum.any, 10));
-        CreateDropdown(choices);
     }
 
     // Update is called once per frame
@@ -35,25 +30,45 @@ public class BuildingDropdownCreator : MonoBehaviour
 
     }
 
-    public void CreateDropdown(ResourceQuantityQualityList choices)
+    public void CreateDropdown(Vector3 localPosition, float w, float h)
     {
 
         // Create the button
-        buildingDropdown = DropdownUtilities.NewButton("Building Dropdown", "Select Building", panel.transform, 160F, 32F).gameObject.AddComponent<BuildingDropdown>();
-        buildingDropdown.transform.localPosition = new Vector3(101F, 0F);
+        buildingDropdown = DropdownUtilities.NewButton("Building Dropdown", "Select Building", panel.transform, w, h).gameObject.AddComponent<DropdownBase>();
+        buildingDropdown.transform.localPosition = localPosition;
         buildingDropdown.childHeight = 30;
-        buildingDropdown.mainText = buildingDropdown.transform.Find("Text").GetComponent<Text>();
-        buildingDropdown.mainText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        buildingDropdown.mainText.color = Color.black;
+        buildingDropdown.childFontSize = 16;
+        buildingDropdown.CloseButton();
 
         int ind = 0;
         foreach (string category in buildingManager.buildingCategories)
         {
-            buildingDropdown.AddChild(category);
-            buildingDropdown.children[ind].childText.text = category;
+            buildingDropdown.AddChild();
+            buildingDropdown.children[ind].textGo.text = category;
+            buildingDropdown.children[ind].CloseButton();
+            int subInd = 0;
+            IEnumerable<BuildingDef> theseBuildingDefs = BuildingQueries.ByCategoryNoParent(buildingManager.buildingDefinitions, category);
+            foreach (BuildingDef def in theseBuildingDefs)
+            {
+                buildingDropdown.children[ind].AddChild();
+                buildingDropdown.children[ind].children[subInd].textGo.text = def.name + " (Tier " + def.tier + ")";
+                buildingDropdown.children[ind].children[subInd].button.onClick.AddListener(() => bbcb(def.name));
+                buildingDropdown.children[ind].children[subInd].CloseButton();
+                subInd++;
+            }
             ind++;
         }
 
+    }
+
+    public void CreateDemolishDropdown(Vector3 localPosition, float w, float h)
+    {
+
+        // Create the button
+        demolishDropdown = DropdownUtilities.NewButton("Demolish Dropdown", "Demolish", panel.transform, w, h).gameObject.AddComponent<DropdownBase>();
+        demolishDropdown.transform.localPosition = localPosition;
+        demolishDropdown.childHeight = 30;
+        demolishDropdown.childFontSize = 16;
 
     }
 

@@ -1,35 +1,49 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class BuildingDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DropdownBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
-    public RectTransform container;
     public bool isOpen;
-    public Text mainText;
-    public Image image { get { return GetComponent<Image>(); } }
-    public Image mainImage;
-    private GUIStyle style;
-
-    public List<BuildingDropdownChild> children;
+    public string tooltip = "";
+    public string tooltipData = "";
     public float childHeight = 30;
-    public int childFontSize = 11;
+    public int childFontSize = 12;
+    public GameObject thisGo;
+    public RectTransform container;
+    public Text textGo;
     public Color normal = Color.white;
     public Color highlighted = Color.gray;
     public Color pressed = Color.green;
+    public List<DropdownBase> children;
+    public Button.ButtonClickedEvent events;
+    public Image imageGo { get { return GetComponent<Image>(); } }
+    public DropdownBase mainDropdown;
+
+    public Button button { get { return thisGo.GetComponent<Button>(); } }
+    private LayoutElement element { get { return thisGo.GetComponent<LayoutElement>(); } }
+    private GUIStyle style;
 
     // Use this for initialization
     void Awake()
     {
+        isOpen = false;
         container = DropdownUtilities.NewUIElement("Container", transform);
         container.gameObject.AddComponent<VerticalLayoutGroup>();
         DropdownUtilities.ScaleRect(container, 0, 0);
+
+        // Text defaults
+        textGo = transform.Find("Text").GetComponent<Text>();
+        textGo.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        textGo.color = Color.black;
+
+        // Get this game object
+        thisGo = this.gameObject;
+
+        // Base, but these get changed later in subbuttons
         container.anchorMin = new Vector2(0, 0);
         container.anchorMax = new Vector2(1, 0);
-        isOpen = false;
     }
 
     // Update is called once per frame
@@ -40,6 +54,20 @@ public class BuildingDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExi
         container.localScale = scale;
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isOpen = true;
+        tooltip = tooltipData;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isOpen = false;
+        tooltip = "";
+    }
+
+    //public void OnClick()
+
     void OnGUI()
     {
         if (style == null)
@@ -48,100 +76,143 @@ public class BuildingDropdown : MonoBehaviour, IPointerEnterHandler, IPointerExi
             style.fontSize = 14;
             style.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         }
-
-        /*foreach (BuildingDropdownChild child in children)
-        {
-            if (child.tooltip != "")
-                GUI.Label(new Rect(Input.mousePosition.x + 25, Screen.height - Input.mousePosition.y, child.tooltip.Length * 10, 20), child.tooltip, style);
-        }*/
+        if (children != null)
+        { 
+            foreach (DropdownBase child in children)
+            {
+                if (child.tooltip != "")
+                    GUI.Label(new Rect(Input.mousePosition.x + 25, Screen.height - Input.mousePosition.y, child.tooltip.Length * 10, 20), child.tooltip, style);
+            }
+        }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void HideAll()
     {
-        isOpen = true;
+        this.textGo.enabled = false;
+        this.imageGo.enabled = false;
+        this.enabled = false;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void ShowAll()
     {
-        isOpen = false;
+        this.textGo.enabled = true;
+        this.imageGo.enabled = true;
+        this.enabled = true;
     }
 
-    public void AddChild(string text)
+    public void AddChild()
     {
         if (children == null)
-            children = new List<BuildingDropdownChild>();
+            children = new List<DropdownBase>();
+
         GameObject childObj = DropdownUtilities.NewButton("Child", "Button", this.container.transform, 64, 64).gameObject;
-        BuildingDropdownChild rdc = childObj.AddComponent<BuildingDropdownChild>();
-        rdc.childObj = childObj;
-        rdc.Init(this, text);
-        children.Add(rdc);
-    }
-}
+        DropdownChild dbChild = childObj.AddComponent<DropdownChild>();
+        if (mainDropdown == null)
+            mainDropdown = this;
+        dbChild.mainDropdown = this.mainDropdown;
+        children.Add(dbChild);
+        //dbChild.thisGo = childObj;
 
-public class BuildingDropdownChild : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
-    public RectTransform subContainer;
-    public GameObject childObj;
-    public Text childText;
-    public Button.ButtonClickedEvent childEvents;
-    public bool isOpen = false;
+        // Anchor to lower right
+        dbChild.container.anchorMin = new Vector2(1, 0);
+        dbChild.container.anchorMax = new Vector2(1, 0);
 
-    private LayoutElement element { get { return childObj.GetComponent<LayoutElement>(); } }
-    private Button button { get { return childObj.GetComponent<Button>(); } }
-    public Image image { get { return childObj.GetComponent<Image>(); } }
-    public void Init(BuildingDropdown parent, string text)
-    {
+        dbChild.thisGo.AddComponent<LayoutElement>();
 
-        !!! HERE
-        // Just added subContainer, need to create / assign it and then get the horizontal slide stuff working
-
-        childObj.AddComponent<LayoutElement>();
-
-        childText = childObj.GetComponentInChildren<Text>();
-
-        childEvents = button.onClick;
-
-        element.minHeight = parent.childHeight;
+        dbChild.element.minHeight = this.childHeight;
 
         // Set image sprite and type
-        image.sprite = parent.image.sprite;
-        image.type = parent.image.type;
+        dbChild.imageGo.sprite = this.imageGo.sprite;
+        dbChild.imageGo.type = this.imageGo.type;
 
         // Set childText font, font color, and font size
-        childText.font = parent.mainText.font;
-        childText.color = parent.mainText.color;
-        childText.fontSize = parent.childFontSize;
+        dbChild.textGo.font = this.textGo.font;
+        dbChild.textGo.color = this.textGo.color;
+        dbChild.textGo.fontSize = this.childFontSize;
 
         // Set button normal, highlighted, pressed colors
+        dbChild.events = dbChild.button.onClick;
+
         ColorBlock b = button.colors;
-        b.normalColor = parent.normal;
-        b.highlightedColor = parent.highlighted;
-        b.pressedColor = parent.pressed;
+        b.normalColor = this.normal;
+        b.highlightedColor = this.highlighted;
+        b.pressedColor = this.pressed;
         button.colors = b;
 
         // Set button's onClick and childEvents
-        button.onClick = childEvents;
-
+        dbChild.button.onClick = dbChild.events;
+        dbChild.button.onClick.AddListener(delegate() { CloseButton(); });
+        dbChild.button.onClick.AddListener(delegate () { ChangeMainButton(dbChild.textGo.text, dbChild.imageGo.sprite); });
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeMainButton(string s, Sprite sp)
     {
-        Vector3 scale = subContainer.localScale;
-        scale.x = Mathf.Lerp(scale.x, isOpen ? 1 : 0, Time.deltaTime * 10);
-        subContainer.localScale = scale;
+        if (!string.IsNullOrEmpty(s))
+            this.mainDropdown.textGo.text = s;
+        if (sp != null)
+        {
+            this.mainDropdown.imageGo.sprite = sp;
+            this.mainDropdown.imageGo.color = Color.white;
+        }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        isOpen = true;
-        //tooltip = buildingName;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
+    public void CloseButton()
     {
         isOpen = false;
-        //tooltip = "";
+        Vector3 scale = container.localScale;
+        scale.y = 0;
+        container.localScale = scale;
+    }
+}
+
+public class DropdownChild : DropdownBase
+{
+    void Awake()
+    {
+        isOpen = false;
+        container = DropdownUtilities.NewUIElement("Container", transform);
+        container.gameObject.AddComponent<VerticalLayoutGroup>();
+        DropdownUtilities.ScaleRect(container, 0, 0);
+
+        // Text defaults
+        textGo = transform.Find("Text").GetComponent<Text>();
+        textGo.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        textGo.color = Color.black;
+
+        // Get this game object
+        thisGo = this.gameObject;
+
+        // Base, but these get changed later in subobjects
+        container.anchorMin = new Vector2(1, 0);
+        container.anchorMax = new Vector2(1, 0);
+
+        container.pivot = new Vector2(0, 0);
+        container.sizeDelta = new Vector2(160, 32);
+
     }
 
+    void Update()
+    {
+        Vector3 scale = container.localScale;
+        if (isOpen)
+        {
+            scale.x = Mathf.Lerp(scale.x, isOpen ? 1 : 0, Time.deltaTime * 10);
+            scale.y = Mathf.Lerp(scale.y, isOpen ? 1 : 0, Time.deltaTime * 10);
+        } else
+        {
+            scale.x = Mathf.Lerp(scale.x, isOpen ? 1 : 0, Time.deltaTime * 3);
+            scale.y = Mathf.Lerp(scale.y, isOpen ? 1 : 0, Time.deltaTime * 3);
+        }
+        
+        container.localScale = scale;
+    }
+
+    new public void CloseButton()
+    {
+        isOpen = false;
+        Vector3 scale = container.localScale;
+        scale.x = 0;
+        scale.y = 0;
+        container.localScale = scale;
+    }
 }

@@ -12,6 +12,10 @@ public static class BuildingQueries
     {
         return BuildingDefs.Where(bldg => bldg.category == category);
     }
+    public static IEnumerable<BuildingDef> ByCategoryNoParent(this IEnumerable<BuildingDef> BuildingDefs, string category)
+    {
+        return BuildingDefs.Where(bldg => ((bldg.category == category) && (string.IsNullOrEmpty(bldg.parentName))));
+    }
     public static IEnumerable<BuildingDef> ByParent(this IEnumerable<BuildingDef> BuildingDefs, string parent)
     {
         return BuildingDefs.Where(bldg => bldg.parentName == parent);

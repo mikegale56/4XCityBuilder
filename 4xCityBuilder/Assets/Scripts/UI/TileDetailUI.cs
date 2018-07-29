@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+public delegate void BuildingButtonCallback(string s);
+
 public class TileDetailUI : MonoBehaviour {
 
 
@@ -20,13 +22,30 @@ public class TileDetailUI : MonoBehaviour {
     public RectTransform jobsPanel;
     public RectTransform militaryPanel;
     public MapManager mapManager;
+    public BuildingManager buildingManager;
+
+    public BuildingDropdownCreator buildingDC;
+    public ResourceDropdownCreator resourceDC;
+
+    public BuildingButtonCallback bbcb;
+
+    private Text buildingDescriptionText;
 
     public void FocusOnTile(int i, int j)
     {
+
+        if (buildingDescriptionText != null)
+            buildingDescriptionText.text = "";
+
+        if (resourceDC.resourceDropdown != null)
+            resourceDC.ClearResourceList();
+
         string newText;
         // Surface Panel
         if (mapManager.GetSurfaceValue(i, j) >= 0)
         {
+            if (buildingDC.buildingDropdown != null)
+                buildingDC.buildingDropdown.HideAll();
             short surfaceValue = mapManager.GetSurfaceValue(i, j);
             Tile surfaceTile = mapManager.surfaceTiles[surfaceValue];
             surfacePanel.GetComponent<Image>().sprite = surfaceTile.sprite;
@@ -38,11 +57,24 @@ public class TileDetailUI : MonoBehaviour {
             newText += "\n";
             newText += "No Description Yet";
             spText.GetComponent<Text>().text = newText;
+
+            if (buildingDC.demolishDropdown == null)
+                buildingDC.CreateDemolishDropdown(new Vector3(-468, -140), 300, 45);
+            else
+                buildingDC.demolishDropdown.ShowAll();
+
         } else
         {
+            if (buildingDC.demolishDropdown != null)
+                buildingDC.demolishDropdown.HideAll();
             surfacePanel.GetComponent<Image>().sprite = null;
             surfacePanel.GetComponent<Image>().color = Color.gray;
-            spText.GetComponent<Text>().text = "No Surface Structure\n";
+            spText.GetComponent<Text>().text = "Build a Structure:\n";
+
+            if (buildingDC.buildingDropdown == null)
+                buildingDC.CreateDropdown(new Vector3(-468, -70), 300, 45);
+            else
+                buildingDC.buildingDropdown.ShowAll();
         }
 
         // Ground Panel
@@ -75,15 +107,69 @@ public class TileDetailUI : MonoBehaviour {
 
     }
 
-    // Use this for initialization
-    void Start ()
+    public void ActionSelected(string s)
     {
-		
-	}
+        Debug.Log("Action Selected: " + s);
+
+        BuildingDef defToBuild = buildingManager.buildingDefinitions[buildingManager.buildingNameToDefIndexDictionary[s]];
+
+        if (defToBuild == null)
+            Debug.LogError("Should not have an unbuildable building here: " + s);
+
+        string txt = defToBuild.name + "\n" + defToBuild.description + "\n";
+        if (buildingDescriptionText == null)
+            buildingDescriptionText = NewTextBox(jobsPanel.transform, txt, new Vector3(180, -350), new Vector2(300, 100));
+        else
+            buildingDescriptionText.text = txt;
+        // Add prerequisites, colored, here
+
+        // Figure out what the building needs
+        resourceDC.CreateResourceChoiceDropdown(new Vector3(-200, -485), defToBuild.resourcesToBuild);
+
+        int ind = 0;
+        foreach (DropdownBase db in resourceDC.resourceDropdown)
+        {
+            string quantityString = defToBuild.resourcesToBuild.rqqList[ind].quantity.ToString();
+            Text temp = NewTextBox(db.thisGo.transform, quantityString, new Vector3(0, resourceDC.imageSize-20), new Vector2(resourceDC.imageSize, 20F));
+            temp.alignment = TextAnchor.MiddleCenter;
+            ind++;
+        }
+
+    }
+
+    // Use this for initialization
+    void Awake ()
+    {
+        buildingDC.bbcb = new BuildingButtonCallback(ActionSelected);
+        resourceDC.resourceDropdown = null;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
 		
 	}
+
+    public static Text NewTextBox(Transform parent, string text, Vector3 localPosition, Vector2 size)
+        {
+        RectTransform rect = new GameObject().AddComponent<RectTransform>();
+        rect.SetParent(parent);
+        rect.name = "TileDetailTextBox";
+        rect.gameObject.layer = 9;
+        rect.localScale = new Vector3(1, 1, 1);
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(0, 0);
+        rect.localPosition = localPosition;
+        rect.sizeDelta = size;
+        Text t = rect.gameObject.AddComponent<Text>();
+        t.text = text;
+        t.fontSize = 16;
+        t.color = Color.black;
+        t.alignment = TextAnchor.MiddleLeft;
+        t.gameObject.layer = 11;
+        t.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        //rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+        //rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+        return t;
+    }
 }

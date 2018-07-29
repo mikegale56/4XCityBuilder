@@ -14,4 +14,6 @@ public abstract class ResourceQuantityQuality
 
     abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions(ResourceManager resourceManager);
 
+    abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions(ResourceManager resourceManager, int minTier);
+
 }

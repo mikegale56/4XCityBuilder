@@ -7,8 +7,6 @@ public class TileDetailManager : MonoBehaviour {
     public Canvas tileDetailCanvas;
     public TileDetailUI tileDetailUI;
 
-
-
     // Use this for initialization
     void Start ()
     {

@@ -9,8 +9,8 @@ Rudimentary Mine,Earthworking,1,Rudimentary Mine,Wood,1,5,,,Mine Ore,,,,100,,5,E
 ,,,,,,,,,Mine Gem,,,,,,,,,,,,
 Improved Mine,Earthworking,3,Improved Mine,Wood,1,10,Mine,TBD Leader,Mine Ore,,Mining Speed,50,100,,10,Earthworking,Mining,1,10,,0
 ,,,,Metal,3,10,,,Mine Gem,,,,,,,,,,,,
-Rudimentary Quarry,Earthworking,1,Rudimentary Quarry,Wood,1,5,Quarry,,Quarry Stone,3,,,100,,5,Earthworking,Quarrying,1,10,,0
-Improved Quarry,Earthworking,3,Improved Quarry,Wood,1,10,,TBD Leader,Quarry Stone,5,Quarrying Speed,50,100,,10,Earthworking,Quarrying,2,10,,0
+Rudimentary Quarry,Earthworking,1,Rudimentary Quarry,Wood,1,5,,,Quarry Stone,3,,,100,,5,Earthworking,Quarrying,1,10,,0
+Improved Quarry,Earthworking,3,Improved Quarry,Wood,1,10,Quarry,TBD Leader,Quarry Stone,5,Quarrying Speed,50,100,,10,Earthworking,Quarrying,2,10,,0
 ,,,,Metal,3,10,,,,,,,,,,,,,,,
 Rudimentary Smelter,Metalworking,1,Rudimentary Smelter,Stone,1,10,,,Smelt Metal,2,Smelt Speed,-50,100,,5,Metalworking,Metallurgy,1,,,0
 ,,,,Wood,1,10,,,,2,Smelt Quality,-50,,,,,,,,,
