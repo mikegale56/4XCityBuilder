@@ -17,7 +17,7 @@ public class BuildingObj
     public List<Vector2Int> workedTiles;
     private JobManager jobManager;
 
-    public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality, JobManager jobManager)
+    public BuildingObj(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality)
     {
         guid = System.Guid.NewGuid();
         ijLocation = ij;
@@ -33,7 +33,7 @@ public class BuildingObj
         // Need to add calculatedBonuses
         buildingBonuses = new List<JobBonus>();
 
-        this.jobManager = jobManager;
+        //this.jobManager = jobManager;
 
     }
 

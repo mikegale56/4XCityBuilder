@@ -62,10 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Buildings\BuildingDef.cs" />
-    <Compile Include="Assets\Scripts\Buildings\BuildingList.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObj.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingQueries.cs" />
+    <Compile Include="Assets\Scripts\Domain.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonus.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuality.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuantity.cs" />
@@ -74,6 +74,15 @@
     <Compile Include="Assets\Scripts\Jobs\JobManager.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobObj.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobQueries.cs" />
+    <Compile Include="Assets\Scripts\ManagerBase.cs" />
+    <Compile Include="Assets\Scripts\Map\CreateOreTiles.cs" />
+    <Compile Include="Assets\Scripts\Map\GenerateOreVeins.cs" />
+    <Compile Include="Assets\Scripts\Map\MapData.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapManager.cs" />
+    <Compile Include="Assets\Scripts\Map\MapPanZoom.cs" />
+    <Compile Include="Assets\Scripts\Map\Noise.cs" />
+    <Compile Include="Assets\Scripts\Map\PoissonRandomGenerator.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceDef.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceNameQuantityQuality.cs" />
@@ -83,8 +92,8 @@
     <Compile Include="Assets\Scripts\Resources\ResourceStock.cs" />
     <Compile Include="Assets\Scripts\Resources\ResourceTypeQuantityQuality.cs" />
     <Compile Include="Assets\Scripts\UI\BuildingUI.cs" />
-    <Compile Include="Assets\Scripts\UI\Dropdowns\BuildingDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\BuildingDropdownCreator.cs" />
+    <Compile Include="Assets\Scripts\UI\Dropdowns\DropdownBase.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\DropdownUtilities.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\Dropdowns\ResourceDropdownCreator.cs" />
@@ -92,13 +101,8 @@
     <Compile Include="Assets\Scripts\UI\ResourceUI.cs" />
     <Compile Include="Assets\Scripts\UI\TileDetailManager.cs" />
     <Compile Include="Assets\Scripts\UI\TileDetailUI.cs" />
-    <Compile Include="Assets\Scripts\World\CreateOreTiles.cs" />
-    <Compile Include="Assets\Scripts\World\GenerateOreVeins.cs" />
-    <Compile Include="Assets\Scripts\World\MapGenFunctions.cs" />
-    <Compile Include="Assets\Scripts\World\MapManager.cs" />
-    <Compile Include="Assets\Scripts\World\MapPanZoom.cs" />
-    <Compile Include="Assets\Scripts\World\Noise.cs" />
-    <Compile Include="Assets\Scripts\World\PoissonRandomGenerator.cs" />
+    <Compile Include="Assets\Scripts\UI\UIElementTools\CustomUIElement.cs" />
+    <Compile Include="Assets\Scripts\UI\UIElementTools\UIElementFunctions.cs" />
     <Compile Include="Assets\SLS\Widgets\Table\BodyRect.cs" />
     <Compile Include="Assets\SLS\Widgets\Table\Cell.cs" />
     <Compile Include="Assets\SLS\Widgets\Table\Column.cs" />

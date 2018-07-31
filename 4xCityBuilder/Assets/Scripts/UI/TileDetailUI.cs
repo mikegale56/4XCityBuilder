@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public delegate void BuildingButtonCallback(string s);
 
-public class TileDetailUI : MonoBehaviour {
-
+public class TileDetailUI : MonoBehaviour
+{
 
     public RectTransform surfacePanel;
     public RectTransform spText;
@@ -30,9 +30,27 @@ public class TileDetailUI : MonoBehaviour {
     public BuildingButtonCallback bbcb;
 
     private Text buildingDescriptionText;
+    private Button jobGoButton;
+    private Image arrowImage;
+    private Image resultImage;
+
+    private List<CustomUIElement> uiElement;
+    private CustomUIElement jobStartButton;
+
+    private Sprite rightArrow;
+
+    private int iLoc, jLoc;
+
+    private void Start()
+    {
+        
+    }
 
     public void FocusOnTile(int i, int j)
     {
+
+        iLoc = i;
+        jLoc = j;
 
         if (buildingDescriptionText != null)
             buildingDescriptionText.text = "";
@@ -40,20 +58,27 @@ public class TileDetailUI : MonoBehaviour {
         if (resourceDC.resourceDropdown != null)
             resourceDC.ClearResourceList();
 
+        if (uiElement != null)
+            foreach (CustomUIElement uie in uiElement)
+                Destroy(uie.thisGo);
+
+        if (jobStartButton != null)
+            Destroy(jobStartButton.thisGo);
+
         string newText;
         // Surface Panel
-        if (mapManager.GetSurfaceValue(i, j) >= 0)
+        if (ManagerBase.domain.mapData.GetSurfaceValue(i, j) >= 0)
         {
             if (buildingDC.buildingDropdown != null)
                 buildingDC.buildingDropdown.HideAll();
-            short surfaceValue = mapManager.GetSurfaceValue(i, j);
-            Tile surfaceTile = mapManager.surfaceTiles[surfaceValue];
+            short surfaceValue = ManagerBase.domain.mapData.GetSurfaceValue(i, j);
+            Tile surfaceTile = ManagerBase.surfaceTiles[surfaceValue];
             surfacePanel.GetComponent<Image>().sprite = surfaceTile.sprite;
             surfacePanel.GetComponent<Image>().type = Image.Type.Filled;
             surfacePanel.GetComponent<Image>().color = surfaceTile.color;
-            Debug.Log(spText.GetComponent<Text>().text);
+            //Debug.Log(spText.GetComponent<Text>().text);
             // Create the new string
-            newText = mapManager.surfaceValueDictionary.FirstOrDefault(x => x.Value == surfaceValue).Key;
+            newText = ManagerBase.surfaceValueDictionary.FirstOrDefault(x => x.Value == surfaceValue).Key;
             newText += "\n";
             newText += "No Description Yet";
             spText.GetComponent<Text>().text = newText;
@@ -78,28 +103,28 @@ public class TileDetailUI : MonoBehaviour {
         }
 
         // Ground Panel
-        byte groundValue = mapManager.GetGroundValue(i, j);
-        Tile groundTile = mapManager.groundTiles[groundValue];
+        byte groundValue = ManagerBase.domain.mapData.GetGroundValue(i, j);
+        Tile groundTile = ManagerBase.groundTiles[groundValue];
         groundPanel.GetComponent<Image>().sprite = groundTile.sprite;
         groundPanel.GetComponent<Image>().type = Image.Type.Tiled;
         groundPanel.GetComponent<Image>().color = groundTile.color;
-        newText = mapManager.groundValueDictionary.FirstOrDefault(x => x.Value == groundValue).Key;
+        newText = ManagerBase.groundValueDictionary.FirstOrDefault(x => x.Value == groundValue).Key;
         newText += "\n";
         newText += "No Description Yet\n";
         newText += "Worked by:";
         gpText.GetComponent<Text>().text = newText;
 
         // Underground Panel 
-        byte ugv = mapManager.GetUndergroundValue(i, j);
-        byte sv  = mapManager.GetStoneValue(i, j);
-        Tile undergroundTile = mapManager.undergroundTiles[ugv][sv];
+        byte ugv = ManagerBase.domain.mapData.GetUndergroundValue(i, j);
+        byte sv  = ManagerBase.domain.mapData.GetStoneValue(i, j);
+        Tile undergroundTile = ManagerBase.undergroundTiles[ugv][sv];
         undergroundPanel.GetComponent<Image>().sprite = undergroundTile.sprite;
         undergroundPanel.GetComponent<Image>().type = Image.Type.Tiled;
         undergroundPanel.GetComponent<Image>().color = undergroundTile.color;
         if (ugv == 0)
-            newText = mapManager.stoneValueDictionary.FirstOrDefault(x => x.Value == sv).Key;
+            newText = ManagerBase.stoneValueDictionary.FirstOrDefault(x => x.Value == sv).Key;
         else
-            newText = mapManager.undergroundValueDictionary.FirstOrDefault(x => x.Value == ugv).Key;
+            newText = ManagerBase.undergroundValueDictionary.FirstOrDefault(x => x.Value == ugv).Key;
         newText += "\n";
         newText += "No Description Yet\n";
         newText += "Worked by:";
@@ -109,14 +134,21 @@ public class TileDetailUI : MonoBehaviour {
 
     public void ActionSelected(string s)
     {
-        Debug.Log("Action Selected: " + s);
+        //Debug.Log("Action Selected: " + s);
 
-        BuildingDef defToBuild = buildingManager.buildingDefinitions[buildingManager.buildingNameToDefIndexDictionary[s]];
+        if (uiElement != null)
+            foreach (CustomUIElement uie in uiElement)
+                Destroy(uie.thisGo);
 
-        if (defToBuild == null)
+        if (jobStartButton != null)
+            Destroy(jobStartButton.thisGo);
+
+        BuildingDef buildingSelected = ManagerBase.buildingDefinitions[ManagerBase.buildingIndexOf[s]];
+
+        if (buildingSelected == null)
             Debug.LogError("Should not have an unbuildable building here: " + s);
 
-        string txt = defToBuild.name + "\n" + defToBuild.description + "\n";
+        string txt = buildingSelected.name + "\n" + buildingSelected.description + "\n";
         if (buildingDescriptionText == null)
             buildingDescriptionText = NewTextBox(jobsPanel.transform, txt, new Vector3(180, -350), new Vector2(300, 100));
         else
@@ -124,17 +156,59 @@ public class TileDetailUI : MonoBehaviour {
         // Add prerequisites, colored, here
 
         // Figure out what the building needs
-        resourceDC.CreateResourceChoiceDropdown(new Vector3(-200, -485), defToBuild.resourcesToBuild);
+        resourceDC.CreateResourceChoiceDropdown(new Vector3(-200, -485), buildingSelected.resourcesToBuild, buildingSelected.name);
 
         int ind = 0;
         foreach (DropdownBase db in resourceDC.resourceDropdown)
         {
-            string quantityString = defToBuild.resourcesToBuild.rqqList[ind].quantity.ToString();
+            string quantityString = buildingSelected.resourcesToBuild.rqqList[ind].quantity.ToString();
             Text temp = NewTextBox(db.thisGo.transform, quantityString, new Vector3(0, resourceDC.imageSize-20), new Vector2(resourceDC.imageSize, 20F));
             temp.alignment = TextAnchor.MiddleCenter;
             ind++;
         }
 
+        // Add stuff to the right of the resources
+        Vector3 localPosition = resourceDC.resourceDropdown[resourceDC.resourceDropdown.Count-1].transform.localPosition;
+        if (uiElement == null)
+            uiElement = new List<CustomUIElement>();
+        // Arrow 
+        localPosition.x += resourceDC.imageSize * 4 / 2;
+        uiElement.Add(UIElementFunctions.ImageOnly(resourceDC.panel.transform, rightArrow, localPosition, new Vector2(resourceDC.imageSize, resourceDC.imageSize)));
+        // Result
+        localPosition.x += resourceDC.imageSize * 3 / 2;
+        uiElement.Add(UIElementFunctions.ImageOnly(resourceDC.panel.transform, buildingSelected.image, localPosition, new Vector2(resourceDC.imageSize, resourceDC.imageSize)));
+        // "Go" button
+        localPosition.x += resourceDC.imageSize * 3 / 2;
+        jobStartButton = UIElementFunctions.ButtonTextColor(resourceDC.panel.transform, "Go", Color.green, localPosition, new Vector2(resourceDC.imageSize, resourceDC.imageSize));
+        jobStartButton.textGo.fontSize = 22;
+        jobStartButton.buttonGo.onClick.AddListener(delegate () { StartJobButton(); });
+        jobStartButton.buttonGo.interactable = false;
+    }
+
+    void StartJobButton()
+    {
+        // Get resource list
+        ResourceQuantityQualityList jobResources = resourceDC.GetCurrentChoices();
+
+        // Remove resources
+        jobResources.RemoveResources(ManagerBase.domain.stock);
+
+        // Delete buttons
+        if (buildingDescriptionText != null)
+            buildingDescriptionText.text = "";
+        if (resourceDC.resourceDropdown != null)
+            resourceDC.ClearResourceList();
+        if (uiElement != null)
+            foreach (CustomUIElement uie in uiElement)
+                Destroy(uie.thisGo);
+        if (jobStartButton != null)
+            Destroy(jobStartButton.thisGo);
+
+        // Change surface type
+        ManagerBase.domain.mapData.SetSurfaceValue(iLoc, jLoc, ManagerBase.surfaceValueDictionary[resourceDC.buildingName]);
+
+        // Reload Tile UI
+        FocusOnTile(iLoc, jLoc);
     }
 
     // Use this for initialization
@@ -142,13 +216,21 @@ public class TileDetailUI : MonoBehaviour {
     {
         buildingDC.bbcb = new BuildingButtonCallback(ActionSelected);
         resourceDC.resourceDropdown = null;
+
+        Texture2D rightArrowTex = Resources.Load("Textures/RightArrow") as Texture2D;
+        rightArrow = Sprite.Create(rightArrowTex,
+            new Rect(0, 0, rightArrowTex.width, rightArrowTex.height),
+            new Vector2(0.5f, 0.5f), rightArrowTex.width);
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        // Check if the go button should be active or not
+        if (jobStartButton != null)
+            jobStartButton.buttonGo.interactable = resourceDC.CheckResources();
+
+    }
 
     public static Text NewTextBox(Transform parent, string text, Vector3 localPosition, Vector2 size)
         {

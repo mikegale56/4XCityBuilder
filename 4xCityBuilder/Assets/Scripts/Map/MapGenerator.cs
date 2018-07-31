@@ -1,18 +1,57 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using System.IO;
+using System;
 
-
-public class MapGenFunctions
+public class MapGenerator : MonoBehaviour
 {
 
-    public int edgeWater;
+    [Range(4, 11)]
+    public int nFac;
+	
+	private int N;
+
+    // Terrain
+    [Range(0.0F, 1.0F)]
+    public float waterFraction = 0.20F;
+    [Range(0.0F, 1.0F)]
+    public float hillFraction = 0.15F;
+    [Range(0.0F, 1.0F)]
+    public float mountainFraction = 0.05F;
+    [Range(0, 1000)]
+    public int nRivers = 5;
+
+    // Trees
+    [Range(0.0F, 1.0F)]
+    public float oakTreeFraction = 0.1F;
+    [Range(0.0F, 1.0F)]
+    public float pineTreeFraction = 0.15F;
+    [Range(0.0F, 1.0F)]
+    public float ashTreeFraction = 0.075F;
+    [Range(0.0F, 1.0F)]
+    public float redwoodTreeFraction = 0.05F;
+
+    // Stone
+    [Range(0.0F, 1.0F)]
+    public float sandstoneFrac = 0.4F;
+    [Range(0.0F, 1.0F)]
+    public float limestoneFrac = 0.3F;
+    [Range(0.0F, 1.0F)]
+    public float marbleFrac = 0.2F;
+    [Range(0.0F, 1.0F)]
+    public float graniteFrac = 0.1F;
+
+    private int edgeWater;
+
     private Noise noiseGen = new Noise();
     public float[] perlinFraction = new float[20];
     public float[] perlinBound = new float[20];
-
-    public MapGenFunctions()
-    {
+    
+    public void Awake()
+	{
+		N = (int)(Mathf.Pow(2.0F, nFac) + 1.0F);
         perlinFraction[0] = 0;
         perlinFraction[1] = 1; // 0.05 - 0.1
         perlinFraction[2] = 2;
@@ -36,20 +75,76 @@ public class MapGenFunctions
 
         for (int i = 0; i < perlinBound.Length; i++)
             perlinBound[i] = 0.05F * (i + 1);
+    }
+	public int GetN()
+	{ return N;}
+    
+	public void GenerateMap(MapData mapData)
+    {
 
+		// Generate the height map
+        float[,] height = GenWithDiamondSquare();
+
+		// Ground
+        // Turn the height map into a terrain map
+        byte[,] groundValue = HeightToTerrain(height);
+
+        // Turn water into Ocean if it touches the edge
+        WaterToOcean(groundValue);
+
+        // Add rivers
+        AddRivers(nRivers, height, groundValue);
+
+        // Add coast
+        AddCoasts(groundValue);
+		
+		// Set the values
+		mapData.SetGround(groundValue);
+
+		// Surface
+		short[,] surfaceValue = new short[N,N];
+		for (int i=0; i<N; i++)
+			for (int j=0; j<N; j++)
+				surfaceValue[i,j] = -1; // No structure is -1
+		// Generate Trees
+        PlaceTrees(oakTreeFraction, ManagerBase.surfaceValueDictionary["Oak"], groundValue, surfaceValue);
+        PlaceTrees(pineTreeFraction, ManagerBase.surfaceValueDictionary["Pine"], groundValue, surfaceValue);
+        PlaceTrees(ashTreeFraction, ManagerBase.surfaceValueDictionary["Ash"], groundValue, surfaceValue);
+        PlaceTrees(redwoodTreeFraction, ManagerBase.surfaceValueDictionary["Redwood"], groundValue, surfaceValue);
+		
+		// Set the values
+		mapData.SetSurface(surfaceValue);
+
+        // Underground
+		byte[,] undergroundValue = new byte[N,N];
+        byte[,] stoneValue = new byte[N, N];
+        for (int i=0; i<N; i++)
+			for (int j=0; j<N; j++)
+			{
+				undergroundValue[i,j] = 0; // No ore is 0
+				stoneValue[i,j] = 99; // Will all be replaced
+			}
+        // Divide into stones
+        GenerateStone(stoneValue, ManagerBase.stoneValueDictionary);
+
+        // Add ores
+        AddOreVein(undergroundValue, ManagerBase.undergroundValueDictionary["CopperOre"], N, 0.50F, "snake");
+        AddOreVein(undergroundValue, ManagerBase.undergroundValueDictionary["TinOre"],    N, 0.25F, "snake");
+        AddOreVein(undergroundValue, ManagerBase.undergroundValueDictionary["SilverOre"], N, 0.20F, "snake");
+        AddOreVein(undergroundValue, ManagerBase.undergroundValueDictionary["IronOre"],   N, 0.25F, "snake");
+        AddOreVein(undergroundValue, ManagerBase.undergroundValueDictionary["GoldOre"],   N, 0.10F, "snake");
+        //AddOreVein(undergroundValue, undergroundValueDictionary["CoalOre"], N, 0.5F, "circle");
+		
+		// Set the values
+		mapData.SetUnderground(undergroundValue);
+		mapData.SetStone(stoneValue);
 
     }
-
-    public void InitSurfaceValues(int N, short[,] surfaceValue)
+	
+	public float[,] GenWithDiamondSquare()
     {
-        for (int i = 0; i < N; i++)
-            for (int j = 0; j < N; j++)
-                surfaceValue[i, j] = -1;
-    }
-
-
-    public void GenWithDiamondSquare(int N, float[,] height)
-    {
+		float[,] height = new float[N,N];
+		
         float dsFac = N / 4F;
         float dsFacOriginal = dsFac;
 
@@ -88,7 +183,7 @@ public class MapGenFunctions
                 {
                     if (height[i, j] == 0.0F)
                     {
-                        float r = Random.Range(0.0F, 1.0F);
+                        float r = UnityEngine.Random.Range(0.0F, 1.0F);
                         height[i, j] = (height[i - delta, j - delta] + height[i - delta, j + delta] + 
                             height[i + delta, j - delta] + height[i + delta, j + delta]) / 4 + 
                             dsFac * (r - 0.5F * (1 - dsFac / dsFacOriginal));
@@ -129,7 +224,7 @@ public class MapGenFunctions
                             s = s + height[i, j + delta];
                             ns = ns + 1;
                         }
-                        float r = Random.Range(0.0F, 1.0F);
+                        float r = UnityEngine.Random.Range(0.0F, 1.0F);
                         height[i, j] = s / ns + dsFac * (r - 0.25F);
                     }
                     j = j + delta;
@@ -141,15 +236,13 @@ public class MapGenFunctions
             delta = delta / 2;
             dsFac = dsFac / 1.75F;
         }
+        return height;
 
     }
 
-    public void HeightToTerrain(int N, float[,] height, byte[,] groundValue, MapManager mapManager)
+    public byte[,] HeightToTerrain(float[,] height)
     {
-        float waterFraction    = mapManager.waterFraction;
-        float hillFraction     = mapManager.hillFraction;
-        float mountainFraction = mapManager.mountainFraction;
-
+		byte[,] groundValue = new byte[N,N];
         // Put the heights into a List, sort it, and find the percent markers that way
         List<float> sortedHeight = new List<float>();
         for (int i = 0; i < N; i++)
@@ -173,13 +266,13 @@ public class MapGenFunctions
             for (int j = 0; j < N; j++)
             {
                 if (height[i, j] <= waterValue)
-                    groundValue[i, j] = mapManager.groundValueDictionary["Water"];
+                    groundValue[i, j] = ManagerBase.groundValueDictionary["Water"];
                 else if (height[i, j] >= mountainValue)
-                    groundValue[i, j] = mapManager.groundValueDictionary["Mountain"];
+                    groundValue[i, j] = ManagerBase.groundValueDictionary["Mountain"];
                 else if (height[i, j] >= hillValue)
-                    groundValue[i, j] = mapManager.groundValueDictionary["Hill"];
+                    groundValue[i, j] = ManagerBase.groundValueDictionary["Hill"];
                 else
-                    groundValue[i, j] = mapManager.groundValueDictionary["Plain"];
+                    groundValue[i, j] = ManagerBase.groundValueDictionary["Plain"];
             }
         }
 
@@ -189,17 +282,17 @@ public class MapGenFunctions
         {
             for (int j = 0; j < N; j++)
             {
-                groundValue[j, i] = mapManager.groundValueDictionary["Ocean"];
-                groundValue[j, N - i - 1] = mapManager.groundValueDictionary["Ocean"]; ;
-                groundValue[i, j] = mapManager.groundValueDictionary["Ocean"]; ;
-                groundValue[N - i - 1, j] = mapManager.groundValueDictionary["Ocean"]; ;
+                groundValue[j, i] = ManagerBase.groundValueDictionary["Ocean"];
+                groundValue[j, N - i - 1] = ManagerBase.groundValueDictionary["Ocean"]; ;
+                groundValue[i, j] = ManagerBase.groundValueDictionary["Ocean"]; ;
+                groundValue[N - i - 1, j] = ManagerBase.groundValueDictionary["Ocean"]; ;
             }
         }
 
-
+		return groundValue;
     }
 
-    public void WaterToOcean(byte[,] groundValue, int N, MapManager mapManager)
+    public void WaterToOcean(byte[,] groundValue)
     {
         Stack<int> iValues = new Stack<int>();
         Stack<int> jValues = new Stack<int>();
@@ -209,8 +302,8 @@ public class MapGenFunctions
         {
             //Debug.Log("i = " + iValues.Peek().ToString() + "; j = " + jValues.Peek().ToString());
             SpreadValueToAdjacent(groundValue, N, iValues.Pop(), jValues.Pop(), 
-                mapManager.groundValueDictionary["Water"], 
-                mapManager.groundValueDictionary["Ocean"], iValues, jValues);
+                ManagerBase.groundValueDictionary["Water"], 
+                ManagerBase.groundValueDictionary["Ocean"], iValues, jValues);
         }
 
     }
@@ -256,12 +349,12 @@ public class MapGenFunctions
         }
     }
 
-    public void AddRivers(int N, int nRivers, float[,] height, byte[,] groundValue, MapManager mapManager)
+    public void AddRivers(int nRivers, float[,] height, byte[,] groundValue)
     {
         int M = 8; // Number of destinations along each coast
         int nDestinationOptions = 4 * M - 4;
         float[,] destinationOptions = new float[nDestinationOptions, 3];
-        IdentifyRiverDestinations(destinationOptions, N, M, height, groundValue, mapManager.groundValueDictionary);
+        IdentifyRiverDestinations(destinationOptions, N, M, height, groundValue, ManagerBase.groundValueDictionary);
 
         // Calculate the gradients ahead of time
         float[,] iGrad = new float[N-1,N];
@@ -283,8 +376,8 @@ public class MapGenFunctions
         for (int i = 0; i < nRivers; i++)
         {
             // Pick an origin
-            int currI = Random.Range(edgeWater + 1, N - edgeWater);
-            int currJ = Random.Range(edgeWater + 1, N - edgeWater);
+            int currI = UnityEngine.Random.Range(edgeWater + 1, N - edgeWater);
+            int currJ = UnityEngine.Random.Range(edgeWater + 1, N - edgeWater);
 
             //Debug.Log("River Origin @ [" + currI.ToString() + ", " + currJ.ToString() + "]");
 
@@ -308,7 +401,7 @@ public class MapGenFunctions
 
             //Generate the river
             RiverCreator(currI, currJ, (int)destinationOptions[minIndex, 0], (int)destinationOptions[minIndex, 1], 
-                iGrad, jGrad, groundValue, riverVolume, mapManager.groundValueDictionary);
+                iGrad, jGrad, groundValue, riverVolume, ManagerBase.groundValueDictionary);
         }
 
         // Spread the river
@@ -318,7 +411,7 @@ public class MapGenFunctions
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
                 if (riverVolume[i, j] > 0)
-                    groundValue[i, j] = mapManager.groundValueDictionary["Water"];
+                    groundValue[i, j] = ManagerBase.groundValueDictionary["Water"];
 
     }
 
@@ -434,7 +527,7 @@ public class MapGenFunctions
 
     }
 
-    public void AddCoasts(int N, byte[,] groundValue, MapManager mapManager)
+    public void AddCoasts(byte[,] groundValue)
     {
         // Look at all points
         for (int i = 1; i < N-1; i++)
@@ -442,20 +535,20 @@ public class MapGenFunctions
             for (int j = 1; j < N-1; j++)
             {
                 // If this is plains
-                if (groundValue[i, j] == mapManager.groundValueDictionary["Plain"])
+                if (groundValue[i, j] == ManagerBase.groundValueDictionary["Plain"])
                 {
                     // If water is adjacent and this is regular ground, make it coast
-                    if (groundValue[i + 1, j] == mapManager.groundValueDictionary["Water"] |
-                        groundValue[i + 1, j] == mapManager.groundValueDictionary["Ocean"])
+                    if (groundValue[i + 1, j] == ManagerBase.groundValueDictionary["Water"] |
+                        groundValue[i + 1, j] == ManagerBase.groundValueDictionary["Ocean"])
                         groundValue[i, j] = 5;
-                    if (groundValue[i - 1, j] == mapManager.groundValueDictionary["Water"] |
-                        groundValue[i - 1, j] == mapManager.groundValueDictionary["Ocean"])
+                    if (groundValue[i - 1, j] == ManagerBase.groundValueDictionary["Water"] |
+                        groundValue[i - 1, j] == ManagerBase.groundValueDictionary["Ocean"])
                         groundValue[i, j] = 5;
-                    if (groundValue[i, j + 1] == mapManager.groundValueDictionary["Water"] |
-                        groundValue[i, j + 1] == mapManager.groundValueDictionary["Ocean"])
+                    if (groundValue[i, j + 1] == ManagerBase.groundValueDictionary["Water"] |
+                        groundValue[i, j + 1] == ManagerBase.groundValueDictionary["Ocean"])
                         groundValue[i, j] = 5;
-                    if (groundValue[i, j - 1] == mapManager.groundValueDictionary["Water"] |
-                        groundValue[i, j - 1] == mapManager.groundValueDictionary["Ocean"])
+                    if (groundValue[i, j - 1] == ManagerBase.groundValueDictionary["Water"] |
+                        groundValue[i, j - 1] == ManagerBase.groundValueDictionary["Ocean"])
                         groundValue[i, j] = 5;
                 }
             }
@@ -463,7 +556,7 @@ public class MapGenFunctions
                 
     }
 
-    public void PlaceTrees(int N, float frac, short value, short[,] surfaceValue, byte[,] groundValue, MapManager mapManager)
+    public void PlaceTrees(float frac, short value, byte[,] groundValue, short[,] surfaceValue)
     {
 
         // Turn frac into a value based on the distribution of Perlin Noise set in the constructor
@@ -483,8 +576,8 @@ public class MapGenFunctions
             {
                 float noise = noiseGen.GetNoise((double)i / (double)N * 8, (double)j / (double)N * 8, value);
                 if (noise >= thisBound && // Noise is over the threshold
-                    (groundValue[i,j] == mapManager.groundValueDictionary["Plain"] | // And it's on a plain
-                    groundValue[i, j] == mapManager.groundValueDictionary["Hill"]))  // Or hills
+                    (groundValue[i,j] == ManagerBase.groundValueDictionary["Plain"] | // And it's on a plain
+                    groundValue[i, j] == ManagerBase.groundValueDictionary["Hill"]))  // Or hills
                     surfaceValue[i, j] = value;
             }
         }
@@ -540,22 +633,21 @@ public class MapGenFunctions
         // Generate this many veins
         for (int i = 0; i < numberOfVeins; i++)
         {
-            GenerateOreVeins.CreateVein(new Vector2Int(Random.Range(0,N-1), Random.Range(0, N - 1)),
+            GenerateOreVeins.CreateVein(new Vector2Int(UnityEngine.Random.Range(0,N-1), UnityEngine.Random.Range(0, N - 1)),
                 PoissonRandomGenerator.GetPoisson(travelLength), undergroundValue, toValue, branchProbability, N);
         }
     }
 
-    public void GenerateStone(byte[,] stoneValue, Dictionary<string, byte> stoneValueDictionary, int N,
-        float sandstoneFrac, float limestoneFrac, float marbleFrac, float graniteFrac)
+    public void GenerateStone(byte[,] stoneValue, Dictionary<string, byte> stoneValueDictionary)
     {
         // Generate this many divider lines
         int numberOfDividers = 10 * Mathf.CeilToInt(N / Mathf.Pow(2, 6));
         for (int i = 0; i < numberOfDividers; i++)
         {
-            float theta = Random.Range(0.0F, 2.0F * Mathf.PI);
+            float theta = UnityEngine.Random.Range(0.0F, 2.0F * Mathf.PI);
             Vector2 aimDir = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
             //Debug.Log((theta * 180 / Mathf.PI).ToString());
-            GenerateOreVeins.CreateVein(new Vector2Int(Random.Range(0, N - 1), Random.Range(0, N - 1)),
+            GenerateOreVeins.CreateVein(new Vector2Int(UnityEngine.Random.Range(0, N - 1), UnityEngine.Random.Range(0, N - 1)),
                 100 * N, stoneValue, 100, 0.0F, N, aimDir);
         }
 
@@ -569,7 +661,7 @@ public class MapGenFunctions
                 {
                     // Figure out the type of stone
                     byte stone;
-                    roll = Random.Range(0.0F, 1.0F);
+                    roll = UnityEngine.Random.Range(0.0F, 1.0F);
                     if (roll <= sandstoneFrac)
                         stone = stoneValueDictionary["Sandstone"];
                     else if (roll <= (sandstoneFrac + limestoneFrac))
@@ -612,9 +704,4 @@ public class MapGenFunctions
         else
             return number * MyFactorial(number - 1);
     }
-
-
-
-
-
 }

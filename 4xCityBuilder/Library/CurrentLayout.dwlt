@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 2615
     height: 1291
-  m_MinSize: {x: 917, y: 521}
-  m_MaxSize: {x: 22012, y: 12021}
+  m_MinSize: {x: 917, y: 563}
+  m_MaxSize: {x: 22012, y: 12063}
   vertical: 0
-  controlID: 162
+  controlID: 84
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,10 +133,10 @@ MonoBehaviour:
     y: 0
     width: 1147
     height: 1291
-  m_MinSize: {x: 202, y: 521}
-  m_MaxSize: {x: 4002, y: 12021}
+  m_MinSize: {x: 202, y: 563}
+  m_MaxSize: {x: 4002, y: 12063}
   vertical: 1
-  controlID: 176
+  controlID: 44
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -155,8 +155,8 @@ MonoBehaviour:
     y: 0
     width: 1147
     height: 433
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -181,8 +181,8 @@ MonoBehaviour:
     y: 433
     width: 1147
     height: 526
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -206,8 +206,8 @@ MonoBehaviour:
     y: 959
     width: 1147
     height: 332
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -394,14 +394,14 @@ MonoBehaviour:
     height: 412
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 66907.82407739617
+  lastFramingTime: 133351.25999251392
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1135.7612, y: 596.893, z: 15.607556}
+    m_Target: {x: 660.9373, y: 892.1485, z: -14.125}
     speed: 2
-    m_Value: {x: 1135.7612, y: 596.893, z: 15.607556}
+    m_Value: {x: 660.9373, y: 892.1485, z: -14.125}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -433,9 +433,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1087.857
+    m_Target: 1054.3138
     speed: 2
-    m_Value: 1087.857
+    m_Value: 1054.3138
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -526,21 +526,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: e6fbffff000000004411000062110000
+    m_ExpandedIDs: 4ceafcffa2b4fdff00d5fdffb81cfeffe863feff98d0feff5e44ffffca95ffffe6fbffff0000000050100000d0100000e0100000441100004e1100006211000076110000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: ResourceUI
+      m_OriginalName: ResourceUI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 4464
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -587,19 +587,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Resources
+    - Assets/Scripts/Map
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Resources
+  - Assets/Scripts/Map
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 360b0000
-    m_LastClickedID: 2870
+    m_SelectedIDs: 900c0000
+    m_LastClickedID: 3216
     m_ExpandedIDs: 00000000220a00002c0a0000340a00004a0b0000580b0000660b00009e0c0000e80c0000060f0000320f00004c0f0000e4320000e632000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -655,19 +655,19 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 2c090000e031000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: ResourceTypeQuantityQuality
-      m_OriginalName: ResourceTypeQuantityQuality
+      m_Name: ResourceQuantityQuality
+      m_OriginalName: ResourceQuantityQuality
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 2548
+      m_UserData: 1984
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0

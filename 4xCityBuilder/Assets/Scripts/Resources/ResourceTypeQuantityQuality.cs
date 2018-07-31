@@ -64,24 +64,24 @@ public class ResourceTypeQuantityQuality : ResourceQuantityQuality
         return 0.0F;
     }
 
-    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager)
+    public override Dictionary<string, Sprite> GetImageOptions()
     {
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTier(resourceManager.resourceDefinitions, type);
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTier(ManagerBase.resourceDefinitions, type);
         foreach (ResourceDef def in resourcesOfType)
             nameSpriteDict.Add(def.name, def.image);
 
         return nameSpriteDict;
     }
 
-    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager, int minTier)
+    public override Dictionary<string, Sprite> GetImageOptions(int minTier)
     {
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTierMinTier(resourceManager.resourceDefinitions, type, minTier);
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByTypeSortedByTierMinTier(ManagerBase.resourceDefinitions, type, minTier);
         foreach (ResourceDef def in resourcesOfType)
             nameSpriteDict.Add(def.name, def.image);
 

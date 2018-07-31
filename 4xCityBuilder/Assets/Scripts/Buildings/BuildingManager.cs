@@ -4,25 +4,19 @@ using UnityEngine;
 using System.IO;
 using SLS.Widgets.Table;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
-public class BuildingManager : MonoBehaviour {
+public class BuildingManager : ManagerBase {
 
     public Canvas buildingUiCanvas;
     public BuildingUI buildingUI;
-    public Dictionary<string, int> buildingNameToDefIndexDictionary;
     public List<string> buildingCategories;
-    public List<BuildingDef> buildingDefinitions;
-    public BuildingList domainBuildings;
-    public JobManager jobManager;
-    //public BuildingUI buildingUI;
-
-
+    
     // Use this for initialization
     void Awake()
     {
-
         buildingDefinitions = new List<BuildingDef>();
-        buildingNameToDefIndexDictionary = new Dictionary<string, int>();
+        ManagerBase.buildingIndexOf = new Dictionary<string, int>();
         string m_Path = Application.dataPath;
         List<string> lines = new List<string>();
         using (var reader = new StreamReader(m_Path + "/Definitions/Buildings.csv"))
@@ -36,7 +30,7 @@ public class BuildingManager : MonoBehaviour {
                 if (lines.Count > 0 && !(newLine[0] == ','))
                 {
                     buildingDefinitions.Add(new BuildingDef(lines, column));
-                    buildingNameToDefIndexDictionary.Add(buildingDefinitions[buildingDefinitions.Count - 1].name, buildingDefinitions.Count - 1);
+                    ManagerBase.buildingIndexOf.Add(buildingDefinitions[buildingDefinitions.Count - 1].name, buildingDefinitions.Count - 1);
                     lines.Clear();
                 }
                 lines.Add(newLine);
@@ -44,7 +38,9 @@ public class BuildingManager : MonoBehaviour {
 
         }
         // Initialize the domain's building list
-        domainBuildings = new BuildingList("Aster", "Aster");
+        if (ManagerBase.domain == null)
+            ManagerBase.domain = new Domain();
+        ManagerBase.domain.buildings = new List<BuildingObj>();
 
         buildingUI.buildingNameSpriteDict = new Dictionary<string, Sprite>();
         foreach (BuildingDef bd in buildingDefinitions)
@@ -56,12 +52,24 @@ public class BuildingManager : MonoBehaviour {
         // Temp: add some fake bldgs
 
         for (int i = 0; i<buildingDefinitions.Count; i++)
-            domainBuildings.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal, jobManager));
+            ManagerBase.domain.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal));
 
         buildingCategories = new List<string>();
         foreach (BuildingDef def in buildingDefinitions)
             buildingCategories.Add(def.category);
         buildingCategories = buildingCategories.Distinct().ToList();
+
+        // Add the buildings as surface tiles
+        foreach (BuildingDef def in buildingDefinitions)
+        {
+            Tile newTile = ScriptableObject.CreateInstance<Tile>();
+            newTile.sprite = def.image;
+            surfaceTiles.Add(newTile);
+            surfaceValueDictionary.Add(def.name, (short)(surfaceTiles.Count - 1));
+        }
+        
+        //Update the surface tile
+
     }
 
     // Use this for initialization

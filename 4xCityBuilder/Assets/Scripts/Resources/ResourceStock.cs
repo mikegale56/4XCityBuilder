@@ -5,22 +5,17 @@ using UnityEngine;
 
 public class ResourceStock
 {
-    public string owner, domain;
     public Dictionary<string, int> nameToIndexDictionary = new Dictionary<string, int>();
     public Dictionary<string, List<int>> typeToIndexDictionary = new Dictionary<string, List<int>>();
     public List<int[]> quantity = new List<int[]>();
     public Dictionary<QualityEnum, float> qualityMultiplier;
     public bool[] canConsume;
 
-    public ResourceStock(string owner, string domain, List<ResourceDef> resourceDefinitions)
+    public ResourceStock(List<ResourceDef> resourceDefinitions)
     {
 
         // Copy the quality multiplier list
         this.qualityMultiplier = ResourceManager.qualityMultiplier;
-
-        // Set the owner and domain for this resource stock.  These will probably need to be things other than strings later
-        this.owner = owner;
-        this.domain = domain;
 
         // Number of qualities
         int enumLength = Enum.GetNames(typeof(QualityEnum)).Length - 1; //-1 because of the any

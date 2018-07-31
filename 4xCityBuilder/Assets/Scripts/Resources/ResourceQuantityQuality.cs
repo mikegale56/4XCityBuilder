@@ -12,8 +12,8 @@ public abstract class ResourceQuantityQuality
 	
 	abstract public float RemoveResource(ResourceStock stock);
 
-    abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions(ResourceManager resourceManager);
+    abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions();
 
-    abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions(ResourceManager resourceManager, int minTier);
+    abstract public System.Collections.Generic.Dictionary<string, UnityEngine.Sprite> GetImageOptions(int minTier);
 
 }

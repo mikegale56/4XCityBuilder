@@ -108,13 +108,14 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 		{
 			int numEnumValues = Enum.GetValues(typeof(QualityEnum)).Length;
 
-			// Start at highest quality, which is numEnumValues-1, as the highest is "any"
-			int qVal = numEnumValues - 1;
+			// Start at highest quality, which is numEnumValues-2, as the highest is "any" and it's 0 based
+			int qVal = numEnumValues - 2;
 			while (leftToRemove > 0) // Keep removing until there are none left to remove
 			{
+                Debug.Log(name + " " + stock.nameToIndexDictionary[name] + " " + qVal.ToString());
 				// How many are there in this quality bin?
 				int quant = stock.quantity[stock.nameToIndexDictionary[name]][qVal];
-				if (quant >= leftToRemove) // If there are more than needed
+                if (quant >= leftToRemove) // If there are more than needed
 				{
 					// Remove them
 					stock.quantity[stock.nameToIndexDictionary[name]][qVal] -= leftToRemove;
@@ -132,8 +133,8 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 					// Decrement the number left to remove
 					leftToRemove -= numRemoved;
 				}
-				qVal++;
-				if (qVal >= (int)QualityEnum.any)
+				qVal--;
+				if (qVal < 0)
 				{
 					Debug.LogError("Cannot remove enough of a resource from stock - this shouldn't happen, did I forget a check");
 					break;
@@ -156,24 +157,24 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 		return averageQualityMultiplierOfRemoved;
 	}
 
-    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager)
+    public override Dictionary<string, Sprite> GetImageOptions()
     {
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
+        IEnumerable<ResourceDef> resourcesOfType = ResourceQueries.ByName(ManagerBase.resourceDefinitions, name);
         foreach (ResourceDef def in resourcesOfType)
             nameSpriteDict.Add(def.name, def.image);
 
         return nameSpriteDict;
     }
 
-    public override Dictionary<string, Sprite> GetImageOptions(ResourceManager resourceManager, int minTier)
+    public override Dictionary<string, Sprite> GetImageOptions(int minTier)
     {
         Dictionary<string, Sprite> nameSpriteDict = new Dictionary<string, Sprite>();
 
         // Get the resourceDefs with this type
-        IEnumerable<ResourceDef> resourcesOfName = ResourceQueries.ByName(resourceManager.resourceDefinitions, name);
+        IEnumerable<ResourceDef> resourcesOfName = ResourceQueries.ByName(ManagerBase.resourceDefinitions, name);
         foreach (ResourceDef def in resourcesOfName)
             nameSpriteDict.Add(def.name, def.image);
 

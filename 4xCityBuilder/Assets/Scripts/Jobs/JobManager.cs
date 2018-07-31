@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class JobManager : MonoBehaviour {
-
-	public Dictionary<string, JobDef> jobDefsByName;
-    private List<JobObj> activeJobList;
-	private List<JobBonus> activeLeaderBonusList;
+public class JobManager : ManagerBase {
 
     // Initialization
     void Awake()
     {
 
-        jobDefsByName = new Dictionary<string, JobDef>();
-		activeJobList  = new List<JobObj>();
-        activeLeaderBonusList = new List<JobBonus>();
-		
-		/*string m_Path = Application.dataPath;
+        ManagerBase.jobDefinitions = new List<JobDef>();
+
+        string m_Path = Application.dataPath;
         using (var reader = new StreamReader(m_Path + "/Definitions/Jobs.csv"))
         {
             // Parse the header
             Dictionary<string, List<int>> column = ParseHeader(reader.ReadLine());
             while (!reader.EndOfStream)
-			{
-                JobDef newDef = new JobDef(reader.ReadLine(), column);
-				jobDefsByName.Add(newDef.name, newDef);
-			}			
-        }*/
+                ManagerBase.jobDefinitions.Add(new JobDef(reader.ReadLine(), column));
+        }
     }
 
     // Use this for initialization

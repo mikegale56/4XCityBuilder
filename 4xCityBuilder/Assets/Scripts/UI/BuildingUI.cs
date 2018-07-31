@@ -29,16 +29,16 @@ public class BuildingUI : MonoBehaviour
 
         // Populate Rows 
         int ind = 0;
-        foreach (BuildingObj building in buildingManager.domainBuildings.buildings)
+        foreach (BuildingObj building in ManagerBase.domain.buildings)
         {
             Datum d = Datum.Body(ind.ToString());
             ind++;
 
             d.elements.Add(building.name);
             d.elements.Add(building.name);
-            d.elements.Add(buildingManager.buildingDefinitions[buildingManager.buildingNameToDefIndexDictionary[building.name]].tier);
+            d.elements.Add(ManagerBase.buildingDefinitions[ManagerBase.buildingIndexOf[building.name]].tier);
             d.elements.Add(building.quality.ToString());
-            d.elements.Add(buildingManager.buildingDefinitions[buildingManager.buildingNameToDefIndexDictionary[building.name]].maintenanceCost);
+            d.elements.Add(ManagerBase.buildingDefinitions[ManagerBase.buildingIndexOf[building.name]].maintenanceCost);
             //d.elements.Add(""); // HP Bar
             d.elements.Add(building.NumberOfWorkers().ToString());
             d.elements.Add(building.NumberOfActiveJobs().ToString());

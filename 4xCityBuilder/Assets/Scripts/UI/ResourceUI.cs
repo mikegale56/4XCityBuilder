@@ -6,7 +6,8 @@ public class ResourceUI : MonoBehaviour
 {
 
     public Table resourceTable;
-    public ResourceManager resourceManager;
+    public Domain domain;
+
     public Dictionary<string, Sprite> resourceNameSpriteDict;
 
     void Start()
@@ -28,14 +29,13 @@ public class ResourceUI : MonoBehaviour
             //print("Adding Quality Column");
             resourceTable.AddTextColumn(((QualityEnum)i).ToString() + " quality", null);
         }
-        
 
         // Initialize Your Table
         resourceTable.Initialize(onTableSelected, resourceNameSpriteDict);
 
-        // Populate Your Rows (obviously this would be real data here)
+        // Populate Rows
         int ind = 0;
-        foreach (KeyValuePair<string, int> entry in resourceManager.domainResources.nameToIndexDictionary)
+        foreach (KeyValuePair<string, int> entry in ManagerBase.resourceIndexOf)
         {
             Datum d = Datum.Body(ind.ToString());
             ind++;
@@ -43,7 +43,7 @@ public class ResourceUI : MonoBehaviour
             //print("Printing Name");
             d.elements.Add(entry.Key); // The name is the key into the sprite dictionary 
             d.elements.Add(entry.Key);
-            int[] quantity = resourceManager.domainResources.quantity[entry.Value];
+            int[] quantity = domain.stock.quantity[entry.Value];
             foreach (int q in quantity)
             {
                 //print("Printing Quantity");

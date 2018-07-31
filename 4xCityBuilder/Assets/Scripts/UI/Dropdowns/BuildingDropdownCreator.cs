@@ -47,7 +47,7 @@ public class BuildingDropdownCreator : MonoBehaviour
             buildingDropdown.children[ind].textGo.text = category;
             buildingDropdown.children[ind].CloseButton();
             int subInd = 0;
-            IEnumerable<BuildingDef> theseBuildingDefs = BuildingQueries.ByCategoryNoParent(buildingManager.buildingDefinitions, category);
+            IEnumerable<BuildingDef> theseBuildingDefs = BuildingQueries.ByCategoryNoParent(ManagerBase.buildingDefinitions, category);
             foreach (BuildingDef def in theseBuildingDefs)
             {
                 buildingDropdown.children[ind].AddChild();

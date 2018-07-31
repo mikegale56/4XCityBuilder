@@ -7,6 +7,9 @@ public class DropdownBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     public bool isOpen;
     public string tooltip = "";
+    public string ddName;
+    public bool allowed = true;
+
     public string tooltipData = "";
     public float childHeight = 30;
     public int childFontSize = 12;
@@ -142,10 +145,10 @@ public class DropdownBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         // Set button's onClick and childEvents
         dbChild.button.onClick = dbChild.events;
         dbChild.button.onClick.AddListener(delegate() { CloseButton(); });
-        dbChild.button.onClick.AddListener(delegate () { ChangeMainButton(dbChild.textGo.text, dbChild.imageGo.sprite); });
+        dbChild.button.onClick.AddListener(delegate () { ChangeMainButton(dbChild.textGo.text, dbChild.imageGo.sprite, dbChild.ddName); });
     }
 
-    public void ChangeMainButton(string s, Sprite sp)
+    public void ChangeMainButton(string s, Sprite sp, string newName)
     {
         if (!string.IsNullOrEmpty(s))
             this.mainDropdown.textGo.text = s;
@@ -154,6 +157,7 @@ public class DropdownBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             this.mainDropdown.imageGo.sprite = sp;
             this.mainDropdown.imageGo.color = Color.white;
         }
+        this.ddName = newName;
     }
 
     public void CloseButton()

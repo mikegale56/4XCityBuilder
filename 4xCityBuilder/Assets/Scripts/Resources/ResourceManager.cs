@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class ResourceManager : MonoBehaviour {
-
+public class ResourceManager : ManagerBase
+{
     public Canvas resourceUiCanvas;
     public List<Sprite> resourceSprites;
     public ResourceUI resourceUI;
-    public List<ResourceDef> resourceDefinitions;
-    public ResourceStock domainResources;
-    public Dictionary<string, int> resourceNameToDefIndexDict;
     public static Dictionary<QualityEnum, float> qualityMultiplier = new Dictionary<QualityEnum, float>
     {
         { QualityEnum.awful, 0.5F },
@@ -25,7 +22,7 @@ public class ResourceManager : MonoBehaviour {
     {
 
         resourceDefinitions = new List<ResourceDef>();
-        resourceNameToDefIndexDict = new Dictionary<string, int>();
+        ManagerBase.resourceIndexOf = new Dictionary<string, int>();
     string m_Path = Application.dataPath;
         //print(m_Path + "/Definitions/Resources.csv");
         List<string> lines = new List<string>();
@@ -41,15 +38,19 @@ public class ResourceManager : MonoBehaviour {
         foreach (var csvLine in lines)
         {
             resourceDefinitions.Add(new ResourceDef(csvLine));
-            resourceNameToDefIndexDict.Add(resourceDefinitions[resourceDefinitions.Count - 1].name, resourceDefinitions.Count - 1);
+            ManagerBase.resourceIndexOf.Add(resourceDefinitions[resourceDefinitions.Count - 1].name, resourceDefinitions.Count - 1);
         }
 
         // Initialize the domain's stock
-        domainResources = new ResourceStock("Aster", "Aster", resourceDefinitions);
+        if (ManagerBase.domain == null)
+            ManagerBase.domain = new Domain();
+        ManagerBase.domain.stock = new ResourceStock(resourceDefinitions);
 
         resourceUI.resourceNameSpriteDict = new Dictionary<string, Sprite>();
         foreach (ResourceDef rd in resourceDefinitions)
             resourceUI.resourceNameSpriteDict.Add(rd.name, rd.image);
+        resourceUI.domain = ManagerBase.domain;
+
 
         resourceUI.enabled = false;
         resourceUiCanvas.enabled = false;
@@ -63,7 +64,7 @@ public class ResourceManager : MonoBehaviour {
         startingResources.rqqList.Add(new ResourceNameQuantityQuality("Marble", QualityEnum.normal, 25));
         startingResources.rqqList.Add(new ResourceNameQuantityQuality("Iron", QualityEnum.normal, 75));
 
-        startingResources.AddResources(domainResources);
+        startingResources.AddResources(ManagerBase.domain.stock);
 
     }
 

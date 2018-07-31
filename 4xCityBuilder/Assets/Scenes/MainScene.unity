@@ -1835,10 +1835,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1016789080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.8265702, y: -0.18372813, z: -0.089751594}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1784477516}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1853,24 +1854,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39c4405f16814348a68eb58546e5773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nFac: 7
-  waterFraction: 0.2
-  hillFraction: 0.15
-  mountainFraction: 0.05
-  nRivers: 1
-  oakTreeFraction: 0.1
-  pineTreeFraction: 0.15
-  ashTreeFraction: 0.075
-  redwoodTreeFraction: 0.05
-  sandstoneFrac: 0.4
-  limestoneFrac: 0.3
-  marbleFrac: 0.2
-  graniteFrac: 0.1
+  mapGenerator: {fileID: 1784477517}
   groundTileMap: {fileID: 1016287488}
   undergroundTileMap: {fileID: 540268597}
   surfaceTileMap: {fileID: 1721372804}
-  groundTiles: []
-  surfaceTiles: []
 --- !u!1 &1043146667
 GameObject:
   m_ObjectHideFlags: 0
@@ -4723,6 +4710,101 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!1 &1784477515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1784477516}
+  - component: {fileID: 1784477517}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1784477516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1784477515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1016789081}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1784477517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1784477515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888676010571c6049b41a3efb655f3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nFac: 8
+  waterFraction: 0.2
+  hillFraction: 0.15
+  mountainFraction: 0.05
+  nRivers: 1
+  oakTreeFraction: 0.1
+  pineTreeFraction: 0.15
+  ashTreeFraction: 0.075
+  redwoodTreeFraction: 0.05
+  sandstoneFrac: 0.4
+  limestoneFrac: 0.3
+  marbleFrac: 0.2
+  graniteFrac: 0.1
+  perlinFraction:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  perlinBound:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1846151295
 GameObject:
   m_ObjectHideFlags: 0
