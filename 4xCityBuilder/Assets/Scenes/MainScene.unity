@@ -1002,55 +1002,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589889286}
   m_CullTransparentMesh: 0
---- !u!1 &603826222
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 603826223}
-  - component: {fileID: 603826224}
-  m_Layer: 11
-  m_Name: ResourceDropdownCreator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &603826223
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 603826222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1371468260}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 545}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &603826224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 603826222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c707be33c71b8c499c7fdd63adff3bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1371468260}
-  resourceDropdown: []
-  resourceManager: {fileID: 1090448141}
-  imageSize: 64
 --- !u!1 &620895494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1641,6 @@ MonoBehaviour:
   buildingUiCanvas: {fileID: 620895497}
   buildingUI: {fileID: 6961527}
   buildingCategories: []
-  jobManager: {fileID: 149179134}
 --- !u!4 &901118186
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,6 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5d10c80e0c5ab4aaac1c78cbcec81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileDetailUiPanel: {fileID: 1371468260}
   surfacePanel: {fileID: 30577816}
   spText: {fileID: 1761579465}
   groundPanel: {fileID: 589889287}
@@ -2332,7 +2283,7 @@ MonoBehaviour:
   mapManager: {fileID: 1016789083}
   buildingManager: {fileID: 901118185}
   buildingDC: {fileID: 1448374598}
-  resourceDC: {fileID: 603826224}
+  resourceChoiceDropdown: {fileID: 0}
 --- !u!4 &1158303347
 Transform:
   m_ObjectHideFlags: 0
@@ -3348,7 +3299,6 @@ RectTransform:
   - {fileID: 2071254021}
   - {fileID: 2000479595}
   - {fileID: 1448374597}
-  - {fileID: 603826223}
   m_Father: {fileID: 1343532675}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3481,7 +3431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceTable: {fileID: 838144574}
-  resourceManager: {fileID: 1090448141}
 --- !u!1 &1490795560
 GameObject:
   m_ObjectHideFlags: 0

@@ -112,7 +112,6 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 			int qVal = numEnumValues - 2;
 			while (leftToRemove > 0) // Keep removing until there are none left to remove
 			{
-                Debug.Log(name + " " + stock.nameToIndexDictionary[name] + " " + qVal.ToString());
 				// How many are there in this quality bin?
 				int quant = stock.quantity[stock.nameToIndexDictionary[name]][qVal];
                 if (quant >= leftToRemove) // If there are more than needed

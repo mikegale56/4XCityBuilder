@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,7 +15,7 @@ public class CustomUIElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public GameObject thisGo;
 
     // Tooltip
-    private string tooltip = "";
+    protected string tooltip = "";
     public string tooltipData = "";
     public GUIStyle style;
 

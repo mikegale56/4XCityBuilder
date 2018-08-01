@@ -1,16 +1,16 @@
 Name,Category,Tier,Description,Resource Type to Build,Min Resource Tier,Resource Count,Parent Name,Prerequisite To Build,Job Name,Job Max Tier,Bonus To,Bonus Value,Max HP,Housing,Max Workers,Industries,Skills,Maintenance Cost,Default Max Dist,Image,Unique
 Huts,Housing,1,Huts,Wood,1,10,,Market,,,,,100,4,,,,1,,Textures/Buildings/Hut,0
-Houses,Housing,2,Houses,Wood,1,10,Hut,Market,,,Happiness,10,200,3,,,,2,,,0
+Houses,Housing,2,Houses,Wood,1,10,Huts,Market,,,Happiness,10,200,3,,,,2,,,0
 ,,,,Stone,1,10,,,,,,,,,,,,,,,
 Multi-Level Houses,Housing,3,Multi-Level Houses,Wood,2,25,Houses,Market,,,Happiness,15,300,6,,,,3,,,0
 ,,,,Stone,2,25,,,,,,,,,,,,,,,
 ,,,,Glass,1,5,,,,,,,,,,,,,,,
 Rudimentary Mine,Earthworking,1,Rudimentary Mine,Wood,1,5,,,Mine Ore,,,,100,,5,Earthworking,Mining,1,10,Textures/Buildings/RudimentaryMine,0
 ,,,,,,,,,Mine Gem,,,,,,,,,,,,
-Improved Mine,Earthworking,3,Improved Mine,Wood,1,10,Mine,TBD Leader,Mine Ore,,Mining Speed,50,100,,10,Earthworking,Mining,1,10,,0
+Improved Mine,Earthworking,3,Improved Mine,Wood,1,10,Rudimentary Mine,TBD Leader,Mine Ore,,Mining Speed,50,100,,10,Earthworking,Mining,1,10,,0
 ,,,,Metal,3,10,,,Mine Gem,,,,,,,,,,,,
 Rudimentary Quarry,Earthworking,1,Rudimentary Quarry,Wood,1,5,,,Quarry Stone,3,,,100,,5,Earthworking,Quarrying,1,10,,0
-Improved Quarry,Earthworking,3,Improved Quarry,Wood,1,10,Quarry,TBD Leader,Quarry Stone,5,Quarrying Speed,50,100,,10,Earthworking,Quarrying,2,10,,0
+Improved Quarry,Earthworking,3,Improved Quarry,Wood,1,10,Rudimentary Quarry,TBD Leader,Quarry Stone,5,Quarrying Speed,50,100,,10,Earthworking,Quarrying,2,10,,0
 ,,,,Metal,3,10,,,,,,,,,,,,,,,
 Rudimentary Smelter,Metalworking,1,Rudimentary Smelter,Stone,1,10,,,Smelt Metal,2,Smelt Speed,-50,100,,5,Metalworking,Metallurgy,1,,,0
 ,,,,Wood,1,10,,,,2,Smelt Quality,-50,,,,,,,,,
