@@ -50,6 +50,7 @@ public static class UIElementFunctions
         // Rect
         RectTransform rect = AddRect(parent, localPosition, size);
         CustomUIElement uie = rect.gameObject.AddComponent<CustomUIElement>();
+        uie.thisGo = rect.gameObject;
         uie.rectGo = rect;
         // Component Image
         uie.imageGo = AddImage(uie.rectGo.transform, img);

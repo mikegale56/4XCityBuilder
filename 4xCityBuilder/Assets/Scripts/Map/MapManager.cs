@@ -49,7 +49,30 @@ public class MapManager : ManagerBase
             }
         }
         undergroundTileMap.GetComponent<Renderer>().enabled = false;
-		
+
+        WorldEventHandler pmc = new WorldEventHandler(ProcessMapChange);
+        WorldEventHandlerManager.AddListener(worldEventChannels.map, mapChannelEvents.change, pmc);
+    }
+
+    public void ProcessMapChange(WorldEventArg we)
+    {
+        // Get i and j from e
+        Vector3Int loc = we.location;
+        int i = loc.x;
+        int j = loc.y;
+
+        // Delete the old tiles
+        groundTileMap.SetTile(loc, null);
+        surfaceTileMap.SetTile(loc, null);
+        undergroundTileMap.SetTile(loc, null);
+
+        // Draw the ground & surface tiles
+        groundTileMap.SetTile(loc, groundTiles[domain.mapData.GetGroundValue(i, j)]);
+        if (domain.mapData.GetSurfaceValue(i, j) >= 0)
+            surfaceTileMap.SetTile(loc, surfaceTiles[domain.mapData.GetSurfaceValue(i, j)]);
+
+        // Draw the underground tiles
+        undergroundTileMap.SetTile(loc, undergroundTiles[domain.mapData.GetUndergroundValue(i, j)][domain.mapData.GetStoneValue(i, j)]);
     }
 
     private void LoadTiles()

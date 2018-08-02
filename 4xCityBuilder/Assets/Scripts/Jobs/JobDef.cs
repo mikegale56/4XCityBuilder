@@ -83,7 +83,7 @@ public class JobDef
 					Debug.Log("Cannot Parse Input Quantity: " + values[inputQuant[i]]);
 				if (!Int32.TryParse(values[inputTier[i]], out minTier))
 					Debug.Log("Cannot Parse Input Tier: " + values[inputTier[i]]);
-                ResourceTypeQuantityQuality tqq = new ResourceTypeQuantityQuality(name, QualityEnum.any, quantity, minTier);
+                ResourceTypeQuantityQuality tqq = new ResourceTypeQuantityQuality(type, QualityEnum.any, quantity, minTier);
 				inputResources.rqqList.Add(tqq);
 			}
 		}

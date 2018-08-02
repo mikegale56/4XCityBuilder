@@ -23,5 +23,8 @@ public abstract class ManagerBase : MonoBehaviour
     public static Dictionary<string, byte> undergroundValueDictionary = new Dictionary<string, byte>();
     public static Dictionary<string, byte> specialValueDictionary = new Dictionary<string, byte>();
     public static Dictionary<string, short> surfaceValueDictionary = new Dictionary<string, short>();
-	
+
+    // Initialize the event system for the world
+    public static WorldEventHandlerManager worldEventHandler = new WorldEventHandlerManager();
+
 }

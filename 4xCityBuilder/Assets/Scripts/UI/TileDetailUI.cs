@@ -188,8 +188,15 @@ public class TileDetailUI : MonoBehaviour
         // Change surface type
         ManagerBase.domain.mapData.SetSurfaceValue(iLoc, jLoc, ManagerBase.surfaceValueDictionary[resourceChoiceDropdown.taskName]);
 
+        // Reload the map
+        WorldEventHandlerManager.Broadcast(worldEventChannels.map, mapChannelEvents.change, new WorldEventArg(iLoc, jLoc));
+
         // Reload Tile UI
         FocusOnTile(iLoc, jLoc);
+
+        // Temp: complete the job
+        string message = "Construction of " + resourceChoiceDropdown.taskName + " at (" + iLoc.ToString() + "," + jLoc.ToString() + ")";
+        ManagerBase.domain.eventManager.Broadcast(domainEventChannels.job, jobChannelEvents.constructionComplete, new DomainEventArg(message, iLoc, jLoc));
     }
 
     void ClearUIObjects()
@@ -207,6 +214,9 @@ public class TileDetailUI : MonoBehaviour
                 Destroy(uie.thisGo);
         if (jobStartButton != null)
             Destroy(jobStartButton.thisGo);
+        // Reset the building button
+        if (buildingDC.buildingDropdown!=null)
+            buildingDC.buildingDropdown.textGo.text = "Select Building";
     }
 
     // Use this for initialization

@@ -73,11 +73,9 @@ public class BuildingDropdownCreator : MonoBehaviour
 		demolishDropdown.children[0].CloseButton();
 
         IEnumerable<BuildingDef> upgrades = BuildingQueries.ByParent(ManagerBase.buildingDefinitions, surfaceType);
-        Debug.Log(upgrades);
         int ind = 0;
 		foreach (BuildingDef def in upgrades)
         {
-            Debug.Log(def.name);
             demolishDropdown.AddChild();
             demolishDropdown.children[ind].textGo.text = def.name + " (Tier " + def.tier + ")";
 			demolishDropdown.children[ind].buttonGo.onClick.AddListener(() => bbcb(def.name));
