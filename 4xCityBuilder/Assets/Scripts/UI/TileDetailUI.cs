@@ -136,13 +136,13 @@ public class TileDetailUI : MonoBehaviour
 
         string txt = buildingSelected.name + "\n" + buildingSelected.description + "\n";
         if (buildingDescriptionText == null)
-            buildingDescriptionText = NewTextBox(jobsPanel.transform, txt, new Vector3(180, -350), new Vector2(300, 100));
+            buildingDescriptionText = NewTextBox(jobsPanel.transform, txt, new Vector3(180, -50), new Vector2(300, 100));
         else
             buildingDescriptionText.text = txt;
         // Add prerequisites, colored, here
 
         // Figure out what the building needs
-        resourceChoiceDropdown = ResourceDropdownCreator.CreateResourceChoiceDropdown(tileDetailUiPanel.transform, new Vector3(-200, -485), buildingSelected.resourcesToBuild, buildingSelected.name, ManagerBase.domain);
+        resourceChoiceDropdown = ResourceDropdownCreator.CreateResourceChoiceDropdown(tileDetailUiPanel.transform, new Vector3(-200, -185), buildingSelected.resourcesToBuild, buildingSelected.name, ManagerBase.domain);
 
         int ind = 0;
         foreach (DropdownUIElement db in resourceChoiceDropdown.elements)
@@ -197,7 +197,24 @@ public class TileDetailUI : MonoBehaviour
         // Temp: complete the job
         string message = "Construction of " + resourceChoiceDropdown.taskName + " at (" + iLoc.ToString() + "," + jLoc.ToString() + ")";
         ManagerBase.domain.eventManager.Broadcast(domainEventChannels.job, jobChannelEvents.constructionComplete, new DomainEventArg(message, iLoc, jLoc));
-    }
+    } 
+
+    private JobDef CreateConstructionJobDef(ResourceQuantityQualityList jobResources, string taskName)
+    {
+        BuildingDef bd = BuildingQueries.ByName(ManagerBase.buildingDefinitions, taskName).ElementAt(0);
+        JobDef constructionJob = new JobDef();
+        constructionJob.name = "Construction of " + taskName;
+        constructionJob.description = "Construction of " + taskName;
+        constructionJob.industry = "Construction";
+        constructionJob.skill = "Building";
+        constructionJob.tier = bd.tier;
+        constructionJob.defaultPMUs = bd.defaultPMUs;
+        constructionJob.inputResources = jobResources;
+        //List<string> outputName;
+        //List<int> defaultOutputQuantity;
+
+        return constructionJob;
+}
 
     void ClearUIObjects()
     {

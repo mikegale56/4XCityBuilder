@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class MapManager : ManagerBase
 {

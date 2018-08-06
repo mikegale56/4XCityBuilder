@@ -20,6 +20,7 @@ public class MainUIManager : MonoBehaviour {
     public RectTransform tileDetailBackPanel;
     float mainMapMaxX, mainMapMinY, mainMapMaxY;
     float tvMapMaxX, tvMapMinY, tvMapMaxY;
+    public Text clockText;
 
 
     // Use this for initialization
@@ -59,6 +60,13 @@ public class MainUIManager : MonoBehaviour {
         tvMapMaxY = v2[1].y;
         tileDetailManager.tileDetailCanvas.enabled = false;
 
+        InvokeRepeating("UpdateClock", 1.0F, 1.0F);
+
+    }
+
+    void UpdateClock()
+    {
+        clockText.text = GameRunner.GetTimeString();
     }
 	
 	// Update is called once per frame

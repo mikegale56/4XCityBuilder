@@ -22,6 +22,7 @@ public class BuildingDef
     public int maintenanceCost;
     public int defaultMaxDistToWorkTiles;
     public Sprite image;
+    public float defaultPMUs;
 
     // Constructor
     public BuildingDef(List<string> csvLines, Dictionary<string,int> column)
@@ -104,6 +105,11 @@ public class BuildingDef
                 industry.Add(values[column["Industries"]]);
             if (values[column["Skills"]].Length > 0)
                 skill.Add(values[column["Skills"]]);
+
+            // PMUs to Build
+            if (values[column["PMUs to Build"]].Length > 0)
+                if (!Single.TryParse(values[column["PMUs to Build"]], out defaultPMUs))
+                    Debug.Log("Cannot Parse PMUs to Build");
 
             if (image == null)
             { 

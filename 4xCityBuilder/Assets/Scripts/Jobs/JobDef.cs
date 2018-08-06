@@ -105,4 +105,7 @@ public class JobDef
 			}
 		}		
     }
+
+    public JobDef()
+    { }
 }

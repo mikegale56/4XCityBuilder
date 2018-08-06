@@ -11,11 +11,11 @@ public class EventPanelUI : MonoBehaviour {
 
     public int jobEventHeight = 25;
     public Color jobColor = new Color(0.8F, 1.0F, 0.8F);
-    public float jobEventPersist = 30; // Seconds
+    public float jobEventPersistWallClockSec = 30; // Seconds
 
     public int constructionEventHeight = 25;
     public Color constructionColor = new Color(0.8F, 0.8F, 1.0F);
-    public float constructionEventPersist = 60; // Seconds
+    public float constructionEventPersistWallClockSec = 60; // Seconds
 
     void Start ()
     {
@@ -37,7 +37,7 @@ public class EventPanelUI : MonoBehaviour {
         CustomUIElement newEvent = UIElementFunctions.ButtonImageText(eventVlgRect.transform, null, de.message, new Vector3(0, 0, 0), new Vector2(0, 0));
         LayoutElement element = newEvent.thisGo.AddComponent<LayoutElement>();
         element.minHeight = this.jobEventHeight;
-        uiElements.Add(new EventPanelButton(newEvent, jobEventPersist));
+        uiElements.Add(new EventPanelButton(newEvent, jobEventPersistWallClockSec));
     }
 
     public void ProcessConstructionComplete(DomainEventArg de)
@@ -46,7 +46,7 @@ public class EventPanelUI : MonoBehaviour {
         LayoutElement element = newEvent.thisGo.AddComponent<LayoutElement>();
         element.minHeight = this.constructionEventHeight;
         newEvent.imageGo.color = this.constructionColor;
-        uiElements.Add(new EventPanelButton(newEvent, constructionEventPersist));
+        uiElements.Add(new EventPanelButton(newEvent, constructionEventPersistWallClockSec));
     }
 
     // Update is called once per frame

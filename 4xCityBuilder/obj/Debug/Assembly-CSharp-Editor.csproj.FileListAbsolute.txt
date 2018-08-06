@@ -185,7 +185,6 @@ C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEditor.VR.xml
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
-C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\obj\Debug\Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\obj\Debug\Assembly-CSharp-Editor.csproj.CopyComplete
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\obj\Debug\Assembly-CSharp-Editor.dll
@@ -402,3 +401,4 @@ C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEngine.LocalizationModule.xml
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEngine.ProfilerModule.xml
 C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\Temp\bin\Debug\UnityEngine.StreamingModule.xml
+C:\Users\mikeg\OneDrive\Documents\Documents\4XCityBuilder\4xCityBuilder\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
