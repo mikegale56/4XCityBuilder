@@ -3,30 +3,8 @@ using System.Linq;
 
 public static class JobQueries
 {
-	// JobObj Queries
-    public static IEnumerable<JobObj> ByName(this IEnumerable<JobObj> jobObjs, string name)
-    {
-        return jobObjs.Where(job => job.jobDef.name == name);
-    }
-	public static IEnumerable<JobObj> ByIndustry(this IEnumerable<JobObj> jobObjs, string industry)
-    {
-        return jobObjs.Where(job => job.jobDef.industry == industry);
-    }
-	public static IEnumerable<JobObj> BySkill(this IEnumerable<JobObj> jobObjs, string skill)
-    {
-        return jobObjs.Where(job => job.jobDef.skill == skill);
-    }
-	/*public static IEnumerable<JobObj> ByOutput(this IEnumerable<JobObj> jobObjs, string output)
-    {
-        return jobObjs.Where(jobObjs => jobObjs.jobDef.outputName == output);
-    }*/
-	public static IEnumerable<JobObj> ByBuildingGuid(this IEnumerable<JobObj> jobObjs, System.Guid guid)
-    {
-        return jobObjs.Where(job => job.buildingGuid == guid);
-    }
-	
-	// JobDef Queries
-	public static IEnumerable<JobDef> ByName(this IEnumerable<JobDef> jobDefs, string name)
+    // JobDef Queries
+    public static IEnumerable<JobDef> ByName(this IEnumerable<JobDef> jobDefs, string name)
     {
         return jobDefs.Where(job => job.name == name);
     }

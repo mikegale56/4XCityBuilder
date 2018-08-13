@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public static class BuildingQueries
 {
@@ -19,5 +20,9 @@ public static class BuildingQueries
     public static IEnumerable<BuildingDef> ByParent(this IEnumerable<BuildingDef> BuildingDefs, string parent)
     {
         return BuildingDefs.Where(bldg => bldg.parentName == parent);
+    }
+    public static BuildingObj ByLocation(this IEnumerable<BuildingObj> BuildingObjs, Vector2Int ijLocation)
+    {
+        return BuildingObjs.Where(bldg => bldg.ijLocation == ijLocation).ElementAt(0);
     }
 }

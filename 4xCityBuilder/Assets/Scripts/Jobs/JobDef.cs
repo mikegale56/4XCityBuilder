@@ -13,10 +13,13 @@ public class JobDef
 	public List<int> defaultOutputQuantity;
     public float defaultPMUs;
     public ResourceQuantityQualityList inputResources;
+    public Guid guid;
 
     // Constructor
     public JobDef(string csvLine, Dictionary<string, List<int>> column)
     {
+
+        guid = Guid.NewGuid();
 
         inputResources = new ResourceQuantityQualityList();
 		outputName = new List<string>();

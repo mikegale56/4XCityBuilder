@@ -54,11 +54,11 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 			int numEnumValues = Enum.GetValues(typeof(QualityEnum)).Length;
 
 			// Start at highest quality, which is numEnumValues-1, as the highest is "any"
-			int qVal = numEnumValues - 1;
+			int qVal = numEnumValues - 2;
 			while (leftToRemove > 0) // Keep removing until there are none left to remove
 			{
-				// How many are there in this quality bin?
-				int quant = stock.quantity[stock.nameToIndexDictionary[name]][qVal];
+                // How many are there in this quality bin?
+                int quant = stock.quantity[stock.nameToIndexDictionary[name]][qVal];
 				if (quant >= leftToRemove) // If there are more than needed
 				{
                     // Add to the average quality
@@ -77,8 +77,8 @@ public class ResourceNameQuantityQuality : ResourceQuantityQuality
 				qVal++;
 				if (qVal >= (int)QualityEnum.any)
 				{
-					Debug.LogError("Cannot check to remove enough of a resource from stock - this shouldn't happen, did I forget a check");
-					break;
+                    // Not enough
+                    return 0.0F;
 				}
 			}
             averageQualityMultiplierOfRemoved = totalMult / quantity;

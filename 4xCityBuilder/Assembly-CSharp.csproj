@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EventHandler\DomainEventHandlerManager.cs" />
     <Compile Include="Assets\Scripts\EventHandler\WorldEventHandlerManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameRunner.cs" />
+    <Compile Include="Assets\Scripts\Jobs\BuildingJobObj.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonus.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuality.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuantity.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Jobs\JobManager.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobObj.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobQueries.cs" />
+    <Compile Include="Assets\Scripts\Jobs\ResourceJobObj.cs" />
     <Compile Include="Assets\Scripts\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Map\CreateOreTiles.cs" />
     <Compile Include="Assets\Scripts\Map\GenerateOreVeins.cs" />
@@ -100,9 +102,10 @@
     <Compile Include="Assets\Scripts\UI\ResourceUI.cs" />
     <Compile Include="Assets\Scripts\UI\TileDetailManager.cs" />
     <Compile Include="Assets\Scripts\UI\TileDetailUI.cs" />
-    <Compile Include="Assets\Scripts\UI\UIElementTools\BuildingDropdownCreator.cs" />
+    <Compile Include="Assets\Scripts\UI\UIElementTools\BuildingActionDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\UIElementTools\CustomUIElement.cs" />
     <Compile Include="Assets\Scripts\UI\UIElementTools\DropdownUIElement.cs" />
+    <Compile Include="Assets\Scripts\UI\UIElementTools\NewConstructionDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\UIElementTools\ResourceDropdown.cs" />
     <Compile Include="Assets\Scripts\UI\UIElementTools\ResourceDropdownCreator.cs" />
     <Compile Include="Assets\Scripts\UI\UIElementTools\UIElementFunctions.cs" />

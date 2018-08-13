@@ -1,15 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildingDropdownCreator : MonoBehaviour
+public class NewConstructionDropdown : MonoBehaviour
 {
 
     public RectTransform panel;
     public DropdownUIElement buildingDropdown;
-    public DropdownUIElement demolishDropdown;
     public BuildingManager buildingManager;
     public BuildingButtonCallback bbcb;
 
@@ -34,7 +33,7 @@ public class BuildingDropdownCreator : MonoBehaviour
     {
 
         // Create the button
-		buildingDropdown = UIElementFunctions.Dropdown(panel, null, "Select Building", localPosition, new Vector2(w, h));
+        buildingDropdown = UIElementFunctions.Dropdown(panel, null, "Select Building", localPosition, new Vector2(w, h));
         buildingDropdown.thisGo.name = "Building Dropdown Button";
         buildingDropdown.childHeight = 30;
         buildingDropdown.childFontSize = 16;
@@ -45,6 +44,7 @@ public class BuildingDropdownCreator : MonoBehaviour
         {
             buildingDropdown.AddChild();
             buildingDropdown.children[ind].textGo.text = category;
+            buildingDropdown.children[ind].buttonGo.interactable = false;
             buildingDropdown.children[ind].CloseButton();
             int subInd = 0;
             IEnumerable<BuildingDef> theseBuildingDefs = BuildingQueries.ByCategoryNoParent(ManagerBase.buildingDefinitions, category);
@@ -59,28 +59,9 @@ public class BuildingDropdownCreator : MonoBehaviour
             ind++;
         }
     }
-
-    public void CreateDemolishOrUpgradeDropdown(Vector3 localPosition, float w, float h, string surfaceType)
+    public void DestroyDropdown()
     {
-
-        // Create the button
-		demolishDropdown = UIElementFunctions.Dropdown(panel, null, "Surface Actions", localPosition, new Vector2(w, h));
-        demolishDropdown.childHeight = 30;
-        demolishDropdown.childFontSize = 16;
-		
-		demolishDropdown.AddChild();
-		demolishDropdown.children[0].textGo.text = "Demolish";
-		demolishDropdown.children[0].CloseButton();
-
-        IEnumerable<BuildingDef> upgrades = BuildingQueries.ByParent(ManagerBase.buildingDefinitions, surfaceType);
-        int ind = 0;
-		foreach (BuildingDef def in upgrades)
-        {
-            demolishDropdown.AddChild();
-            demolishDropdown.children[ind].textGo.text = def.name + " (Tier " + def.tier + ")";
-			demolishDropdown.children[ind].buttonGo.onClick.AddListener(() => bbcb(def.name));
-            demolishDropdown.children[ind].CloseButton();
-            ind++;
-        }
+        buildingDropdown.Hide();
+        Destroy(buildingDropdown.thisGo);
     }
 }

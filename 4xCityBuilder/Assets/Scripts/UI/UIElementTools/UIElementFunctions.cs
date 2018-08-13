@@ -17,6 +17,17 @@ public static class UIElementFunctions
         return uie;
     }
 
+    public static CustomUIElement TextOnly(Transform parent, string txt, Vector3 localPosition, Vector2 size)
+    {
+        // Rect
+        RectTransform rect = AddRect(parent, localPosition, size);
+        CustomUIElement uie = rect.gameObject.AddComponent<CustomUIElement>();
+        uie.rectGo = rect;
+        // Component Text
+        uie.textGo = AddText(uie.rectGo.transform, txt);
+        return uie;
+    }
+
     public static CustomUIElement ImageText(Transform parent, Sprite img, string txt, Vector3 localPosition, Vector2 size)
     {
         // Rect

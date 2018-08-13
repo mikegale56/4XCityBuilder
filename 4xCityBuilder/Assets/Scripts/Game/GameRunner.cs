@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameRunner : MonoBehaviour
 {
 
-    public static float timeMultiplier = 60;
+    public static float timeMultiplier = 600;
     public static float gameTime = 0;
     private static float lastWallClockTime = 0;
 
@@ -19,17 +19,16 @@ public class GameRunner : MonoBehaviour
     void Start ()
     {
         lastWallClockTime = Time.time;
-        InvokeRepeating("UpdateGameTime", 1.0F, 0.5F);
     }
 	
 	void Update ()
     {
+        UpdateGameTime();
         GetTimeString();
     }
 
     public static string GetTimeString()
     {
-
 
         // Month, Week, Day, HH:MM:SS
         float now = gameTime;

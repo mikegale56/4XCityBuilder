@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public delegate void BuildingButtonCallback(string s);
+public delegate void JobButtonCallback(System.Guid jobGuid);
 
 public class TileDetailUI : MonoBehaviour
 {
@@ -24,107 +25,78 @@ public class TileDetailUI : MonoBehaviour
     public RectTransform militaryPanel;
     public MapManager mapManager;
     public BuildingManager buildingManager;
+    public JobManager jobManager;
 
-    public BuildingDropdownCreator buildingDC;
+    public BuildingActionDropdown buildingActionDropdown;
+    public NewConstructionDropdown newConstructionDropdown;
     public ResourceDropdown resourceChoiceDropdown;
+    public List<ResourceDropdown> activeJobDisplays;
 
     public BuildingButtonCallback bbcb;
 
-    private Text buildingDescriptionText;
-    private Button jobGoButton;
-    private Image arrowImage;
-    private Image resultImage;
+    private CustomUIElement buildingDescriptionText;
 
-    private List<CustomUIElement> uiElement;
-    private CustomUIElement jobStartButton;
+    public int iLoc, jLoc;
 
-    private Sprite rightArrow;
-
-    private int iLoc, jLoc;
-
-    private void Start()
+    // Use this for initialization
+    void Awake()
     {
-        
+        newConstructionDropdown.bbcb = new BuildingButtonCallback(BuildActionSelected);
+        buildingActionDropdown.buildCallback = new BuildingButtonCallback(BuildActionSelected);
+        buildingActionDropdown.demolishCallback = new BuildingButtonCallback(DemolishActionSelected);
+        buildingActionDropdown.newJobCallback = new JobButtonCallback(NewJobActionSelected);
+        resourceChoiceDropdown = null;
+        activeJobDisplays = new List<ResourceDropdown>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     public void FocusOnTile(int i, int j)
     {
-
+        // Set Location
         iLoc = i;
         jLoc = j;
 
         // Delete buttons
         ClearUIObjects();
 
-        string newText;
         // Surface Panel
-        if (ManagerBase.domain.mapData.GetSurfaceValue(i, j) >= 0)
-        {
-            if (buildingDC.buildingDropdown != null)
-                buildingDC.buildingDropdown.Hide();
-            short surfaceValue = ManagerBase.domain.mapData.GetSurfaceValue(i, j);
-            Tile surfaceTile = ManagerBase.surfaceTiles[surfaceValue];
-            surfacePanel.GetComponent<Image>().sprite = surfaceTile.sprite;
-            surfacePanel.GetComponent<Image>().type = Image.Type.Filled;
-            surfacePanel.GetComponent<Image>().color = surfaceTile.color;
-            //Debug.Log(spText.GetComponent<Text>().text);
-            // Create the new string
-            string surfaceType = ManagerBase.surfaceValueDictionary.FirstOrDefault(x => x.Value == surfaceValue).Key;
-            newText = surfaceType;
-            newText += "\n";
-            newText += "No Description Yet";
-            spText.GetComponent<Text>().text = newText;
-
-            if (buildingDC.demolishDropdown == null)
-                buildingDC.CreateDemolishOrUpgradeDropdown(new Vector3(-468, -140), 300, 45, surfaceType);
-            else
-                buildingDC.demolishDropdown.Show();
-
-        } else
-        {
-            if (buildingDC.demolishDropdown != null)
-                buildingDC.demolishDropdown.Hide();
-            surfacePanel.GetComponent<Image>().sprite = null;
-            surfacePanel.GetComponent<Image>().color = Color.gray;
-            spText.GetComponent<Text>().text = "Build a Structure:\n";
-
-            if (buildingDC.buildingDropdown == null)
-                buildingDC.CreateDropdown(new Vector3(-468, -70), 300, 45);
-            else
-                buildingDC.buildingDropdown.Show();
-        }
+        SetSurfacePanel(i, j);
 
         // Ground Panel
-        byte groundValue = ManagerBase.domain.mapData.GetGroundValue(i, j);
-        Tile groundTile = ManagerBase.groundTiles[groundValue];
-        groundPanel.GetComponent<Image>().sprite = groundTile.sprite;
-        groundPanel.GetComponent<Image>().type = Image.Type.Tiled;
-        groundPanel.GetComponent<Image>().color = groundTile.color;
-        newText = ManagerBase.groundValueDictionary.FirstOrDefault(x => x.Value == groundValue).Key;
-        newText += "\n";
-        newText += "No Description Yet\n";
-        newText += "Worked by:";
-        gpText.GetComponent<Text>().text = newText;
+        SetGroundPanel(i, j);
 
         // Underground Panel 
-        byte ugv = ManagerBase.domain.mapData.GetUndergroundValue(i, j);
-        byte sv  = ManagerBase.domain.mapData.GetStoneValue(i, j);
-        Tile undergroundTile = ManagerBase.undergroundTiles[ugv][sv];
-        undergroundPanel.GetComponent<Image>().sprite = undergroundTile.sprite;
-        undergroundPanel.GetComponent<Image>().type = Image.Type.Tiled;
-        undergroundPanel.GetComponent<Image>().color = undergroundTile.color;
-        if (ugv == 0)
-            newText = ManagerBase.stoneValueDictionary.FirstOrDefault(x => x.Value == sv).Key;
-        else
-            newText = ManagerBase.undergroundValueDictionary.FirstOrDefault(x => x.Value == ugv).Key;
-        newText += "\n";
-        newText += "No Description Yet\n";
-        newText += "Worked by:";
-        ugpText.GetComponent<Text>().text = newText;
+        SetUndergroundPanel(i, j);
+
+        // Draw Jobs up from the bottom
+        DrawActiveJobs(i, j);
 
     }
 
-    public void ActionSelected(string s)
+    private void DrawActiveJobs(int i, int j)
+    {
+        // Get active jobs
+        List<JobObj> activeJobs = jobManager.ByLocation(i, j).ToList();
+
+        Vector3 location = new Vector3(-200, -670);
+        foreach (JobObj job in activeJobs)
+        {
+            if (job.toDelete == true)
+            {
+                Debug.Log("Skipping job to be deleted");
+                continue;
+            }
+            activeJobDisplays.Add(ResourceDropdownCreator.CreateResourceStaticView(tileDetailUiPanel.transform, location, job.GetInputResources(), job.jobDef.name, ManagerBase.domain, job.GetSprite()));
+            location.y += 100;
+        }
+    }
+
+    public void BuildActionSelected(string s)
     {
         // Delete buttons
         ClearUIObjects();
@@ -136,68 +108,69 @@ public class TileDetailUI : MonoBehaviour
 
         string txt = buildingSelected.name + "\n" + buildingSelected.description + "\n";
         if (buildingDescriptionText == null)
-            buildingDescriptionText = NewTextBox(jobsPanel.transform, txt, new Vector3(180, -50), new Vector2(300, 100));
+            buildingDescriptionText = UIElementFunctions.TextOnly(jobsPanel.transform, txt, new Vector3(180, -50), new Vector2(300, 100));
         else
-            buildingDescriptionText.text = txt;
+            buildingDescriptionText.textGo.text = txt;
         // Add prerequisites, colored, here
 
         // Figure out what the building needs
-        resourceChoiceDropdown = ResourceDropdownCreator.CreateResourceChoiceDropdown(tileDetailUiPanel.transform, new Vector3(-200, -185), buildingSelected.resourcesToBuild, buildingSelected.name, ManagerBase.domain);
+        resourceChoiceDropdown = ResourceDropdownCreator.CreateResourceChoiceDropdown(tileDetailUiPanel.transform, new Vector3(-200, -185), buildingSelected.resourcesToBuild, buildingSelected.name, ManagerBase.domain, buildingSelected.sprite);
 
-        int ind = 0;
-        foreach (DropdownUIElement db in resourceChoiceDropdown.elements)
-        {
-            string quantityString = buildingSelected.resourcesToBuild.rqqList[ind].quantity.ToString();
-            Text temp = NewTextBox(db.thisGo.transform, quantityString, new Vector3(0, ResourceDropdownCreator.imageSize-20), new Vector2(ResourceDropdownCreator.imageSize, 20F));
-            temp.alignment = TextAnchor.MiddleCenter;
-            ind++;
-        }
-
-        // Add stuff to the right of the resources
-        Vector3 localPosition = resourceChoiceDropdown.elements[resourceChoiceDropdown.elements.Count-1].transform.localPosition;
-        if (uiElement == null)
-            uiElement = new List<CustomUIElement>();
-        // Arrow 
-        localPosition.x += ResourceDropdownCreator.imageSize * 4 / 2;
-        uiElement.Add(UIElementFunctions.ImageOnly(tileDetailUiPanel.transform, rightArrow, localPosition, new Vector2(ResourceDropdownCreator.imageSize, ResourceDropdownCreator.imageSize)));
-        uiElement[uiElement.Count - 1].gameObject.name = "Job Arrow";
-        // Result
-        localPosition.x += ResourceDropdownCreator.imageSize * 3 / 2;
-        uiElement.Add(UIElementFunctions.ImageOnly(tileDetailUiPanel.transform, buildingSelected.image, localPosition, new Vector2(ResourceDropdownCreator.imageSize, ResourceDropdownCreator.imageSize)));
-        uiElement[uiElement.Count - 1].gameObject.name = "Job Result";
-        // "Go" button
-        localPosition.x += ResourceDropdownCreator.imageSize * 3 / 2;
-        jobStartButton = UIElementFunctions.ButtonTextColor(tileDetailUiPanel.transform, "Go", Color.green, localPosition, new Vector2(ResourceDropdownCreator.imageSize, ResourceDropdownCreator.imageSize));
-        jobStartButton.textGo.fontSize = 22;
-        jobStartButton.buttonGo.onClick.AddListener(delegate () { StartJobButton(); });
-        jobStartButton.buttonGo.interactable = false;
-        jobStartButton.gameObject.name = "Job Start Button";
+        resourceChoiceDropdown.jobStartButton.buttonGo.onClick.AddListener(delegate () { StartConstructionJobButton(); });
     }
-
-    void StartJobButton()
+    
+    public void DemolishActionSelected(string s)
     {
-        // Get resource list
-        ResourceQuantityQualityList jobResources = resourceChoiceDropdown.GetCurrentChoices();
-
-        // Remove resources
-        jobResources.RemoveResources(ManagerBase.domain.stock);
 
         // Delete buttons
         ClearUIObjects();
 
-        // Change surface type
-        ManagerBase.domain.mapData.SetSurfaceValue(iLoc, jLoc, ManagerBase.surfaceValueDictionary[resourceChoiceDropdown.taskName]);
+        string txt = "Demolition\nTears down the current structure\n";
+        if (buildingDescriptionText == null)
+            buildingDescriptionText = UIElementFunctions.TextOnly(jobsPanel.transform, txt, new Vector3(180, -50), new Vector2(300, 100));
+        else
+            buildingDescriptionText.textGo.text = txt;
+        // Add prerequisites, colored, here
 
-        // Reload the map
+        // Buttons to make it go
+        resourceChoiceDropdown = ResourceDropdownCreator.CreateDemolishChoiceDropdown(tileDetailUiPanel.transform, new Vector3(-200, -185), "Demolition", ManagerBase.domain, null);
+        resourceChoiceDropdown.jobStartButton.buttonGo.onClick.AddListener(delegate () { StartDemolitionJobButton(); });
+
+    }
+
+    public void NewJobActionSelected(System.Guid jobGuid)
+    {
+
+    }
+
+    void StartConstructionJobButton()
+    {
+        // Get resource list
+        ResourceQuantityQualityList jobResources = resourceChoiceDropdown.GetCurrentChoices();
+
+        JobDef newConstructionJobDef = CreateConstructionJobDef(jobResources, resourceChoiceDropdown.taskName);
+
+        BuildingJobObj newJob = jobManager.AddConstructionJob(newConstructionJobDef, iLoc, jLoc);
+        newJob.SetResources(jobResources);
+        newJob.StartJob();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+
+        // Change surface type to construction
+        ManagerBase.domain.mapData.SetSurfaceValue(iLoc, jLoc, ManagerBase.surfaceValueDictionary["Gear"]);
+
+        // Reload the map and re-focus on the tile
         WorldEventHandlerManager.Broadcast(worldEventChannels.map, mapChannelEvents.change, new WorldEventArg(iLoc, jLoc));
 
-        // Reload Tile UI
-        FocusOnTile(iLoc, jLoc);
-
-        // Temp: complete the job
-        string message = "Construction of " + resourceChoiceDropdown.taskName + " at (" + iLoc.ToString() + "," + jLoc.ToString() + ")";
-        ManagerBase.domain.eventManager.Broadcast(domainEventChannels.job, jobChannelEvents.constructionComplete, new DomainEventArg(message, iLoc, jLoc));
-    } 
+    }
 
     private JobDef CreateConstructionJobDef(ResourceQuantityQualityList jobResources, string taskName)
     {
@@ -210,73 +183,147 @@ public class TileDetailUI : MonoBehaviour
         constructionJob.tier = bd.tier;
         constructionJob.defaultPMUs = bd.defaultPMUs;
         constructionJob.inputResources = jobResources;
-        //List<string> outputName;
+        constructionJob.outputName = new List<string>();
+        constructionJob.outputName.Add(taskName);
         //List<int> defaultOutputQuantity;
 
         return constructionJob;
-}
+    }
+
+    void StartDemolitionJobButton()
+    {
+
+        short surfaceValue = ManagerBase.domain.mapData.GetSurfaceValue(iLoc, jLoc);
+        string surfaceType = ManagerBase.surfaceValueDictionary.FirstOrDefault(x => x.Value == surfaceValue).Key;
+
+        JobDef newDemolitionJobDef = CreateDemolitionJobDef(surfaceType);
+
+        ResourceQuantityQualityList jobResources = new ResourceQuantityQualityList();
+
+        BuildingJobObj newJob = jobManager.AddConstructionJob(newDemolitionJobDef, iLoc, jLoc);
+        newJob.SetResources(jobResources);
+        newJob.StartJob();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+        newJob.AddWorker();
+
+        // Change surface type to construction
+        ManagerBase.domain.mapData.SetSurfaceValue(iLoc, jLoc, ManagerBase.surfaceValueDictionary["Gear"]);
+
+        // Reload the map and re-focus on the tile
+        WorldEventHandlerManager.Broadcast(worldEventChannels.map, mapChannelEvents.change, new WorldEventArg(iLoc, jLoc));
+
+    }
+
+    private JobDef CreateDemolitionJobDef(string currentBuilding)
+    {
+        JobDef demolitionJob = new JobDef();
+        demolitionJob.name = "Demolition of " + currentBuilding;
+        demolitionJob.description = "Demolition of " + currentBuilding;
+        demolitionJob.industry = "Construction";
+        demolitionJob.skill = "Demolition";
+        demolitionJob.tier = 1;
+        demolitionJob.defaultPMUs = 360;
+        return demolitionJob;
+    }
 
     void ClearUIObjects()
     {
         // Delete buttons
         if (buildingDescriptionText != null)
-            buildingDescriptionText.text = "";
+            buildingDescriptionText.textGo.text = "";
         if (resourceChoiceDropdown != null)
         {
             resourceChoiceDropdown.ClearResourceList();
             Destroy(resourceChoiceDropdown.gameObject);
         }
-        if (uiElement != null)
-            foreach (CustomUIElement uie in uiElement)
-                Destroy(uie.thisGo);
-        if (jobStartButton != null)
-            Destroy(jobStartButton.thisGo);
         // Reset the building button
-        if (buildingDC.buildingDropdown!=null)
-            buildingDC.buildingDropdown.textGo.text = "Select Building";
-    }
-
-    // Use this for initialization
-    void Awake ()
-    {
-        buildingDC.bbcb = new BuildingButtonCallback(ActionSelected);
-        resourceChoiceDropdown = null;
-
-        Texture2D rightArrowTex = Resources.Load("Textures/RightArrow") as Texture2D;
-        rightArrow = Sprite.Create(rightArrowTex,
-            new Rect(0, 0, rightArrowTex.width, rightArrowTex.height),
-            new Vector2(0.5f, 0.5f), rightArrowTex.width);
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        // Check if the go button should be active or not
-        if (jobStartButton != null)
-            jobStartButton.buttonGo.interactable = resourceChoiceDropdown.CheckResources();
-
-    }
-
-    public static Text NewTextBox(Transform parent, string text, Vector3 localPosition, Vector2 size)
+        if (newConstructionDropdown.buildingDropdown != null)
+            newConstructionDropdown.buildingDropdown.textGo.text = "Select Building";
+        if (buildingActionDropdown.actionDropdown != null)
+            buildingActionDropdown.actionDropdown.textGo.text = "Surface Actions";
+        if (activeJobDisplays != null)
         {
-        RectTransform rect = new GameObject().AddComponent<RectTransform>();
-        rect.SetParent(parent);
-        rect.name = "TileDetailTextBox";
-        rect.gameObject.layer = 9;
-        rect.localScale = new Vector3(1, 1, 1);
-        rect.anchorMin = new Vector2(0, 0);
-        rect.anchorMax = new Vector2(0, 0);
-        rect.localPosition = localPosition;
-        rect.sizeDelta = size;
-        Text t = rect.gameObject.AddComponent<Text>();
-        t.text = text;
-        t.fontSize = 16;
-        t.color = Color.black;
-        t.alignment = TextAnchor.MiddleLeft;
-        t.gameObject.layer = 11;
-        t.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        //rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
-        //rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
-        return t;
+            foreach (ResourceDropdown rd in activeJobDisplays)
+            {
+                rd.ClearResourceList();
+                Destroy(rd.gameObject);
+            }
+            activeJobDisplays.Clear();
+        }
+    }
+
+    private void SetSurfacePanel(int i, int j)
+    {
+        if (newConstructionDropdown.buildingDropdown != null)
+            newConstructionDropdown.DestroyDropdown();
+        if (buildingActionDropdown.actionDropdown != null)
+            buildingActionDropdown.DestroyDropdown();
+        if (ManagerBase.domain.mapData.GetSurfaceValue(i, j) >= 0)
+        {
+            short surfaceValue = ManagerBase.domain.mapData.GetSurfaceValue(i, j);
+            Tile surfaceTile = ManagerBase.surfaceTiles[surfaceValue];
+            surfacePanel.GetComponent<Image>().sprite = surfaceTile.sprite;
+            surfacePanel.GetComponent<Image>().type = Image.Type.Filled;
+            surfacePanel.GetComponent<Image>().color = surfaceTile.color;
+            //Debug.Log(spText.GetComponent<Text>().text);
+            // Create the new string
+            string surfaceType = ManagerBase.surfaceValueDictionary.FirstOrDefault(x => x.Value == surfaceValue).Key;
+            string newText = surfaceType;
+            newText += "\n";
+            newText += "No Description Yet";
+            spText.GetComponent<Text>().text = newText;
+            buildingActionDropdown.CreateDropdown(new Vector3(-468, -70), 300, 45, surfaceType);
+            
+
+        }
+        else
+        {
+            surfacePanel.GetComponent<Image>().sprite = null;
+            surfacePanel.GetComponent<Image>().color = Color.gray;
+            spText.GetComponent<Text>().text = "Build a Structure:\n";
+            newConstructionDropdown.CreateDropdown(new Vector3(-468, -70), 300, 45);
+        }
+    }
+
+    public void SetGroundPanel(int i, int j)
+    {
+        byte groundValue = ManagerBase.domain.mapData.GetGroundValue(i, j);
+        Tile groundTile = ManagerBase.groundTiles[groundValue];
+        groundPanel.GetComponent<Image>().sprite = groundTile.sprite;
+        groundPanel.GetComponent<Image>().type = Image.Type.Tiled;
+        groundPanel.GetComponent<Image>().color = groundTile.color;
+        string newText = ManagerBase.groundValueDictionary.FirstOrDefault(x => x.Value == groundValue).Key;
+        newText += "\n";
+        newText += "No Description Yet\n";
+        newText += "Worked by:";
+        gpText.GetComponent<Text>().text = newText;
+    }
+
+    public void SetUndergroundPanel(int i, int j)
+    {
+
+        byte ugv = ManagerBase.domain.mapData.GetUndergroundValue(i, j);
+        byte sv = ManagerBase.domain.mapData.GetStoneValue(i, j);
+        Tile undergroundTile = ManagerBase.undergroundTiles[ugv][sv];
+        undergroundPanel.GetComponent<Image>().sprite = undergroundTile.sprite;
+        undergroundPanel.GetComponent<Image>().type = Image.Type.Tiled;
+        undergroundPanel.GetComponent<Image>().color = undergroundTile.color;
+        string newText;
+        if (ugv == 0)
+            newText = ManagerBase.stoneValueDictionary.FirstOrDefault(x => x.Value == sv).Key;
+        else
+            newText = ManagerBase.undergroundValueDictionary.FirstOrDefault(x => x.Value == ugv).Key;
+        newText += "\n";
+        newText += "No Description Yet\n";
+        newText += "Worked by:";
+        ugpText.GetComponent<Text>().text = newText;
     }
 }

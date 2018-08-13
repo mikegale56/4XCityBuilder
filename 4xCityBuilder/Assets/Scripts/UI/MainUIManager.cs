@@ -27,7 +27,6 @@ public class MainUIManager : MonoBehaviour {
     void Start ()
     {
 
-
         // Swap Surface and Underground button
         Button btn1 = layerSwapButton.GetComponent<Button>();
         //Calls the TaskOnClick/TaskWithParameters method when you click the Button
@@ -185,7 +184,6 @@ public class MainUIManager : MonoBehaviour {
 
         // Convert to int and have the tile ui work on it
         tileDetailManager.tileDetailUI.FocusOnTile(Mathf.FloorToInt(tileLocation.x), Mathf.FloorToInt(tileLocation.y));
-
     }
 
     public void PressResourceUiButton()
@@ -252,5 +250,6 @@ public class MainUIManager : MonoBehaviour {
         buildingManager.buildingUiCanvas.enabled = false;
         tileDetailManager.tileDetailUI.enabled = false;
         tileDetailManager.tileDetailCanvas.enabled = false;
+
     }
 }

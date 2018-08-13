@@ -11,12 +11,22 @@ public class ResourceDropdown : MonoBehaviour
     public string taskName;
     public Domain domain;
     public ResourceQuantityQualityList choiceRqqList;
+    public List<CustomUIElement> uiElements;
+    public CustomUIElement jobStartButton;
 
     private bool selectable;
 
     public void Awake()
     {
         elements = new List<DropdownUIElement>();
+        uiElements = new List<CustomUIElement>();
+    }
+
+    public void Update()
+    {
+        // Check if the go button should be active or not
+        if (jobStartButton != null)
+            jobStartButton.buttonGo.interactable = CheckResources();
     }
 
     public void ClearResourceList()
@@ -25,6 +35,16 @@ public class ResourceDropdown : MonoBehaviour
         {
             db.Hide();
             Destroy(db.thisGo);
+        }
+        foreach (CustomUIElement ui in uiElements)
+        {
+            ui.Hide();
+            Destroy(ui.thisGo);
+        }
+        if (jobStartButton != null)
+        {
+            jobStartButton.Hide();
+            Destroy(jobStartButton.thisGo);
         }
     }
 

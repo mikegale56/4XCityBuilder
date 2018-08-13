@@ -6,7 +6,7 @@ public class Domain
 	public MapData mapData;
 	public ResourceStock stock;
 	public List<BuildingObj> buildings;
-	private List<JobObj> jobs;
+	//private List<JobObj> jobs;
 	private List<JobBonus> activeLeaderJobBonusList;
 
     public DomainEventHandlerManager eventManager = new DomainEventHandlerManager();

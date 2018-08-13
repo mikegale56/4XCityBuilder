@@ -44,7 +44,7 @@ public class BuildingManager : ManagerBase {
 
         buildingUI.buildingNameSpriteDict = new Dictionary<string, Sprite>();
         foreach (BuildingDef bd in buildingDefinitions)
-            buildingUI.buildingNameSpriteDict.Add(bd.name, bd.image);
+            buildingUI.buildingNameSpriteDict.Add(bd.name, bd.sprite);
 
         buildingUI.enabled = false;
         buildingUiCanvas.enabled = false;
@@ -63,7 +63,7 @@ public class BuildingManager : ManagerBase {
         foreach (BuildingDef def in buildingDefinitions)
         {
             Tile newTile = ScriptableObject.CreateInstance<Tile>();
-            newTile.sprite = def.image;
+            newTile.sprite = def.sprite;
             surfaceTiles.Add(newTile);
             surfaceValueDictionary.Add(def.name, (short)(surfaceTiles.Count - 1));
         }

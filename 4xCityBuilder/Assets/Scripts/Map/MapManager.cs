@@ -114,6 +114,13 @@ public class MapManager : ManagerBase
         surfaceTiles.Add(Resources.Load("Tiles/Trees/TreeRedwood") as Tile);
         surfaceValueDictionary.Add("Redwood", (byte)(surfaceTiles.Count - 1));
 
+        // Construction Tile
+        surfaceTiles.Add(Resources.Load("Tiles/Buildings/Gear") as Tile);
+        surfaceValueDictionary.Add("Gear", (byte)(surfaceTiles.Count - 1));
+
+        // Empty Tile
+        surfaceValueDictionary.Add("Nothing", -1);
+
         // Stone Tiles
         undergroundTiles.Add(new List<Tile>());
         undergroundTiles[0].Add(Resources.Load("Tiles/Stone/Sandstone") as Tile);

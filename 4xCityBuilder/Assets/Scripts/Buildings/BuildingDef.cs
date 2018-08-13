@@ -12,16 +12,16 @@ public class BuildingDef
     public string parentName;
     public List<string> industry, skill;
     //public List<BuildingPrerequisites> buildingPrerequisites;
-    //public List<JobDef> jobsEnabled;
     //public List<Bonus> baseBonuses;
-    //public Dictionary<string, int> jobMaxTier;
+    public List<string> jobsEnabled;
+    public Dictionary<string, int> jobMaxTier;
     public ResourceQuantityQualityList resourcesToBuild;
     public int maxWorkers;
     public int maxHp;
     public int housing;
     public int maintenanceCost;
     public int defaultMaxDistToWorkTiles;
-    public Sprite image;
+    public Sprite sprite;
     public float defaultPMUs;
 
     // Constructor
@@ -31,6 +31,8 @@ public class BuildingDef
         resourcesToBuild = new ResourceQuantityQualityList();
         industry = new List<string>();
         skill = new List<string>();
+        jobsEnabled = new List<string>();
+        jobMaxTier = new Dictionary<string, int>();
 
         foreach (string line in csvLines)
         {
@@ -111,17 +113,25 @@ public class BuildingDef
                 if (!Single.TryParse(values[column["PMUs to Build"]], out defaultPMUs))
                     Debug.Log("Cannot Parse PMUs to Build");
 
-            if (image == null)
+            if (sprite == null)
             { 
                 Texture2D tex;
                 if (values[column["Image"]].Length == 0)
                     tex = (Resources.Load("Textures/NeedIcon") as Texture2D);
                 else
                     tex = (Resources.Load(values[column["Image"]]) as Texture2D);
-                image = Sprite.Create(tex,
+                sprite = Sprite.Create(tex,
                             new Rect(0, 0, tex.width, tex.height),
                             new Vector2(0.5f, 0.5f), tex.width);
             }
+
+            // Job Name, Job Max Tier
+            if (values[column["Job Name"]].Length > 0)
+            {
+                jobsEnabled.Add(values[column["Job Name"]]);
+                jobMaxTier[values[column["Job Name"]]] = Int32.Parse(values[column["Job Max Tier"]]);
+            }
+            
         }
     }
 }
