@@ -1,77 +1,255 @@
-Job Name,Description,Industry,Skill,Type 1,Type 2,Output Name,Tier,Tiles Required,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Output Quantity,Work PMU
-Farm Crops,Description,Agricultural,Farming,Crop,,Barley,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,100,1
-Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Adamantium Anvil,5,,Adamantium,,5,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
-Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Iron Anvil,3,,Iron,,3,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
-Forge Anvil,Description,Metalworking,Blacksmith,Anvil,,Steel Anvil,4,,Steel,,4,100,,Fuel,2,50,,,,,,,,,,,,,,,,,1,2
-Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Adamantium Armor,5,,Adamantium,,5,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,32
-Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Bronze Armor,2,,Bronze,,2,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,4
-Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Copper Armor,1,,Copper,,1,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,2
-Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Iron Armor,3,,Iron,,3,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,8
-Forge Heavy Armor,Description,Metalworking,Armorsmith,Heavy Armor,,Heavy Steel Armor,4,,Steel,,4,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,1,16
-Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Adamantium Armor,5,,Adamantium,,5,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,16
-Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Bronze Armor,2,,Bronze,,2,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,1,2
-Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Copper Armor,1,,Copper,,1,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,1,1
-Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Iron Armor,3,,Iron,,3,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,4
-Forge Light Armor,Description,Metalworking,Armorsmith,Light Armor,,Light Steel Armor,4,,Steel,,4,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,1,8
-Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Adamantium Long Sword,5,,Adamantium,,5,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,8
-Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Bronze Long Sword,2,,Bronze,,2,3,,Fuel,1,3,,,,,,,,,,,,,,,,,1,1
-Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Copper Long Sword,1,,Copper,,1,3,,Fuel,1,3,,,,,,,,,,,,,,,,,1,0.5
-Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Iron Long Sword,3,,Iron,,3,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,2
-Forge Long Sword,Description,Metalworking,Weaponsmith,Long Sword,1H Weapon,Steel Long Sword,4,,Steel,,4,3,,Fuel,2,3,,,,,,,,,,,,,,,,,1,4
-Gather Wood,Description,Agricultural,Woodcutting,Wood,Fuel,Pine,1,Pine,,,,,,,,,,,,,,,,,,,,,,,,,10,1
-Gather Wood,Description,Agricultural,Woodcutting,Wood,Fuel,Oak,2,Oak,,,,,,,,,,,,,,,,,,,,,,,,,10,2
-Mine Coal,Description,Earthworking,Mining,Fuel,,Coal,3,Coal,,,,,,,,,,,,,,,,,,,,,,,,,10,1
-Mine Ore,Description,Earthworking,Mining,Ore,,Adamantium Ore,5,Adamantium Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,32
-Mine Ore,Description,Earthworking,Mining,Ore,,Copper Ore,1,Copper Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
-Mine Ore,Description,Earthworking,Mining,Ore,,Gold Ore,3,Gold Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,4
-Mine Ore,Description,Earthworking,Mining,Ore,,Iron Ore,3,Iron Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,4
-Mine Ore,Description,Earthworking,Mining,Ore,,Silver Ore,2,Silver Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
-Mine Ore,Description,Earthworking,Mining,Ore,,Tin Ore,1,Tin Ore,,,,,,,,,,,,,,,,,,,,,,,,,10,2
-Quarry Stone,Description,Earthworking,Quarrying,Stone,,Granite,4,Granite,,,,,,,,,,,,,,,,,,,,,,,,,10,8
-Quarry Stone,Description,Earthworking,Quarrying,Stone,,Limestone,2,Limestone,,,,,,,,,,,,,,,,,,,,,,,,,10,2
-Quarry Stone,Description,Earthworking,Quarrying,Stone,,Marble,3,Marble,,,,,,,,,,,,,,,,,,,,,,,,,10,4
-Quarry Stone,Description,Earthworking,Quarrying,Stone,,Moonstone,5,Moonstone,,,,,,,,,,,,,,,,,,,,,,,,,10,32
-Quarry Stone,Description,Earthworking,Quarrying,Stone,,Sandstone,1,Sandstone,,,,,,,,,,,,,,,,,,,,,,,,,10,1
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Adamantium,5,,Adamantium Ore,,5,1,,Fuel,2,1,,,,,,,,,,,,,,,,,1,32
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Bronze,2,,Tin,,1,1,Copper,,1,1,,Fuel,1,1,,,,,,,,,,,,,2,2
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Copper,1,,Copper Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Iron,3,,Iron Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,8
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Steel,4,,Iron,,3,1,,Fuel,2,1,,,,,,,,,,,,,,,,,1,16
-Smelt Metal,Description,Metalworking,Metallurgy,Metal,,Tin,1,,Tin Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
-Smelt Metal,Description,Metalworking,Metallurgy,Precious Metal,,Gold,3,,Gold Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,4
-Smelt Metal,Description,Metalworking,Metallurgy,Precious Metal,,Silver,2,,Silver Ore,,2,1,,Fuel,1,1,,,,,,,,,,,,,,,,,1,2
-Make Charcoal,Description,Earthworking,Earthworking,Fuel,,Charcoal,2,,,Wood,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,10,1
-Shear Animal,Description,Agricultural,Animal Husbandry,Fiber,,Wool,2,,,,,,,,,,,,,,,,,,,,,,,,,,1,2
-Shear Animal,Description,Agricultural,Animal Husbandry,Fiber,,Spider Silk,5,,,,,,,,,,,,,,,,,,,,,,,,,,1,16
-Farm Crops,Description,Agricultural,Farming,Crop,Fuel,Straw,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,1
-Breed Animal,Description,Agricultural,Animal Husbandry,Animal,,Cow,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,8
-Breed Animal,Description,Agricultural,Animal Husbandry,Animal,,Sheep,1,,,,,,,,,,,,,,,,,,,,,,,,,,1,4
-Weave Cloth,Description,Crafting,Weaving,Cloth,,Cotton Cloth,1,,Cotton,,1,1,,,,,,,,,,,,,,,,,,,,,1,1
-Weave Cloth,Description,Crafting,Weaving,Cloth,,Spider Silk Cloth,5,,Spider Silk,,5,1,,,,,,,,,,,,,,,,,,,,,1,16
-Weave Cloth,Description,Crafting,Weaving,Cloth,,Wool Cloth,2,,Wool,,2,1,,,,,,,,,,,,,,,,,,,,,1,2
-Farm Crops,Description,Agricultural,Farming,Fiber,Crop,Cotton,1,,,,,,,,,,,,,,,,,,,,,,,,,,10,1
-Butcher Animal,Description,Agricultural,Animal Husbandry,Hide,,Leather,1,,Cow,,1,1,,,,,,,,,,,,,,,,,,,,,10,4
-Hunt Animal,Description,Agricultural,Hunting,Hide,,Fur,3,,,,,,,,,,,,,,,,,,,,,,,,,,10,8
-Hunt Animal,Description,Agricultural,Hunting,Hide,,Scaled Leather,5,,,,,,,,,,,,,,,,,,,,,,,,,,10,32
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,0
+Job Name,Description,Work PMU,Industry,Skill,Tier,Tiles Required,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Input Name,Input Type,Input Tier,Input Quantity,Output Name,Output Quantity,Output Name,Output Quantity,Output Name,Output Quantity
+Breed Animal,Description,4,Agricultural,Animal Husbandry,1,,Sheep,,1,2,Hay,,1,100,,,,,,,,,,,,,,,,,Sheep,3,,,,
+Breed Animal,Description,8,Agricultural,Animal Husbandry,1,,Cow,,1,2,Hay,,1,100,,,,,,,,,,,,,,,,,Cow,3,,,,
+Butcher Animal,Description,4,Agricultural,Animal Husbandry,1,,Cow,,1,1,,,,,,,,,,,,,,,,,,,,,Leather,10,Meat,10,Bone,10
+Craft Utensils,Description,1,Metalworking,Blacksmith,1,,Copper,,1,3,,Fuel,2,3,,,,,,,,,,,,,,,,,Copper Utensils,1,,,,
+Craft Utensils,Description,2,Metalworking,Blacksmith,3,,Silver,,2,3,,Fuel,2,1,,,,,,,,,,,,,,,,,Silver Utensils,1,,,,
+Dig Clay,Description,1,Earthworking,Digging,1,Coast,,,,,,,,,,,,,,,,,,,,,,,,,Clay,100,,,,
+Dig Sand,Description,1,Earthworking,Digging,1,Coast,,,,,,,,,,,,,,,,,,,,,,,,,Sand,100,,,,
+Farm Crops,Description,1,Agricultural,Farming,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Barley,100,Straw,100,,
+Farm Crops,Description,1,Agricultural,Farming,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Cotton,10,,,,
+Farm Crops,Description,1,Agricultural,Farming,1,,,,,,,,,,,,,,,,,,,,,,,,,,Hay,100,,,,
+Farm Crops,Description,1,Agricultural,Farming,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Hops,10,,,,
+Farm Crops,Description,1,Agricultural,Farming,1,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Wheat,10,,,,
+Farm Crops,Description,2,Agricultural,Farming,2,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Cabbages,10,,,,
+Farm Crops,Description,2,Agricultural,Farming,2,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Carrots,10,,,,
+Farm Crops,Description,2,Agricultural,Farming,2,Plain,,,,,,,,,,,,,,,,,,,,,,,,,Onions,10,,,,
+Forge Anvil,Description,2,Metalworking,Blacksmith,3,,Iron,,3,100,,Fuel,2,50,,,,,,,,,,,,,,,,,Iron Anvil,1,,,,
+Forge Anvil,Description,2,Metalworking,Blacksmith,4,,Steel,,4,100,,Fuel,2,50,,,,,,,,,,,,,,,,,Steel Anvil,1,,,,
+Forge Anvil,Description,2,Metalworking,Blacksmith,5,,Adamantium,,5,100,,Fuel,2,50,,,,,,,,,,,,,,,,,Adamantium Anvil,1,,,,
+Forge Axe,Description,0.5,Metalworking,Weaponsmith,1,,Copper,,1,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Copper Axe,1,,,,
+Forge Axe,Description,1,Metalworking,Weaponsmith,2,,Bronze,,2,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Bronze Axe,1,,,,
+Forge Axe,Description,2,Metalworking,Weaponsmith,3,,Iron,,3,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Iron Axe,1,,,,
+Forge Axe,Description,4,Metalworking,Weaponsmith,4,,Steel,,4,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Steel Axe,1,,,,
+Forge Axe,Description,8,Metalworking,Weaponsmith,5,,Adamantium,,5,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Adamantium Axe,1,,,,
+Forge Battleaxe,Description,1,Metalworking,Weaponsmith,1,,Copper,,1,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Copper Battleaxe,1,,,,
+Forge Battleaxe,Description,2,Metalworking,Weaponsmith,2,,Bronze,,2,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Bronze Battleaxe,1,,,,
+Forge Battleaxe,Description,4,Metalworking,Weaponsmith,3,,Iron,,3,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Iron Battleaxe,1,,,,
+Forge Battleaxe,Description,8,Metalworking,Weaponsmith,4,,Steel,,4,6,,Fuel,2,6,,Wood,1,1,,,,,,,,,,,,,Steel Battleaxe,1,,,,
+Forge Battleaxe,Description,16,Metalworking,Weaponsmith,5,,Adamantium,,5,6,,Fuel,2,6,,Wood,1,1,,,,,,,,,,,,,Adamantium Battleaxe,1,,,,
+Forge Great Sword,Description,1,Metalworking,Weaponsmith,1,,Copper,,1,6,,Fuel,1,6,,,,,,,,,,,,,,,,,Copper Great Sword,1,,,,
+Forge Great Sword,Description,2,Metalworking,Weaponsmith,2,,Bronze,,2,6,,Fuel,1,6,,,,,,,,,,,,,,,,,Bronze Great Sword,1,,,,
+Forge Great Sword,Description,4,Metalworking,Weaponsmith,3,,Iron,,3,6,,Fuel,1,6,,,,,,,,,,,,,,,,,Iron Great Sword,1,,,,
+Forge Great Sword,Description,8,Metalworking,Weaponsmith,4,,Steel,,4,6,,Fuel,2,6,,,,,,,,,,,,,,,,,Steel Great Sword,1,,,,
+Forge Great Sword,Description,16,Metalworking,Weaponsmith,5,,Adamantium,,5,6,,Fuel,2,6,,,,,,,,,,,,,,,,,Adamantium Great Sword,1,,,,
+Forge Heavy Armor,Description,2,Metalworking,Armorsmith,1,,Copper,,1,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,Heavy Copper Armor,1,,,,
+Forge Heavy Armor,Description,4,Metalworking,Armorsmith,2,,Bronze,,2,25,,Fuel,1,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,Heavy Bronze Armor,1,,,,
+Forge Heavy Armor,Description,8,Metalworking,Armorsmith,3,,Iron,,3,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,Heavy Iron Armor,1,,,,
+Forge Heavy Armor,Description,16,Metalworking,Armorsmith,4,,Steel,,4,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,Heavy Steel Armor,1,,,,
+Forge Heavy Armor,Description,32,Metalworking,Armorsmith,5,,Adamantium,,5,25,,Fuel,2,25,,Cloth,1,5,,Hide,1,5,,,,,,,,,Heavy Adamantium Armor,1,,,,
+Forge Light Armor,Description,1,Metalworking,Armorsmith,1,,Copper,,1,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,Light Copper Armor,1,,,,
+Forge Light Armor,Description,2,Metalworking,Armorsmith,2,,Bronze,,2,10,,Fuel,1,10,,Hide,1,10,,,,,,,,,,,,,Light Bronze Armor,1,,,,
+Forge Light Armor,Description,4,Metalworking,Armorsmith,3,,Iron,,3,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,Light Iron Armor,1,,,,
+Forge Light Armor,Description,8,Metalworking,Armorsmith,4,,Steel,,4,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,Light Steel Armor,1,,,,
+Forge Light Armor,Description,16,Metalworking,Armorsmith,5,,Adamantium,,5,10,,Fuel,2,10,,Hide,1,10,,,,,,,,,,,,,Light Adamantium Armor,1,,,,
+Forge Long Sword,Description,0.5,Metalworking,Weaponsmith,1,,Copper,,1,3,,Fuel,1,3,,,,,,,,,,,,,,,,,Copper Long Sword,1,,,,
+Forge Long Sword,Description,1,Metalworking,Weaponsmith,2,,Bronze,,2,3,,Fuel,1,3,,,,,,,,,,,,,,,,,Bronze Long Sword,1,,,,
+Forge Long Sword,Description,2,Metalworking,Weaponsmith,3,,Iron,,3,3,,Fuel,1,3,,,,,,,,,,,,,,,,,Iron Long Sword,1,,,,
+Forge Long Sword,Description,4,Metalworking,Weaponsmith,4,,Steel,,4,3,,Fuel,2,3,,,,,,,,,,,,,,,,,Steel Long Sword,1,,,,
+Forge Long Sword,Description,8,Metalworking,Weaponsmith,5,,Adamantium,,5,3,,Fuel,2,3,,,,,,,,,,,,,,,,,Adamantium Long Sword,1,,,,
+Forge Mace,Description,0.5,Metalworking,Weaponsmith,1,,Copper,,1,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Copper Mace,1,,,,
+Forge Mace,Description,1,Metalworking,Weaponsmith,2,,Bronze,,2,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Bronze Mace,1,,,,
+Forge Mace,Description,2,Metalworking,Weaponsmith,3,,Iron,,3,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Iron Mace,1,,,,
+Forge Mace,Description,4,Metalworking,Weaponsmith,4,,Steel,,4,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Steel Mace,1,,,,
+Forge Mace,Description,8,Metalworking,Weaponsmith,5,,Adamantium,,5,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Adamantium Mace,1,,,,
+Forge Shield,Description,0.5,Metalworking,Armorsmith,1,,Copper,,1,3,,Fuel,2,3,,Hide,1,1,,,,,,,,,,,,,Copper Shield,1,,,,
+Forge Shield,Description,1,Metalworking,Armorsmith,2,,Bronze,,2,3,,Fuel,2,3,,Hide,1,1,,,,,,,,,,,,,Bronze Shield,1,,,,
+Forge Shield,Description,2,Metalworking,Armorsmith,3,,Iron,,3,3,,Fuel,2,3,,Hide,1,1,,,,,,,,,,,,,Iron Shield,1,,,,
+Forge Shield,Description,4,Metalworking,Armorsmith,4,,Steel,,4,3,,Fuel,2,3,,Hide,1,1,,,,,,,,,,,,,Steel Shield,1,,,,
+Forge Shield,Description,8,Metalworking,Armorsmith,5,,Adamantium,,5,3,,Fuel,2,3,,Hide,1,1,,,,,,,,,,,,,Adamantium Shield,1,,,,
+Forge Spear,Description,0.5,Metalworking,Weaponsmith,1,,Copper,,1,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Copper Spear,1,,,,
+Forge Spear,Description,1,Metalworking,Weaponsmith,2,,Bronze,,2,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Bronze Spear,1,,,,
+Forge Spear,Description,2,Metalworking,Weaponsmith,3,,Iron,,3,3,,Fuel,1,3,,Wood,1,1,,,,,,,,,,,,,Iron Spear,1,,,,
+Forge Spear,Description,4,Metalworking,Weaponsmith,4,,Steel,,4,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Steel Spear,1,,,,
+Forge Spear,Description,8,Metalworking,Weaponsmith,5,,Adamantium,,5,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Adamantium Spear,1,,,,
+Forge Warhammer,Description,1,Metalworking,Weaponsmith,1,,Copper,,1,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Copper Warhammer,1,,,,
+Forge Warhammer,Description,2,Metalworking,Weaponsmith,2,,Bronze,,2,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Bronze Warhammer,1,,,,
+Forge Warhammer,Description,4,Metalworking,Weaponsmith,3,,Iron,,3,6,,Fuel,1,6,,Wood,1,1,,,,,,,,,,,,,Iron Warhammer,1,,,,
+Forge Warhammer,Description,8,Metalworking,Weaponsmith,4,,Steel,,4,6,,Fuel,2,6,,Wood,1,1,,,,,,,,,,,,,Steel Warhammer,1,,,,
+Forge Warhammer,Description,16,Metalworking,Weaponsmith,5,,Adamantium,,5,6,,Fuel,2,6,,Wood,1,1,,,,,,,,,,,,,Adamantium Warhammer,1,,,,
+Gather Water,Description,1,Agricultural,Agricultural,1,,,,,,,,,,,,,,,,,,,,,,,,,,Water,10,,,,
+Gather Wood,Gather Pine Wood,1,Agricultural,Woodcutting,1,Pine,,,,,,,,,,,,,,,,,,,,,,,,,Pine,10,,,,
+Gather Wood,Gather Oak Wood,2,Agricultural,Woodcutting,2,Oak,,,,,,,,,,,,,,,,,,,,,,,,,Oak,10,,,,
+Hunt Animal,Description,8,Agricultural,Hunting,3,Special,,,,,,,,,,,,,,,,,,,,,,,,,Fur,10,Wild Game,10,Bone,10
+Hunt Animal,Description,32,Agricultural,Hunting,5,Special,,,,,,,,,,,,,,,,,,,,,,,,,Scaled Leather,10,Monster Steaks,10,Monster Bone,10
+Make Charcoal,Description,1,Earthworking,Earthworking,2,,,Wood,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Charcoal,10,,,,
+Mine Coal,Description,1,Earthworking,Mining,3,Coal,,,,,,,,,,,,,,,,,,,,,,,,,Coal,10,,,,
+Mine Gems,Description,2,Earthworking,Mining,1,Amber,,,,,,,,,,,,,,,,,,,,,,,,,Amber,10,,,,
+Mine Gems,Description,8,Earthworking,Mining,3,Ruby,,,,,,,,,,,,,,,,,,,,,,,,,Ruby,10,,,,
+Mine Gems,Description,32,Earthworking,Mining,5,Diamond,,,,,,,,,,,,,,,,,,,,,,,,,Diamond,10,,,,
+Mine Ore,Mine Copper Ore,2,Earthworking,Mining,1,Copper Ore,,,,,,,,,,,,,,,,,,,,,,,,,Copper Ore,10,,,,
+Mine Ore,Mine Tin Ore,2,Earthworking,Mining,1,Tin Ore,,,,,,,,,,,,,,,,,,,,,,,,,Tin Ore,10,,,,
+Mine Ore,Mine Silver Ore,2,Earthworking,Mining,2,Silver Ore,,,,,,,,,,,,,,,,,,,,,,,,,Silver Ore,10,,,,
+Mine Ore,Mine Gold Ore,4,Earthworking,Mining,3,Gold Ore,,,,,,,,,,,,,,,,,,,,,,,,,Gold Ore,10,,,,
+Mine Ore,Mine Iron Ore,4,Earthworking,Mining,3,Iron Ore,,,,,,,,,,,,,,,,,,,,,,,,,Iron Ore,10,,,,
+Mine Ore,Mine Adamantium Ore,32,Earthworking,Mining,5,Adamantium Ore,,,,,,,,,,,,,,,,,,,,,,,,,Adamantium Ore,10,,,,
+Quarry Stone,Quarry Sandstone,1,Earthworking,Quarrying,1,Sandstone,,,,,,,,,,,,,,,,,,,,,,,,,Sandstone,10,,,,
+Quarry Stone,Quarry Limestone,2,Earthworking,Quarrying,2,Limestone,,,,,,,,,,,,,,,,,,,,,,,,,Limestone,10,,,,
+Quarry Stone,Quarry Marble,4,Earthworking,Quarrying,3,Marble,,,,,,,,,,,,,,,,,,,,,,,,,Marble,10,,,,
+Quarry Stone,Quarry Granite,8,Earthworking,Quarrying,4,Granite,,,,,,,,,,,,,,,,,,,,,,,,,Granite,10,,,,
+Quarry Stone,Description,32,Earthworking,Quarrying,5,Moonstone,,,,,,,,,,,,,,,,,,,,,,,,,Moonstone,10,,,,
+Shear Animal,Description,2,Agricultural,Animal Husbandry,2,,Sheep,,1,5,,,,,,,,,,,,,,,,,,,,,Sheep,10,Wool,10,,
+Shear Animal,Description,16,Agricultural,Animal Husbandry,5,,,,,,,,,,,,,,,,,,,,,,,,,,Spider Silk,1,,,,
+Smelt Metal,Description,2,Metalworking,Metallurgy,1,,Copper Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Copper,1,,,,
+Smelt Metal,Description,2,Metalworking,Metallurgy,1,,Tin Ore,,1,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Tin,1,,,,
+Smelt Metal,Description,2,Metalworking,Metallurgy,2,,Tin,,1,1,Copper,,1,1,,Fuel,1,1,,,,,,,,,,,,,Bronze,2,,,,
+Smelt Metal,Description,2,Metalworking,Metallurgy,2,,Silver Ore,,2,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Silver,1,,,,
+Smelt Metal,Description,4,Metalworking,Metallurgy,3,,Gold Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Gold,1,,,,
+Smelt Metal,Description,8,Metalworking,Metallurgy,3,,Iron Ore,,3,1,,Fuel,1,1,,,,,,,,,,,,,,,,,Iron,1,,,,
+Smelt Metal,Description,16,Metalworking,Metallurgy,4,,Iron,,3,1,,Fuel,2,1,,,,,,,,,,,,,,,,,Steel,1,,,,
+Smelt Metal,Description,32,Metalworking,Metallurgy,5,,Adamantium Ore,,5,1,,Fuel,2,1,,,,,,,,,,,,,,,,,Adamantium,1,,,,
+Smith Tools,Description,0.5,Metalworking,Blacksmith,1,,Copper,,1,3,,Fuel,2,1,,Wood,1,1,,,,,,,,,,,,,Copper Tools,1,,,,
+Smith Tools,Description,1,Metalworking,Blacksmith,2,,Bronze,,2,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Bronze Tools,1,,,,
+Smith Tools,Description,2,Metalworking,Blacksmith,3,,Iron,,3,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Iron Tools,1,,,,
+Smith Tools,Description,4,Metalworking,Blacksmith,4,,Steel,,4,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Steel Tools,1,,,,
+Smith Tools,Description,8,Metalworking,Blacksmith,5,,Adamantium,,5,3,,Fuel,2,3,,Wood,1,1,,,,,,,,,,,,,Adamantium Tools,1,,,,
+Weave Cloth,Description,1,Crafting,Weaving,1,,Cotton,,1,1,,,,,,,,,,,,,,,,,,,,,Cotton Cloth,1,,,,
+Weave Cloth,Description,2,Crafting,Weaving,2,,Wool,,2,1,,,,,,,,,,,,,,,,,,,,,Wool Cloth,1,,,,
+Weave Cloth,Description,16,Crafting,Weaving,5,,Spider Silk,,5,1,,,,,,,,,,,,,,,,,,,,,Spider Silk Cloth,1,,,,
+Gather Wood,Gather Ash Wood,4,Agricultural,Woodcutting,3,Ash,,,,,,,,,,,,,,,,,,,,,,,,,Ash,10,,,,
+Gather Wood,Gather Redwood,8,Agricultural,Woodcutting,4,Redwood,,,,,,,,,,,,,,,,,,,,,,,,,Redwood,10,,,,
+Gather Wood,Gather Dryad-Wood,16,Agricultural,Woodcutting,5,Dryad-Wood,,,,,,,,,,,,,,,,,,,,,,,,,Dryad Wood,10,,,,
+Milk Cows,Description,0,Agricultural,Animal Husbandry,2,,Cow,,1,5,,,,,,,,,,,,,,,,,,,,,Cow,5,Milk,10,,
+Breed Animal,Description,0,Agricultural,Animal Husbandry,3,,Horses,,3,2,Hay,,1,100,,,,,,,,,,,,,,,,,Horses,3,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

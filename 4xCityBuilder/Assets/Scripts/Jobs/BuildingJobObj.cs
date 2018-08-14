@@ -83,6 +83,9 @@ public class BuildingJobObj : JobObj
                 string message = jobDef.name + " at (" + iLoc.ToString() + "," + jLoc.ToString() + ")";
                 ManagerBase.domain.eventManager.Broadcast(domainEventChannels.job, jobChannelEvents.constructionComplete, new DomainEventArg(message, iLoc, jLoc));
 
+                BuildingDef thisBuildingDef = ManagerBase.buildingDefinitions[ManagerBase.buildingIndexOf[jobDef.outputName[0]]];
+
+                ManagerBase.domain.buildingManager.AddBuilding(new Vector2Int(iLoc, jLoc), thisBuildingDef, QualityEnum.normal);
             }
             Debug.Log("Construction Job: " + jobDef.name + " going with " + this.workPMUsRemaining.ToString() + " PMUs left");
             Debug.Log("   PMU Rate: " + this.currentPMURate.ToString() + ", just added: " + addedPMUs.ToString());

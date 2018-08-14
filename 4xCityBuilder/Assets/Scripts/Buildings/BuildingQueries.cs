@@ -23,6 +23,15 @@ public static class BuildingQueries
     }
     public static BuildingObj ByLocation(this IEnumerable<BuildingObj> BuildingObjs, Vector2Int ijLocation)
     {
-        return BuildingObjs.Where(bldg => bldg.ijLocation == ijLocation).ElementAt(0);
+        IEnumerable<BuildingObj> objs = BuildingObjs.Where(bldg => bldg.ijLocation == ijLocation);
+        if (objs.Count() == 1)
+            return BuildingObjs.Where(bldg => bldg.ijLocation == ijLocation).ElementAt(0);
+        else if (objs.Count() == 0)
+            return null;
+        else
+        {
+            Debug.LogError("Should nto be more than one building at a location");
+            return null;
+        }
     }
 }

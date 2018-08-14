@@ -79,6 +79,14 @@ public class JobManager : ManagerBase
         return newJobObj;
     }
 
+    public DemoJobObj AddDemolitionJob(JobDef newJobDef, int iLoc, int jLoc)
+    {
+        DemoJobObj newJobObj = new DemoJobObj(newJobDef, iLoc, jLoc);
+        newJobObj.UpdateBonuses(jobBonusList);
+        jobList.Add(newJobObj);
+        return newJobObj;
+    }
+    
     public void CancelJob(System.Guid jobGuid)
 	{
 		

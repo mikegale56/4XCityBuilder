@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\EventHandler\WorldEventHandlerManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameRunner.cs" />
     <Compile Include="Assets\Scripts\Jobs\BuildingJobObj.cs" />
+    <Compile Include="Assets\Scripts\Jobs\DemoJobObj.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonus.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuality.cs" />
     <Compile Include="Assets\Scripts\Jobs\JobBonusQuantity.cs" />

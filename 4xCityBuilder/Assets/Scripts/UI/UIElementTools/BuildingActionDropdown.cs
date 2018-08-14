@@ -52,7 +52,7 @@ public class BuildingActionDropdown : MonoBehaviour
         //actionDropdown.children[upgradeInd].buttonGo.interactable = false;
         actionDropdown.children[menuInd].CloseButton();
 
-        Debug.Log(surfaceType);
+        //Debug.Log(surfaceType);
         IEnumerable<BuildingDef> upgrades = BuildingQueries.ByParent(ManagerBase.buildingDefinitions, surfaceType);
         int ind = 0;
         foreach (BuildingDef def in upgrades)
@@ -72,7 +72,12 @@ public class BuildingActionDropdown : MonoBehaviour
 
             BuildingDef bldgDef = ManagerBase.buildingDefinitions[ManagerBase.buildingIndexOf[surfaceType]];
 
-            IEnumerable<JobDef> jobs = JobQueries.ByNameAndMaxTier(ManagerBase.jobDefinitions, bldgDef.name, bldgDef.tier);
+            List<JobDef> jobs = new List<JobDef>();
+            
+            for (int jeInd = 0; jeInd < bldgDef.jobsEnabled.Count; jeInd++)
+                jobs.AddRange(JobQueries.ByNameAndMaxTier(ManagerBase.jobDefinitions, bldgDef.jobsEnabled[jeInd], bldgDef.jobMaxTier[bldgDef.jobsEnabled[jeInd]]));
+
+            Debug.Log(jobs.Count());
 
             if (jobs.Count() > 0)
             {
@@ -81,6 +86,7 @@ public class BuildingActionDropdown : MonoBehaviour
                 actionDropdown.children[menuInd].textGo.text = "Start Job";
                 actionDropdown.children[menuInd].buttonGo.interactable = false;
                 actionDropdown.children[menuInd].CloseButton();
+                actionDropdown.children[menuInd].Init();
 
                 ind = 0;
                 foreach (JobDef job in jobs)

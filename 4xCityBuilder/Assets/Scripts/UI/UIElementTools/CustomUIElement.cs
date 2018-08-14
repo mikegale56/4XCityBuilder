@@ -23,6 +23,7 @@ public class CustomUIElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Color normal = Color.white;
     public Color highlighted = Color.gray;
     public Color pressed = Color.green;
+    public Color disabled = Color.white;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class CustomUIElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
         b.normalColor = this.normal;
         b.highlightedColor = this.highlighted;
         b.pressedColor = this.pressed;
+        b.disabledColor = this.disabled;
         buttonGo.colors = b;
 
     }

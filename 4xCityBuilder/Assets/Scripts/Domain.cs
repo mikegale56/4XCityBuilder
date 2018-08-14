@@ -7,9 +7,10 @@ public class Domain
 	public ResourceStock stock;
 	public List<BuildingObj> buildings;
 	//private List<JobObj> jobs;
-	private List<JobBonus> activeLeaderJobBonusList;
+	//private List<JobBonus> activeLeaderJobBonusList;
 
     public DomainEventHandlerManager eventManager = new DomainEventHandlerManager();
+    public BuildingManager buildingManager;
 
     public string domainName;
 	public string domainOwner;

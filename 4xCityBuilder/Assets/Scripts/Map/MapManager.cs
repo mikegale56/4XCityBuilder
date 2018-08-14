@@ -118,6 +118,10 @@ public class MapManager : ManagerBase
         surfaceTiles.Add(Resources.Load("Tiles/Buildings/Gear") as Tile);
         surfaceValueDictionary.Add("Gear", (byte)(surfaceTiles.Count - 1));
 
+        // Demolition Tile
+        surfaceTiles.Add(Resources.Load("Tiles/Buildings/Cancel") as Tile);
+        surfaceValueDictionary.Add("Cancel", (byte)(surfaceTiles.Count - 1));
+
         // Empty Tile
         surfaceValueDictionary.Add("Nothing", -1);
 

@@ -26,21 +26,19 @@ public static class ResourceDropdownCreator
         return rd;
     }
 
-    public static ResourceDropdown CreateDemolishStaticView(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite)
+    public static ResourceDropdown CreateNoResourceStaticView(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite)
     {
-        ResourceDropdown rd = CreateDemolish(parent, localPosition, taskName, domain, resultSprite, true);
-        JustUiElements(rd, parent, resultSprite, true, localPosition);
+        ResourceDropdown rd = CreateNoResource(parent, localPosition, taskName, domain, resultSprite, true);
         return rd;
     }
 
-    public static ResourceDropdown CreateDemolishChoiceDropdown(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite)
+    public static ResourceDropdown CreateNoResourceDropdown(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite)
     {
-        ResourceDropdown rd = CreateDemolish(parent, localPosition, taskName, domain, resultSprite, false);
-        JustUiElements(rd, parent, resultSprite, false, localPosition);
+        ResourceDropdown rd = CreateNoResource(parent, localPosition, taskName, domain, resultSprite, false);
         return rd;
     }
 
-    private static ResourceDropdown CreateDemolish(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite, bool isStatic)
+    private static ResourceDropdown CreateNoResource(Transform parent, Vector3 localPosition, string taskName, Domain domain, Sprite resultSprite, bool isStatic)
     {
         GameObject newGo = new GameObject("Resource Dropdown");
         ResourceDropdown resourceDropdown = newGo.AddComponent<ResourceDropdown>();
@@ -123,6 +121,7 @@ public static class ResourceDropdownCreator
     private static void AddUiElements(ResourceDropdown resourceDropdown, Transform parent, Sprite resultSprite, bool isStatic)
     {
         // Add stuff to the right of the resources
+        // This fails when the resource count is 0!!!!!
         Vector3 localPosition = resourceDropdown.elements[resourceDropdown.elements.Count - 1].transform.localPosition;
         JustUiElements(resourceDropdown, parent, resultSprite, isStatic, localPosition);
     }
@@ -152,6 +151,7 @@ public static class ResourceDropdownCreator
             resourceDropdown.jobStartButton.textGo.fontSize = 22;
             resourceDropdown.jobStartButton.buttonGo.interactable = false;
             resourceDropdown.jobStartButton.gameObject.name = "Job Start Button";
+            Debug.Log("Draw Go Button");
         }
     }
 }

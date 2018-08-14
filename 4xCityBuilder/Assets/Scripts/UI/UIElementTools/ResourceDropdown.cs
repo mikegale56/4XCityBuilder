@@ -43,6 +43,7 @@ public class ResourceDropdown : MonoBehaviour
         }
         if (jobStartButton != null)
         {
+            Debug.Log("Deleting start");
             jobStartButton.Hide();
             Destroy(jobStartButton.thisGo);
         }

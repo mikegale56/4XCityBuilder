@@ -45,22 +45,6 @@ public class BuildingObj
     public int NumberOfWorkers()
     { return 1; }
 
-    // Function to add a job to the jobs list
-    public void AddJob()
-    { }
-
-    // Function to remove a job from the jobs list
-    public void RemoveJob()
-    { }
-
-    // Function to add a worker to a job
-    public void AddWorkerToJob()
-    { }
-
-    // Function to remove workers from a job
-    public void RemoveWorkerFromJob()
-    { }
-
     // Function to take damage
     public void TakeDamage()
     { }

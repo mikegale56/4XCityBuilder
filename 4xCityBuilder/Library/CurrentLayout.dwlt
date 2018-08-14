@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 2615
     height: 1341
-  m_MinSize: {x: 950, y: 613}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 563}
   m_MaxSize: {x: 22012, y: 12063}
   vertical: 0
-  controlID: 181
+  controlID: 73
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 563}
   m_MaxSize: {x: 4002, y: 12063}
   vertical: 1
-  controlID: 63
+  controlID: 55
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -399,9 +399,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1054.0985, y: 594.6641, z: 15.25}
+    m_Target: {x: 838.4591, y: 561.2555, z: 11.75}
     speed: 2
-    m_Value: {x: 1054.0985, y: 594.6641, z: 15.25}
+    m_Value: {x: 838.4591, y: 561.2555, z: 11.75}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -433,9 +433,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1171.8856
+    m_Target: 1526.0999
     speed: 2
-    m_Value: 1171.8856
+    m_Value: 1526.0999
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -526,21 +526,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: d605f8fff805f8ff1006f8ff1806f8ff0e5efaffe6fbffff00000000e41000006c1100008a1100009e110000
+    m_ExpandedIDs: 1297feff1a97feffcc9fffffe6a2ffffe6fbffff00000000a4110000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Tile Detail UI Canvas
+      m_OriginalName: Tile Detail UI Canvas
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 4486
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -598,9 +598,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: da0b0000
-    m_LastClickedID: 3034
-    m_ExpandedIDs: 00000000300a00003a0a0000420a00005c0b00006a0b0000780b0000b00c0000fa0c00001e0f00004a0f0000640f0000183300001a33000000ca9a3b
+    m_SelectedIDs: e40b0000
+    m_LastClickedID: 3044
+    m_ExpandedIDs: 00000000360a0000400a0000480a0000660b0000740b0000820b0000ba0c0000040d0000280f0000560f0000700f00002c3300002e33000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -628,7 +628,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000300a00003a0a0000420a00005c0b00006a0b0000780b0000b00c0000fa0c00001e0f00004a0f0000640f0000183300001a330000
+    m_ExpandedIDs: 00000000360a0000400a0000480a0000660b0000740b0000820b0000ba0c0000040d0000280f0000560f0000700f00002c3300002e330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -659,15 +659,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 2c090000e031000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MapManager
-      m_OriginalName: MapManager
+      m_Name: DemoJobObj
+      m_OriginalName: DemoJobObj
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 1950
+      m_UserData: 13152
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0

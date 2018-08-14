@@ -24,4 +24,8 @@ public static class JobQueries
     {
         return jobDefs.Where(job => job.skill == skill);
     }
+    public static JobDef ByGuid(this IEnumerable<JobDef> jobDefs, System.Guid guid)
+    {
+        return jobDefs.Where(job => job.guid == guid).ElementAt(0);
+    }
 }

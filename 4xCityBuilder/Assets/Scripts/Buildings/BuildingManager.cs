@@ -41,6 +41,7 @@ public class BuildingManager : ManagerBase {
         if (ManagerBase.domain == null)
             ManagerBase.domain = new Domain();
         ManagerBase.domain.buildings = new List<BuildingObj>();
+        ManagerBase.domain.buildingManager = this;
 
         buildingUI.buildingNameSpriteDict = new Dictionary<string, Sprite>();
         foreach (BuildingDef bd in buildingDefinitions)
@@ -51,8 +52,8 @@ public class BuildingManager : ManagerBase {
 
         // Temp: add some fake bldgs
 
-        for (int i = 0; i<buildingDefinitions.Count; i++)
-            ManagerBase.domain.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal));
+        //for (int i = 0; i<buildingDefinitions.Count; i++)
+        //    ManagerBase.domain.buildings.Add(new BuildingObj(new Vector2Int(40, 40+i), buildingDefinitions[i], QualityEnum.normal));
 
         buildingCategories = new List<string>();
         foreach (BuildingDef def in buildingDefinitions)
@@ -68,8 +69,13 @@ public class BuildingManager : ManagerBase {
             surfaceValueDictionary.Add(def.name, (short)(surfaceTiles.Count - 1));
         }
         
-        //Update the surface tile
+    }
 
+    public BuildingObj AddBuilding(Vector2Int ij, BuildingDef buildingDef, QualityEnum quality)
+    {
+        BuildingObj newBuilding = new BuildingObj(ij, buildingDef, quality);
+        ManagerBase.domain.buildings.Add(newBuilding);
+        return newBuilding;
     }
 
     // Use this for initialization
